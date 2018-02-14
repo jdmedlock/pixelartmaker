@@ -1,5 +1,6 @@
 # Pixel Art Maker
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/chingu-voyage3/ideanebulae.svg?columns=all)](https://waffle.io/chingu-voyage3/ideanebulae)
+<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
+
 
 Pixel Art Maker...TBD 
 
@@ -12,6 +13,11 @@ Pixel Art Maker...TBD
  - TBD
  
 ## Development
+
+Use this command from a terminal session to compile a Stylus file to CSS:
+```
+stylus -w src/home/home.styl -o src/home/home.css
+```
 
 ### Built With
 
