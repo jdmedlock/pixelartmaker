@@ -1,15 +1,26 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  // grid-template-rows: 1fr 1fr 5fr 1fr;
-  grid-gap: 5px;
-  grid-auto-rows: minmax(auto, auto);
+//-----------------------------------------------------------------------------
+// Global definitions
+//-----------------------------------------------------------------------------
+
+:root {
+  --designGridRowCount: 8;
+  --designGridColumnCount: 8;
+  --designGridHeight: 20px;
 }
 
+//-----------------------------------------------------------------------------
 // Page Region Definitions
 // 
 // Each region cooresponds to a part of the CSS grid, which is used to
 // to make the page responsive.
+//-----------------------------------------------------------------------------
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  grid-auto-rows: minmax(auto, auto);
+}
 
 .page-header {
   grid-column: 1 / 5;
@@ -45,12 +56,17 @@
   text-align: center;
 }
 
+//-----------------------------------------------------------------------------
 // Individual Page Elements
+//-----------------------------------------------------------------------------
+
+// Menu Region items
 .menu-item {
   border-color: black;
   border-width: 1px;
 }
 
+// Color Chooser Region Items
 .color-selection {
   border-color: black;
   border-width: 1px;
@@ -70,4 +86,22 @@ for shade in (90 80 70 60 50)
     background-color: hsl(0, 0%, shade + '%');
     border-color: black;
     border-width: 1px;
+  }
+
+// Design Grid Region Items
+.design-grid-wrapper {
+  display: grid;
+  grid-template-rows: repeat(var(--designGridRowCount), var(--designGridHeight));
+  grid-template-columns: repeat(var(--designGridColumnCount), auto);
+}
+
+.grid-item {
+  grid-column-start: auto;
+  grid-row-start: auto;
+  margin: 5px;
+}
+
+for cell-color in (0..100)
+  .grid-item:nth-child(#{cell-color}) {
+    background-color: rgba(random(256)-1, random(256)-1, random(256)-1, random(10)/10);
   }

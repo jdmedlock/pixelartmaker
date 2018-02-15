@@ -1,3 +1,8 @@
+:root {
+  --designGridRowCount: 8;
+  --designGridColumnCount: 8;
+  --designGridHeight: 20px;
+}
 .wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -81,4 +86,9 @@
   background-color: #808080;
   border-color: #000;
   border-width: 1px;
+}
+.design-grid-wrapper {
+  display: grid;
+  grid-template-rows: repeat(var(--designGridRowCount), var(--designGridHeight));
+  grid-template-columns: repeat(var(--designGridColumnCount), auto);
 }
