@@ -5,7 +5,9 @@
 :root {
   --designGridRowCount: 8;
   --designGridColumnCount: 8;
-  --designGridHeight: 30px;
+  --designGridHeight: 40px;
+  --recentColorCellHeight: 40px;
+  --gridGap: 5px;
 }
 
 random(min, max)
@@ -42,6 +44,10 @@ random(min, max)
   grid-row: 3;
   border-color: black;
   border-width: 1px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
 }
 
 .design-grid {
@@ -70,16 +76,23 @@ random(min, max)
 }
 
 // Color Chooser Region Items
-.color-selection {
+.color-selector {
   border-color: black;
   border-width: 1px;
   justify-content: center;
+  height: var(--recentColorCellHeight);
+  width: 220px;
+  background-color: blue;
 }
 
 .recent-color-wrapper {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 5px;
+  grid-template-columns: repeat(5, var(--recentColorCellHeight));
+  grid-template-rows: repeat(1, var(--recentColorCellHeight));
+  grid-gap: var(--gridGap);
+  margin-top: 5px;
+  text-align: center;
+  justify-content: center;
 }
 
 for shade in (90 80 70 60 50)
