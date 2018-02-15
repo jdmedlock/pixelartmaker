@@ -8,6 +8,9 @@
   --designGridHeight: 20px;
 }
 
+random(min, max)
+  return floor( math(0, "random") * max + min )
+
 //-----------------------------------------------------------------------------
 // Page Region Definitions
 // 
@@ -95,13 +98,13 @@ for shade in (90 80 70 60 50)
   grid-template-columns: repeat(var(--designGridColumnCount), auto);
 }
 
-.grid-item {
+.design-grid-item {
   grid-column-start: auto;
   grid-row-start: auto;
   margin: 5px;
 }
 
 for cell-color in (0..100)
-  .grid-item:nth-child(#{cell-color}) {
-    background-color: rgba(random(256)-1, random(256)-1, random(256)-1, random(10)/10);
+  .design-grid-item:nth-child(#{cell-color}) {
+    background-color: rgba(random(0,256)-1, random(0,256)-1, random(0,256)-1, random(0,10)/10);
   }
