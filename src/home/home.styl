@@ -5,7 +5,7 @@
 :root {
   --designGridRowCount: 8;
   --designGridColumnCount: 8;
-  --designGridHeight: 20px;
+  --designGridHeight: 30px;
 }
 
 random(min, max)
@@ -26,13 +26,13 @@ random(min, max)
 }
 
 .page-header {
-  grid-column: 1 / 5;
+  grid-column: 1 / 6;
   grid-row: 1;
   text-align: center;
 }
 
 .menu {
-  grid-column: 1 / 5;
+  grid-column: 1 / 6;
   grid-row: 2;
   text-align: center;
 }
@@ -52,7 +52,7 @@ random(min, max)
 }
 
 .page-footer{
-  grid-column: 1 / 5;
+  grid-column: 1 / 6;
   grid-row: 4;
   border-color: black;
   border-width: 1px;
@@ -95,7 +95,7 @@ for shade in (90 80 70 60 50)
 .design-grid-wrapper {
   display: grid;
   grid-template-rows: repeat(var(--designGridRowCount), var(--designGridHeight));
-  grid-template-columns: repeat(var(--designGridColumnCount), auto);
+  grid-template-columns: repeat(var(--designGridColumnCount), var(--designGridHeight));
 }
 
 .design-grid-item {

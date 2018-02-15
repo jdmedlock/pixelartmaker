@@ -1,7 +1,7 @@
 :root {
   --designGridRowCount: 8;
   --designGridColumnCount: 8;
-  --designGridHeight: 20px;
+  --designGridHeight: 30px;
 }
 .wrapper {
   display: grid;
@@ -10,12 +10,12 @@
   grid-auto-rows: minmax(auto, auto);
 }
 .page-header {
-  grid-column: 1/5;
+  grid-column: 1/6;
   grid-row: 1;
   text-align: center;
 }
 .menu {
-  grid-column: 1/5;
+  grid-column: 1/6;
   grid-row: 2;
   text-align: center;
 }
@@ -32,7 +32,7 @@
   border-width: 1px;
 }
 .page-footer {
-  grid-column: 1/5;
+  grid-column: 1/6;
   grid-row: 4;
   border-color: #000;
   border-width: 1px;
@@ -90,7 +90,7 @@
 .design-grid-wrapper {
   display: grid;
   grid-template-rows: repeat(var(--designGridRowCount), var(--designGridHeight));
-  grid-template-columns: repeat(var(--designGridColumnCount), auto);
+  grid-template-columns: repeat(var(--designGridColumnCount), var(--designGridHeight));
 }
 .design-grid-item {
   grid-column-start: auto;
@@ -98,305 +98,305 @@
   margin: 5px;
 }
 .design-grid-item:nth-child(#0) {
-  background-color: rgba(102,0,179,0);
+  background-color: rgba(0,0,4,0);
 }
 .design-grid-item:nth-child(#1) {
-  background-color: rgba(167,0,125,0);
+  background-color: rgba(58,0,23,0);
 }
 .design-grid-item:nth-child(#2) {
-  background-color: rgba(13,0,73,0);
+  background-color: rgba(8,0,147,0);
 }
 .design-grid-item:nth-child(#3) {
-  background-color: rgba(14,0,197,0);
+  background-color: rgba(224,0,95,0);
 }
 .design-grid-item:nth-child(#4) {
-  background-color: rgba(21,0,166,0);
+  background-color: rgba(222,0,34,0);
 }
 .design-grid-item:nth-child(#5) {
-  background-color: rgba(209,0,43,0);
+  background-color: rgba(205,0,98,0);
 }
 .design-grid-item:nth-child(#6) {
-  background-color: rgba(29,0,37,0);
+  background-color: rgba(210,0,179,0);
 }
 .design-grid-item:nth-child(#7) {
-  background-color: rgba(236,0,92,0);
+  background-color: rgba(24,0,8,0);
 }
 .design-grid-item:nth-child(#8) {
-  background-color: rgba(20,0,156,0);
+  background-color: rgba(22,0,27,0);
 }
 .design-grid-item:nth-child(#9) {
-  background-color: rgba(36,0,215,0);
+  background-color: rgba(229,0,36,0);
 }
 .design-grid-item:nth-child(#10) {
-  background-color: rgba(199,0,169,0);
+  background-color: rgba(107,0,237,0);
 }
 .design-grid-item:nth-child(#11) {
-  background-color: rgba(207,0,190,0);
+  background-color: rgba(75,0,170,0);
 }
 .design-grid-item:nth-child(#12) {
-  background-color: rgba(84,0,66,0);
+  background-color: rgba(154,0,219,0);
 }
 .design-grid-item:nth-child(#13) {
-  background-color: rgba(211,0,35,0);
+  background-color: rgba(19,0,103,0);
 }
 .design-grid-item:nth-child(#14) {
-  background-color: rgba(238,0,24,0);
+  background-color: rgba(46,0,23,0);
 }
 .design-grid-item:nth-child(#15) {
-  background-color: rgba(143,0,119,0);
+  background-color: rgba(44,0,158,0);
 }
 .design-grid-item:nth-child(#16) {
-  background-color: rgba(200,0,242,0);
+  background-color: rgba(33,0,84,0);
 }
 .design-grid-item:nth-child(#17) {
-  background-color: rgba(230,0,117,0);
+  background-color: rgba(254,0,179,0);
 }
 .design-grid-item:nth-child(#18) {
-  background-color: rgba(64,0,115,0);
+  background-color: rgba(3,0,149,0);
 }
 .design-grid-item:nth-child(#19) {
-  background-color: rgba(71,0,170,0);
+  background-color: rgba(47,0,14,0);
 }
 .design-grid-item:nth-child(#20) {
-  background-color: rgba(56,0,224,0);
+  background-color: rgba(125,0,172,0);
 }
 .design-grid-item:nth-child(#21) {
-  background-color: rgba(102,0,42,0);
+  background-color: rgba(33,0,103,0);
 }
 .design-grid-item:nth-child(#22) {
-  background-color: rgba(127,0,190,0);
+  background-color: rgba(37,0,220,0);
 }
 .design-grid-item:nth-child(#23) {
-  background-color: rgba(236,0,140,0);
+  background-color: rgba(131,0,235,0);
 }
 .design-grid-item:nth-child(#24) {
-  background-color: rgba(58,0,224,0);
+  background-color: rgba(20,0,59,0);
 }
 .design-grid-item:nth-child(#25) {
-  background-color: rgba(190,0,139,0);
+  background-color: rgba(251,0,175,0);
 }
 .design-grid-item:nth-child(#26) {
-  background-color: rgba(115,0,199,0);
+  background-color: rgba(21,0,140,0);
 }
 .design-grid-item:nth-child(#27) {
-  background-color: rgba(6,0,8,0);
+  background-color: rgba(191,0,129,0);
 }
 .design-grid-item:nth-child(#28) {
-  background-color: rgba(162,0,182,0);
+  background-color: rgba(191,0,137,0);
 }
 .design-grid-item:nth-child(#29) {
-  background-color: rgba(200,0,98,0);
+  background-color: rgba(251,0,17,0);
 }
 .design-grid-item:nth-child(#30) {
-  background-color: rgba(52,0,0,0);
+  background-color: rgba(111,0,22,0);
 }
 .design-grid-item:nth-child(#31) {
-  background-color: rgba(123,0,227,0);
+  background-color: rgba(163,0,220,0);
 }
 .design-grid-item:nth-child(#32) {
-  background-color: rgba(16,0,92,0);
+  background-color: rgba(138,0,144,0);
 }
 .design-grid-item:nth-child(#33) {
-  background-color: rgba(132,0,71,0);
+  background-color: rgba(14,0,120,0);
 }
 .design-grid-item:nth-child(#34) {
-  background-color: rgba(0,0,248,0);
+  background-color: rgba(183,0,31,0);
 }
 .design-grid-item:nth-child(#35) {
-  background-color: rgba(34,0,226,0);
+  background-color: rgba(144,0,184,0);
 }
 .design-grid-item:nth-child(#36) {
-  background-color: rgba(179,0,60,0);
+  background-color: rgba(178,0,108,0);
 }
 .design-grid-item:nth-child(#37) {
-  background-color: rgba(109,0,30,0);
+  background-color: rgba(102,0,233,0);
 }
 .design-grid-item:nth-child(#38) {
-  background-color: rgba(119,0,36,0);
+  background-color: rgba(200,0,250,0);
 }
 .design-grid-item:nth-child(#39) {
-  background-color: rgba(80,0,79,0);
+  background-color: rgba(31,0,81,0);
 }
 .design-grid-item:nth-child(#40) {
-  background-color: rgba(233,0,138,0);
+  background-color: rgba(255,0,227,0);
 }
 .design-grid-item:nth-child(#41) {
-  background-color: rgba(71,0,141,0);
+  background-color: rgba(163,0,125,0);
 }
 .design-grid-item:nth-child(#42) {
-  background-color: rgba(5,0,2,0);
+  background-color: rgba(46,0,62,0);
 }
 .design-grid-item:nth-child(#43) {
-  background-color: rgba(97,0,92,0);
+  background-color: rgba(134,0,141,0);
 }
 .design-grid-item:nth-child(#44) {
-  background-color: rgba(184,0,138,0);
+  background-color: rgba(196,0,50,0);
 }
 .design-grid-item:nth-child(#45) {
-  background-color: rgba(169,0,60,0);
+  background-color: rgba(140,0,70,0);
 }
 .design-grid-item:nth-child(#46) {
-  background-color: rgba(172,0,51,0);
+  background-color: rgba(27,0,174,0);
 }
 .design-grid-item:nth-child(#47) {
-  background-color: rgba(5,0,221,0);
+  background-color: rgba(0,0,238,0);
 }
 .design-grid-item:nth-child(#48) {
-  background-color: rgba(207,0,90,0);
+  background-color: rgba(8,0,20,0);
 }
 .design-grid-item:nth-child(#49) {
-  background-color: rgba(65,0,223,0);
+  background-color: rgba(6,0,170,0);
 }
 .design-grid-item:nth-child(#50) {
-  background-color: rgba(171,0,209,0);
+  background-color: rgba(239,0,60,0);
 }
 .design-grid-item:nth-child(#51) {
-  background-color: rgba(40,0,67,0);
+  background-color: rgba(40,0,197,0);
 }
 .design-grid-item:nth-child(#52) {
-  background-color: rgba(145,0,14,0);
+  background-color: rgba(177,0,114,0);
 }
 .design-grid-item:nth-child(#53) {
-  background-color: rgba(130,0,46,0);
+  background-color: rgba(49,0,192,0);
 }
 .design-grid-item:nth-child(#54) {
-  background-color: rgba(27,0,190,0);
+  background-color: rgba(185,0,18,0);
 }
 .design-grid-item:nth-child(#55) {
-  background-color: rgba(7,0,0,0);
+  background-color: rgba(152,0,10,0);
 }
 .design-grid-item:nth-child(#56) {
-  background-color: rgba(30,0,19,0);
+  background-color: rgba(85,0,20,0);
 }
 .design-grid-item:nth-child(#57) {
-  background-color: rgba(165,0,45,0);
+  background-color: rgba(72,0,147,0);
 }
 .design-grid-item:nth-child(#58) {
-  background-color: rgba(220,0,37,0);
+  background-color: rgba(229,0,164,0);
 }
 .design-grid-item:nth-child(#59) {
-  background-color: rgba(161,0,232,0);
+  background-color: rgba(24,0,230,0);
 }
 .design-grid-item:nth-child(#60) {
-  background-color: rgba(171,0,254,0);
+  background-color: rgba(29,0,13,0);
 }
 .design-grid-item:nth-child(#61) {
-  background-color: rgba(157,0,94,0);
+  background-color: rgba(90,0,180,0);
 }
 .design-grid-item:nth-child(#62) {
-  background-color: rgba(136,0,95,0);
+  background-color: rgba(145,0,227,0);
 }
 .design-grid-item:nth-child(#63) {
-  background-color: rgba(213,0,43,0);
+  background-color: rgba(107,0,81,0);
 }
 .design-grid-item:nth-child(#64) {
-  background-color: rgba(129,0,145,0);
+  background-color: rgba(63,0,168,0);
 }
 .design-grid-item:nth-child(#65) {
-  background-color: rgba(18,0,174,0);
+  background-color: rgba(55,0,89,0);
 }
 .design-grid-item:nth-child(#66) {
-  background-color: rgba(222,0,6,0);
+  background-color: rgba(105,0,221,0);
 }
 .design-grid-item:nth-child(#67) {
-  background-color: rgba(124,0,56,0);
+  background-color: rgba(65,0,112,0);
 }
 .design-grid-item:nth-child(#68) {
-  background-color: rgba(70,0,182,0);
+  background-color: rgba(98,0,66,0);
 }
 .design-grid-item:nth-child(#69) {
-  background-color: rgba(236,0,217,0);
+  background-color: rgba(104,0,113,0);
 }
 .design-grid-item:nth-child(#70) {
-  background-color: rgba(66,0,34,0);
+  background-color: rgba(250,0,102,0);
 }
 .design-grid-item:nth-child(#71) {
-  background-color: rgba(146,0,82,0);
+  background-color: rgba(120,0,185,0);
 }
 .design-grid-item:nth-child(#72) {
-  background-color: rgba(215,0,233,0);
+  background-color: rgba(244,0,100,0);
 }
 .design-grid-item:nth-child(#73) {
-  background-color: rgba(252,0,81,0);
+  background-color: rgba(112,0,84,0);
 }
 .design-grid-item:nth-child(#74) {
-  background-color: rgba(66,0,252,0);
+  background-color: rgba(253,0,89,0);
 }
 .design-grid-item:nth-child(#75) {
-  background-color: rgba(39,0,27,0);
+  background-color: rgba(74,0,33,0);
 }
 .design-grid-item:nth-child(#76) {
-  background-color: rgba(190,0,187,0);
+  background-color: rgba(234,0,202,0);
 }
 .design-grid-item:nth-child(#77) {
-  background-color: rgba(231,0,116,0);
+  background-color: rgba(213,0,245,0);
 }
 .design-grid-item:nth-child(#78) {
-  background-color: rgba(11,0,243,0);
+  background-color: rgba(205,0,193,0);
 }
 .design-grid-item:nth-child(#79) {
-  background-color: rgba(94,0,30,0);
+  background-color: rgba(181,0,57,0);
 }
 .design-grid-item:nth-child(#80) {
-  background-color: rgba(47,0,105,0);
+  background-color: rgba(44,0,195,0);
 }
 .design-grid-item:nth-child(#81) {
-  background-color: rgba(182,0,217,0);
+  background-color: rgba(38,0,206,0);
 }
 .design-grid-item:nth-child(#82) {
-  background-color: rgba(41,0,178,0);
+  background-color: rgba(188,0,101,0);
 }
 .design-grid-item:nth-child(#83) {
-  background-color: rgba(174,0,181,0);
+  background-color: rgba(49,0,18,0);
 }
 .design-grid-item:nth-child(#84) {
-  background-color: rgba(68,0,26,0);
+  background-color: rgba(235,0,108,0);
 }
 .design-grid-item:nth-child(#85) {
-  background-color: rgba(85,0,13,0);
+  background-color: rgba(186,0,132,0);
 }
 .design-grid-item:nth-child(#86) {
-  background-color: rgba(158,0,8,0);
+  background-color: rgba(0,0,235,0);
 }
 .design-grid-item:nth-child(#87) {
-  background-color: rgba(38,0,255,0);
+  background-color: rgba(37,0,102,0);
 }
 .design-grid-item:nth-child(#88) {
-  background-color: rgba(7,0,61,0);
+  background-color: rgba(124,0,48,0);
 }
 .design-grid-item:nth-child(#89) {
-  background-color: rgba(92,0,92,0);
+  background-color: rgba(222,0,178,0);
 }
 .design-grid-item:nth-child(#90) {
-  background-color: rgba(77,0,208,0);
+  background-color: rgba(76,0,198,0);
 }
 .design-grid-item:nth-child(#91) {
-  background-color: rgba(158,0,22,0);
+  background-color: rgba(111,0,35,0);
 }
 .design-grid-item:nth-child(#92) {
-  background-color: rgba(56,0,100,0);
+  background-color: rgba(51,0,194,0);
 }
 .design-grid-item:nth-child(#93) {
-  background-color: rgba(104,0,81,0);
+  background-color: rgba(148,0,8,0);
 }
 .design-grid-item:nth-child(#94) {
-  background-color: rgba(140,0,219,0);
+  background-color: rgba(191,0,198,0);
 }
 .design-grid-item:nth-child(#95) {
-  background-color: rgba(113,0,144,0);
+  background-color: rgba(114,0,107,0);
 }
 .design-grid-item:nth-child(#96) {
-  background-color: rgba(65,0,119,0);
+  background-color: rgba(180,0,80,0);
 }
 .design-grid-item:nth-child(#97) {
-  background-color: rgba(110,0,84,0);
+  background-color: rgba(167,0,125,0);
 }
 .design-grid-item:nth-child(#98) {
-  background-color: rgba(77,0,228,0);
+  background-color: rgba(211,0,143,0);
 }
 .design-grid-item:nth-child(#99) {
-  background-color: rgba(143,0,95,0);
+  background-color: rgba(150,0,251,0);
 }
 .design-grid-item:nth-child(#100) {
-  background-color: rgba(44,0,1,0);
+  background-color: rgba(141,0,191,0);
 }
