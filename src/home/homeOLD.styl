@@ -1,0 +1,52 @@
+:root {
+  --rowNum: 8;
+  --colNum: 8;
+  --gridHeight: 120px;
+}
+
+random(min, max)
+  return floor( math(0, "random") * max + min )
+
+body {
+  min-height: 100vh;
+  font-family: Calibri;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: repeat(var(--rowNum), var(--gridHeight));
+  grid-template-columns: repeat(var(--colNum), auto);
+}
+
+.grid-item {
+  grid-column-start: auto;
+  grid-row-start: auto;
+  margin: 5px;
+}
+
+for $i in (0..100)
+  .grid-item:nth-child(#{$i}) {
+    background-color: rgba(random(0,256)-1, random(0,256)-1, random(0,256)-1, random(0,10));
+  }
+
+.controls {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+  background: rgba(40, 180, 200, 0.8);
+  border: 2px solid black;
+  border-radius: 40px/40px;
+  
+  a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    
+    &:hover {
+      color: black;
+    }
+  }
+}

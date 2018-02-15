@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
-	<script src="../lib/stylus.min.js"></script>
-	<link href="home.styl" rel="stylesheet">
+	<link href="home.css" rel="stylesheet">
 	<title>Pixel Art Maker</title>
 </head>
+
 <body>
-	<header>
-		<h1>Pixel Art Maker</h1>
-	</header>
+	<div class="wrapper">
+		<div class="page-header">
+			<h1>Pixel Art Maker</h1>
+		</div>
 
-	<section>
-		<p>Palette goes here</p>
-	</section>
+		<div class="menu">
+			<button class="menu-item">Open file...</button>
+			<button class="menu-item">Save file...</button>
+			<button class="menu-item">Clear grid</button>
+		</div>
 
-	<section>
-		<p>Grid goes here</p>
-	</section>
-		
-	<footer>
-		<p>About link goes here</p>
-	</footer>
+		<div class="color-chooser">
+			<h2>Color Chooser</h2>
+			<span>
+				<button class="color-selector"></button>
+			</span>
+			<div class="recent-color-wrapper">
+				<button class="recent-color-90"></button>
+				<button class="recent-color-80"></button>
+				<button class="recent-color-70"></button>
+				<button class="recent-color-60"></button>
+				<button class="recent-color-50"></button>
+			</div>
+		</div>
+
+		<div class="design-grid">
+			<h2>Design Grid</h2>
+		</div>
+
+		<div class="page-footer">
+			Footer
+		</div>
+	</div>
 </body>
+
 </html>

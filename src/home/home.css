@@ -1,43 +1,84 @@
-:root {
-  --rowNum: 8;
-  --colNum: 8;
-  --gridHeight: 120px;
-}
-body {
-  min-height: 100vh;
-  font-family: Calibri;
-  margin: 0;
-  overflow-x: hidden;
-}
 .wrapper {
   display: grid;
-  grid-template-rows: repeat(var(--rowNum), var(--gridHeight));
-  grid-template-columns: repeat(var(--colNum), auto);
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  grid-auto-rows: minmax(auto, auto);
 }
-.grid-item {
-  grid-column-start: auto;
-  grid-row-start: auto;
-  margin: 5px;
+.page-header {
+  grid-column: 1/5;
+  grid-row: 1;
+  text-align: center;
 }
-@for $i from 0 to 100 {
-  .grid-item:nth-child(#$i) {
-    background-color: rgba(45,0,160,0);
-  }
+.menu {
+  grid-column: 1/5;
+  grid-row: 2;
+  text-align: center;
 }
-.controls {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  padding: 10px;
-  background: rgba(40,180,200,0.8);
-  border: 2px solid #000;
-  border-radius: 40px/40px;
+.color-chooser {
+  grid-column: 1;
+  grid-row: 3;
+  border-color: #000;
+  border-width: 1px;
 }
-.controls a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 10px;
+.design-grid {
+  grid-column: 2/6;
+  grid-row: 3;
+  border-color: #000;
+  border-width: 1px;
 }
-.controls a:hover {
-  color: #000;
+.page-footer {
+  grid-column: 1/5;
+  grid-row: 4;
+  border-color: #000;
+  border-width: 1px;
+  text-align: center;
+}
+.menu-item {
+  border-color: #000;
+  border-width: 1px;
+}
+.color-selection {
+  border-color: #000;
+  border-width: 1px;
+  justify-content: center;
+}
+.recent-color-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+}
+.recent-color-90 {
+  grid-column: 1fr;
+  grid-row: 1fr;
+  background-color: #e6e6e6;
+  border-color: #000;
+  border-width: 1px;
+}
+.recent-color-80 {
+  grid-column: 1fr;
+  grid-row: 1fr;
+  background-color: #ccc;
+  border-color: #000;
+  border-width: 1px;
+}
+.recent-color-70 {
+  grid-column: 1fr;
+  grid-row: 1fr;
+  background-color: #b3b3b3;
+  border-color: #000;
+  border-width: 1px;
+}
+.recent-color-60 {
+  grid-column: 1fr;
+  grid-row: 1fr;
+  background-color: #999;
+  border-color: #000;
+  border-width: 1px;
+}
+.recent-color-50 {
+  grid-column: 1fr;
+  grid-row: 1fr;
+  background-color: #808080;
+  border-color: #000;
+  border-width: 1px;
 }
