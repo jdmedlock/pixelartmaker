@@ -114,10 +114,7 @@ for shade in (90 80 70 60 50)
 .design-grid-item {
   grid-column-start: auto;
   grid-row-start: auto;
-  margin: 5px;
+  background-color: lightgrey;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
 }
-
-for cell-color in (0..100)
-  .design-grid-item:nth-child(#{cell-color}) {
-    background-color: rgba(random(0,256)-1, random(0,256)-1, random(0,256)-1, random(0,10)/10);
-  }
