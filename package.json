@@ -1,0 +1,20 @@
+{
+  "name": "pixelartmaker",
+  "version": "1.0.0",
+  "description": "[![Waffle.io - Columns and their card count](https://badge.waffle.io/chingu-voyage3/ideanebulae.svg?columns=all)](https://waffle.io/chingu-voyage3/ideanebulae)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdmedlock/pixelartmaker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdmedlock/pixelartmaker/issues"
+  },
+  "homepage": "https://github.com/jdmedlock/pixelartmaker#readme"
+}
