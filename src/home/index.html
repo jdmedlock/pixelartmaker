@@ -3,6 +3,7 @@
 
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="home.js"></script>
 	<link href="home.css" rel="stylesheet">
 	<meta charset="UTF-8">
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-	<div class="wrapper">
+	<div class="page-wrapper">
 		<div class="page-header">
 			<h1>Pixel Art Maker</h1>
 		</div>
@@ -21,11 +22,9 @@
 			<button class="menu-item">Clear grid</button>
 		</div>
 
-		<div class="color-chooser">
-			<h2>Color Chooser</h2>
-			<span>
-				<button class="color-selector"></button>
-			</span>
+		<h2 class="color-chooser-header">Color Chooser</h2>
+		<div class="color-chooser-wrapper">
+			<button class="color-selector"></button>
 			<div class="recent-color-wrapper">
 				<button class="recent-color-90"></button>
 				<button class="recent-color-80"></button>
@@ -35,38 +34,54 @@
 			</div>
 		</div>
 
-		<div class="design-grid">
-			<h2>Design Grid</h2>
+		<h2 class="design-grid-header">Design Grid</h2>
+		<div class="design-grid-row-controls">
+			<i class="fas fa-minus-circle"></i>
+			<input id="textInput" class="grid-row-count" type="number" 
+						 maxLength="3" min="1" max="99" value="8"/>
+			<i class="fas fa-plus-circle"></i>
+		</div>
+
+		<div class="design-wrapper">
+			<div class="design-grid-column-wrapper">
+				<i class="fas fa-minus-circle grid-column-minus"></i>
+				<br/>
+				<input id="textInput" class="grid-column-count" type="number"
+							 maxLength="3" min="1" max="99" value="8"/>
+				<br/>
+				<i class="fas fa-plus-circle grid-column-plus"></i>
+			</div>
+
 			<div class="design-grid-wrapper">
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
-				<div class="design-grid-item"></div>
+				<div class="design-grid-item-1"></div>
+				<div class="design-grid-item-2"></div>
+				<div class="design-grid-item-3"></div>
+				<div class="design-grid-item-4"></div>
+				<div class="design-grid-item-5"></div>
+				<div class="design-grid-item-6"></div>
+				<div class="design-grid-item-7"></div>
+				<div class="design-grid-item-8"></div>
+				<div class="design-grid-item-9"></div>
+				<div class="design-grid-item-10"></div>
+				<div class="design-grid-item-11"></div>
+				<div class="design-grid-item-12"></div>
+				<div class="design-grid-item-13"></div>
+				<div class="design-grid-item-14"></div>
+				<div class="design-grid-item-15"></div>
+				<div class="design-grid-item-16"></div>
+				<div class="design-grid-item-17"></div>
+				<div class="design-grid-item-18"></div>
+				<div class="design-grid-item-19"></div>
+				<div class="design-grid-item-20"></div>
+				<div class="design-grid-item-21"></div>
+				<div class="design-grid-item-22"></div>
+				<div class="design-grid-item-23"></div>
+				<div class="design-grid-item-24"></div>
 			</div>
 		</div>
 
 		<div class="page-footer">
-			Footer
+			<h4>About</h4>
 		</div>
 	</div>
 </body>
