@@ -1,0 +1,192 @@
+//-----------------------------------------------------------------------------
+// Global definitions
+//-----------------------------------------------------------------------------
+
+:root {
+  --designGridColumnCount: 8;
+  --designGridRowCount: 3;
+  --designGridHeight: 40px;
+  --recentColorCellHeight: 40px;
+  --gridGap: 5px;
+}
+
+random(min, max)
+  return floor( math(0, "random") * max + min )
+
+//-----------------------------------------------------------------------------
+// Page Region Definitions
+// 
+// Each region cooresponds to a part of the CSS grid, which is used to
+// to make the page responsive.
+//-----------------------------------------------------------------------------
+
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 6;
+  grid-gap: 5px;
+  grid-auto-rows: minmax(auto, auto);
+}
+
+.page-header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  text-align: center;
+}
+
+.menu {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  text-align: center;
+}
+
+.column-headers {
+  grid-column: 1;
+  grid-row: 3;
+  text-align: center;
+}
+
+.design-grid-controls {
+  grid-column: 2 / 3;
+  grid-row: 4;
+}
+
+.color-chooser {
+  grid-column: 1;
+  grid-row: 5;
+  border-color: black;
+  border-width: 1px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.design-grid {
+  grid-column: 2 / 3;
+  grid-row: 5;
+  border-color: black;
+  border-width: 1px;
+}
+
+.page-footer{
+  grid-column: 1 / 3;
+  grid-row: 6;
+  border-color: black;
+  border-width: 1px;
+  text-align: center;
+}
+
+//-----------------------------------------------------------------------------
+// Individual Page Elements
+//-----------------------------------------------------------------------------
+
+// Menu Region Items
+.menu-item {
+  border-color: black;
+  border-width: 1px;
+}
+
+// Color Chooser Header Region Items
+.color-chooser-header {
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+.design-grid-header {
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+
+// Color Chooser Region Items
+.color-chooser-wrapper {
+  grid-column-start: 1;
+  grid-row-start: 5;
+}
+
+.color-selector {
+  border-color: black;
+  border-width: 1px;
+  justify-content: center;
+  height: var(--recentColorCellHeight);
+  width: 220px;
+  background-color: blue;
+}
+
+.recent-color-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, var(--recentColorCellHeight));
+  grid-template-rows: repeat(1, var(--recentColorCellHeight));
+  grid-gap: var(--gridGap);
+  margin: 5px 0px 0px 0px;
+  text-align: center;
+}
+
+for shade in (90 80 70 60 50)
+  .recent-color-{shade} {
+    grid-column-start: auto;
+    grid-row-start: auto;
+    background-color: hsl(0, 0%, shade + '%');
+    border-color: black;
+    border-width: 1px;
+  }
+
+// Design Grid Controls
+.design-grid-row-controls {
+  grid-column-start: 2;
+  grid-row-start: 4;
+  align-content: center;
+}
+
+.grid-row-count {
+  margin-bottom: 5px;
+  margin: 0px 10px 10px 10px;
+  text-align: right;
+}
+
+// Design Grid Region Items
+.design-wrapper {
+  grid-column-start: 2 / 3;
+  grid-row-start: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.design-grid-column-wrapper {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.grid-column-minus {
+  margin: 0px auto 0px auto;
+  text-align: center;
+}
+
+.grid-column-count {
+  margin: 10px auto 10px auto;
+  text-align: right;
+}
+
+.grid-column-plus {
+  margin: 0px auto 0px auto;
+}
+
+// Design Grid
+.design-grid-wrapper {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--designGridColumnCount), var(--designGridHeight));
+  grid-template-rows: repeat(auto, var(--designGridHeight));
+}
+
+for cell-number in (1..24)
+  .design-grid-item-{cell-number} {
+    /*
+    grid-column-start: auto;
+    grid-row-end: auto;
+    */
+    background-color: lightgrey;
+    border: 1px solid grey;
+  }
