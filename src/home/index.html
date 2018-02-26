@@ -2,9 +2,6 @@
 <html>
 
 <head>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<script src="home.js"></script>
 	<link href="home.css" rel="stylesheet">
 	<meta charset="UTF-8">
 	<title>Pixel Art Maker</title>
@@ -36,10 +33,10 @@
 
 		<h2 class="design-grid-header">Design Grid</h2>
 		<div class="design-grid-row-controls">
-			<i class="fas fa-minus-circle"></i>
+			<i class="fas fa-minus-circle grid-row-decrement"></i>
 			<input id="textInput" class="grid-row-count" type="number" 
 						 maxLength="3" min="1" max="99" value="8"/>
-			<i class="fas fa-plus-circle"></i>
+			<i class="fas fa-plus-circle grid-row-increment"></i>
 		</div>
 
 		<div class="design-wrapper">
@@ -84,6 +81,11 @@
 			<h4>About</h4>
 		</div>
 	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<script type="module" src="index.js"></script>
+
 </body>
 
 </html>
