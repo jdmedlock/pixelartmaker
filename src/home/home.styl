@@ -181,12 +181,11 @@ for shade in (90 80 70 60 50)
   grid-template-rows: repeat(auto, var(--designGridHeight));
 }
 
-for cell-number in (1..24)
-  .design-grid-item-{cell-number} {
-    /*
-    grid-column-start: auto;
-    grid-row-end: auto;
-    */
-    background-color: lightgrey;
-    border: 1px solid grey;
-  }
+.design-grid-cell {
+  /*
+  grid-column-start: auto;
+  grid-row-end: auto;
+  */
+  background-color: red;
+  border: 1px solid grey;
+}
