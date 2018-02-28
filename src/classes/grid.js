@@ -66,7 +66,7 @@ class Grid {
    * @readonly
    * @memberof Grid
    */
-  get getColumnCount() {
+  getColumnCount() {
     return this.columnCount;
   }
 
@@ -86,7 +86,7 @@ class Grid {
     // TODO: Adjust grid
   }
 
-    /**
+  /**
    * @description Get the current number of rows in the grid.
    * @returns {Integer} - Number of rows in the grid
    * @readonly
@@ -176,7 +176,7 @@ class Grid {
         gridCellElements += gridCellTemplate;
       }
     }
-    return gridCellElements;
+    $( ".design-grid-wrapper" ).append( gridCellElements );
   }
 }
 
