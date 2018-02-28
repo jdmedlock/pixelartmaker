@@ -4,7 +4,8 @@
   "description": "[![Waffle.io - Columns and their card count](https://badge.waffle.io/chingu-voyage3/ideanebulae.svg?columns=all)](https://waffle.io/chingu-voyage3/ideanebulae)",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/rollup -c"
+    "build": "./node_modules/.bin/rollup -c",
+    "stylus": "stylus -w src/home/home.styl -o src/home/home.css"
   },
   "repository": {
     "type": "git",
