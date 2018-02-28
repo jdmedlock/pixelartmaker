@@ -20,8 +20,8 @@
 		</div>
 
 		<h2 class="color-chooser-header">Color Chooser</h2>
-		<div class="color-chooser-wrapper">
-			<button class="color-selector"></button>
+		<div class="color-chooser">
+			<button class="color-selector-button"></button>
 			<div class="recent-color-wrapper">
 				<button class="recent-color-90"></button>
 				<button class="recent-color-80"></button>
@@ -32,25 +32,27 @@
 		</div>
 
 		<h2 class="design-grid-header">Design Grid</h2>
-		<div class="design-grid-row-controls">
-			<i class="fas fa-minus-circle grid-row-decrement"></i>
-			<input id="textInput" class="grid-row-count" type="number" 
-						 maxLength="3" min="1" max="99" value="8"/>
-			<i class="fas fa-plus-circle grid-row-increment"></i>
+
+		<div class="design-grid-column-controls">
+			<span>Columns </span>
+			<i class="fas fa-minus-circle column-minus"></i>
+			<input id="textInput" class="column-count" type="number"
+							maxLength="3" min="1" max="99" value="8"/>
+			<i class="fas fa-plus-circle column-plus"></i>
 		</div>
 
-		<div class="design-wrapper">
-			<div class="design-grid-column-wrapper">
-				<i class="fas fa-minus-circle grid-column-minus"></i>
-				<br/>
-				<input id="textInput" class="grid-column-count" type="number"
-							 maxLength="3" min="1" max="99" value="8"/>
-				<br/>
-				<i class="fas fa-plus-circle grid-column-plus"></i>
-			</div>
+		<div class="design-grid">
+		</div>
 
-			<div class="design-grid-wrapper">
-			</div>
+		<div class="design-grid-row-controls">
+			<span>Rows </span>
+			<br/>
+			<i class="fas fa-minus-circle ow-minus"></i>
+			<br/>
+			<input id="textInput" class="row-count" type="number" 
+							maxLength="3" min="1" max="99" value="8"/>
+			<br/>
+			<i class="fas fa-plus-circle row-plus"></i>
 		</div>
 
 		<div class="page-footer">

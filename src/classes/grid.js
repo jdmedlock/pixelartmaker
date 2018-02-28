@@ -176,7 +176,7 @@ class Grid {
         gridCellElements += gridCellTemplate;
       }
     }
-    $( ".design-grid-wrapper" ).append( gridCellElements );
+    $( ".design-grid" ).append( gridCellElements );
   }
 }
 
