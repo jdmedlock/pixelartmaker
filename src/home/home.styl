@@ -45,22 +45,24 @@ html {
   text-align: center;
 }
 
-.color-chooser-header {
-  grid-column: 1;
-  grid-row: 3;
-  text-align: center;
-}
-
 .design-grid-header {
   grid-column: 2;
   grid-row: 3;
   text-align: center;
 }
 
+.color-chooser-header {
+  grid-column: 1;
+  grid-row: 4;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
 .design-grid-column-controls {
   grid-column: 2;
   grid-row: 4;
   grid-gap: 5px;
+  text-align: center;
 }
 
 .color-chooser {
@@ -71,6 +73,7 @@ html {
   text-align: center;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 .design-grid {
@@ -87,6 +90,9 @@ html {
   grid-column: 3;
   grid-row: 5;
   grid-gap: 5px;
+  display: flex;
+  align-items: center;
+  width: 45px;
 }
 
 .page-footer{
@@ -110,12 +116,14 @@ html {
 // Color Chooser Header Region Items
 .color-chooser-header {
   grid-column-start: 1;
-  grid-row-start: 3;
+  grid-row-start: 4;
+  margin: auto;
 }
 
 .design-grid-header {
   grid-column-start: 2;
   grid-row-start: 3;
+  margin: auto;
 }
 
 // Color Chooser Region Items
@@ -149,17 +157,16 @@ for shade in (90 80 70 60 50)
 
 // Design Grid Controls
 .row-controls {
+  margin-left: 10px;
   text-align: center;
-  justify-content: center;
-  align-items: center;
 }
 
 .row-minus {
-  margin: 0px auto 0px auto;
+  margin: 20px auto 0px auto;
 }
 
 .row-count {
-  margin: 10px auto 10px auto;
+  margin: 5px auto 5px auto;
   text-align: right;
 }
 
@@ -168,8 +175,7 @@ for shade in (90 80 70 60 50)
 }
 
 .column-minus {
-  margin: 0px auto 0px auto;
-  text-align: center;
+  margin: 0px auto 0px 10px;
 }
 
 .column-count {
