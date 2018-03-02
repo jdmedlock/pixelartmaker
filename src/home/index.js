@@ -16,7 +16,8 @@ $(document).ready(function() {
   designGrid.makeGrid();
 
   // Create a button handler for the on/off button
-  $("#grid-row-decrement").click((event) => {
+  $(".row-minus").click((event) => {
+      console.log(`Intercepted row minus click. event: ${event}`);
       designGrid.decrRowCount();
   });
 

@@ -144,6 +144,7 @@ class Grid {
    * @memberof Grid
    */
   decrRowCount() {
+    console.log('I made it!');
     if (this._rowCount === this.minRowCount) {
       return new Error(`Minimum row limit of ${this.maxRowCount} already reached.`);
     }
