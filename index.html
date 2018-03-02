@@ -33,10 +33,14 @@
 
 		<div class="design-grid-column-controls">
 			<span>Columns</span>
-			<i class="fas fa-minus-circle column-minus"></i>
+			<span class="column-minus">
+				<i class="fas fa-minus-circle"></i>
+			</span>
 			<input id="textInput" class="column-count" type="number"
 							maxLength="3" min="1" max="99" value="8"/>
-			<i class="fas fa-plus-circle column-plus"></i>
+			<span class="column-plus">
+				<i class="fas fa-plus-circle"></i>
+			</span>
 		</div>
 
 		<div class="design-grid">
@@ -45,12 +49,16 @@
 		<div class="design-grid-row-controls">
 			<div class="row-controls">
 				<div>Rows</div>
-				<i class="fas fa-minus-circle row-minus"></i>
-				<br/>
-				<input id="textInput" class="row-count" type="number" 
-								maxLength="3" min="1" max="99" value="8"/>
-				<br/>
-				<i class="fas fa-plus-circle row-plus"></i>
+				<div class="row-minus">
+					<i class="fas fa-minus-circle"></i>
+				</div>
+				<div>
+					<input id="textInput" class="row-count" type="number" 
+									maxLength="3" min="1" max="99" value="8"/>
+				</div>
+				<div class="row-plus">
+					<i class="fas fa-plus-circle"></i>
+				</div>
 			</div>
 		</div>
 

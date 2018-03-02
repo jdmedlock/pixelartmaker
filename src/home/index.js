@@ -11,14 +11,26 @@ $(document).ready(function() {
     appWindow.getCssVariable('designGridRowCount', 'number'), 
     appWindow.getCssVariable('designGridColumnCount', 'number')
   );
-
-  console.log(designGrid);
   designGrid.makeGrid();
 
-  // Create a button handler for the on/off button
+  // Create a button handler decrement column event
+  $(".column-minus").click((event) => {
+    designGrid.decrColumnCount();
+  });
+
+  // Create a button handler increment column event
+  $(".column-plus").click((event) => {
+    designGrid.incrColumnCount();
+  });
+
+  // Create a button handler decrement row event
   $(".row-minus").click((event) => {
-      console.log(`Intercepted row minus click. event: ${event}`);
       designGrid.decrRowCount();
+  });
+
+  // Create a button handler increment row event
+  $(".row-plus").click((event) => {
+    designGrid.incrRowCount();
   });
 
 });
