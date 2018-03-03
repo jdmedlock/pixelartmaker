@@ -13,6 +13,11 @@ $(document).ready(function() {
   );
   designGrid.makeGrid();
 
+  // Create an input event handler for the column count
+  $('.column-count').change(() => { 
+    console.log('Column count changed');
+  });
+
   // Create a button handler decrement column event
   $(".column-minus").click((event) => {
     designGrid.decrColumnCount();
@@ -22,6 +27,11 @@ $(document).ready(function() {
   $(".column-plus").click((event) => {
     designGrid.incrColumnCount();
   });
+
+  // Create an input event handler for the row count
+  $('.row-count').change(() => { 
+    // do something
+  });  
 
   // Create a button handler decrement row event
   $(".row-minus").click((event) => {

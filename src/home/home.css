@@ -37,6 +37,7 @@ html {
   grid-row: 4;
   grid-gap: 5px;
   text-align: center;
+  width: 25%;
 }
 .color-chooser {
   grid-column: 1;
@@ -73,6 +74,7 @@ html {
 .menu-item {
   border-color: #000;
   border-width: 1px;
+  margin-right: 20px;
 }
 .color-chooser-header {
   grid-column-start: 1;
@@ -168,4 +170,7 @@ html {
 .design-grid-cell {
   background-color: #dadce0;
   border: 1px solid #5f6b82;
+}
+.mdl-textfield {
+  width: 50px;
 }
