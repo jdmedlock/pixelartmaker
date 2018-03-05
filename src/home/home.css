@@ -172,6 +172,8 @@ html {
   background-color: #dadce0;
   border: 1px solid #5f6b82;
 }
-.mdl-textfield {
+/*
+& .mdl-textfield {
   width: 50px;
 }
+*/

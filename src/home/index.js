@@ -13,6 +13,11 @@ $(document).ready(function() {
   );
   designGrid.makeGrid();
 
+  // Create an event handler for the Clear Grid button
+  $("#clear-grid-btn").click((event) => {
+    designGrid.clearGrid();
+  });
+
   // Create an input event handler for the column count
   $('.column-count').change(() => { 
     console.log('Column count changed');
