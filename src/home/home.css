@@ -37,7 +37,8 @@ html {
   grid-row: 4;
   grid-gap: 5px;
   text-align: center;
-  width: 25%;
+  width: 50%;
+  margin: auto;
 }
 .color-chooser {
   grid-column: 1;
@@ -62,7 +63,7 @@ html {
   grid-gap: 5px;
   display: flex;
   align-items: center;
-  width: 45px;
+  width: 50%;
 }
 .page-footer {
   grid-column: 1/4;
