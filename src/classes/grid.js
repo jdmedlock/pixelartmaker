@@ -114,7 +114,8 @@ class Grid {
 
   /**
    * @description Decrement the grid column count
-   * @returns {Error} If current value is at the minimum column count.
+   * @returns {any} The new column count or an Error object If current value is at the
+   * maximum column count.
    * @memberof Grid
    */
   decrColumnCount() {
@@ -123,46 +124,52 @@ class Grid {
     }
     this.columnCount -= 1;
     // TODO: Adjust grid
+    return this.columnCount;
   }
 
   /**
    * @description Increment the grid column count
-   * @returns {Error} If current value is at the maximum column count.
+   * @returns {any} The new column count or an Error object If current value is at the
+   * maximum column count.
    * @memberof Grid
    */
   incrColumnCount() {
-    if (this._columnCount === this.maxColumnCount) {
+    if (this.columnCount === this.maxColumnCount) {
       return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
     }
     this.columnCount += 1;
     // TODO: Adjust grid
+    return this.columnCount;
   }
   
   /**
    * @description Decrement the grid row count
-   * @returns  
+   * @returns {any} The new row count or an Error object If current value is at the
+   * minimum row count.
    * @memberof Grid
    */
   decrRowCount() {
-    console.log('I made it!');
-    if (this._rowCount === this.minRowCount) {
+    if (this.rowCount === this.minRowCount) {
       return new Error(`Minimum row limit of ${this.maxRowCount} already reached.`);
     }
     this.rowCount -= 1;
     // TODO: Adjust grid
+    return this.rowCount;
   }
 
   /**
    * @description Increment the grid row count
-   * @returns {Error} If maximum row count is exceeded.
+   * @returns {any} The new column count or an Error object If current value is at the
+   * maximum row count.
    * @memberof Grid
    */
   incrRowCount() {
-    if (this._rowCount === this.maxRowCount) {
+    if (this.rowCount === this.maxRowCount) {
       return new Error(`Maximum row limit of ${this.maxRowCount} already reached.`);
     }
     this.rowCount += 1;
     // TODO: Adjust grid
+    return this.rowCount;
   }
   /**
    * @description Render the grid by generating and adding a new DOM element for

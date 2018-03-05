@@ -20,12 +20,24 @@ $(document).ready(function() {
 
   // Create a button handler decrement column event
   $(".column-minus").click((event) => {
-    designGrid.decrColumnCount();
+    try {
+      designGrid.decrColumnCount();
+      $('#column-count-box').val(designGrid.getColumnCount());
+    }
+    catch(error) {
+      console.log(`Error decrementing column count. error:${error}`);
+    }
   });
 
   // Create a button handler increment column event
   $(".column-plus").click((event) => {
-    designGrid.incrColumnCount();
+    try {
+      designGrid.incrColumnCount();
+      $('#column-count-box').val(designGrid.getColumnCount());
+    }
+    catch(error) {
+      console.log(`Error incrementing column count. error:${error}`);
+    }
   });
 
   // Create an input event handler for the row count
@@ -35,12 +47,24 @@ $(document).ready(function() {
 
   // Create a button handler decrement row event
   $(".row-minus").click((event) => {
-      designGrid.decrRowCount();
-  });
+      try {
+        designGrid.decrRowCount();
+        $('#row-count-box').val(designGrid.getRowCount());
+      }
+      catch(error) {
+        console.log(`Error decrementing row count. error:${error}`);
+      }
+    });
 
   // Create a button handler increment row event
   $(".row-plus").click((event) => {
-    designGrid.incrRowCount();
+    try {
+      designGrid.incrRowCount();
+      $('#row-count-box').val(designGrid.getRowCount());
+    }
+    catch(error) {
+      console.log(`Error incrementing row count. error:${error}`);
+    }
   });
 
 });
