@@ -2,26 +2,27 @@
 <html>
 
 <head>
-	<link href="./src/home/home.css" rel="stylesheet">
 	<meta charset="UTF-8">
 	<title>Pixel Art Maker</title>
 </head>
 
 <body>
 	<div class="page-wrapper">
-		<div class="page-header">
-			<h1>Pixel Art Maker</h1>
-		</div>
+		<h1 class="page-header">Pixel Art Maker</h1>
 
 		<div class="menu">
-			<button class="menu-item">Open file...</button>
-			<button class="menu-item">Save file...</button>
-			<button class="menu-item">Clear grid</button>
+			<button id="open-file-btn" class="mdl-button mdl-js-button mdl-button--raised /
+				mdl-js-ripple-effect mdl-button--accent menu-item">Open file...</button>
+			<button id="save-file-btn" class="mdl-button mdl-js-button mdl-button--raised /
+				mdl-js-ripple-effect mdl-button--accent menu-item">Save file...</button>
+			<button id="clear-grid-btn" class="mdl-button mdl-js-button mdl-button--raised /
+				mdl-js-ripple-effect mdl-button--accent menu-item">Clear grid</button>
 		</div>
 
-		<h2 class="color-chooser-header">Color Chooser</h2>
-		<div class="color-chooser-wrapper">
-			<button class="color-selector"></button>
+		<div class="color-chooser">
+			<h4 class="color-chooser-header">Color Chooser</h4>
+			<button class="color-selector-button"></button>
+			<br/>
 			<div class="recent-color-wrapper">
 				<button class="recent-color-90"></button>
 				<button class="recent-color-80"></button>
@@ -31,25 +32,33 @@
 			</div>
 		</div>
 
-		<h2 class="design-grid-header">Design Grid</h2>
-		<div class="design-grid-row-controls">
-			<i class="fas fa-minus-circle grid-row-decrement"></i>
-			<input id="textInput" class="grid-row-count" type="number" 
-						 maxLength="3" min="1" max="99" value="8"/>
-			<i class="fas fa-plus-circle grid-row-increment"></i>
+		<div class="design-grid-column-controls">
+			<span>Columns</span>
+			<span class="column-minus">
+				<i class="fas fa-minus-circle"></i>
+			</span>
+
+			<input id="column-count-box" class="column-count" type="number"
+							maxLength="3" min="1" max="99" value="8"/>
+			<span class="column-plus">
+				<i class="fas fa-plus-circle"></i>
+			</span>
 		</div>
 
-		<div class="design-wrapper">
-			<div class="design-grid-column-wrapper">
-				<i class="fas fa-minus-circle grid-column-minus"></i>
-				<br/>
-				<input id="textInput" class="grid-column-count" type="number"
-							 maxLength="3" min="1" max="99" value="8"/>
-				<br/>
-				<i class="fas fa-plus-circle grid-column-plus"></i>
-			</div>
+		<div class="design-grid">
+		</div>
 
-			<div class="design-grid-wrapper">
+		<div class="design-grid-row-controls">
+			<div class="row-controls">
+				<div>Rows</div>
+				<span class="row-minus">
+					<i class="fas fa-minus-circle"></i>
+				</span>
+					<input id="row-count-box" class="row-count" type="number" 
+									maxLength="3" min="1" max="99" value="8"/>
+				<span class="row-plus">
+					<i class="fas fa-plus-circle"></i>
+				</span>
 			</div>
 		</div>
 
@@ -61,6 +70,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script type="text/javascript" src="./build/js/index.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<link href="./src/home/home.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-indigo.min.css">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 </body>
 
