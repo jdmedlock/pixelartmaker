@@ -79,7 +79,7 @@ class Grid {
     if (count < 1 || count > 99) {
       return new Error(`Column count must be between 1 and 99, ${count} is invalid.`);
     }
-    this._columnCount = count;
+    this.columnCount = count;
     this.makeGrid();
   }
 
@@ -105,7 +105,7 @@ class Grid {
     if (count < 1 || count > 99) {
       return new Error(`Row count must be between 1 and 99, ${count} is invalid.`);
     }
-    this._rowCount = count;
+    this.rowCount = count;
     this.makeGrid();
   }
 
@@ -188,7 +188,6 @@ class Grid {
    * @memberof Grid
    */
   makeGrid() {
-    console.log(`Current rowCount:${this.rowCount} columnCount:${this.columnCount}`);
     const gridCellTemplate = '<div class="design-grid-cell"></div>';
     let gridCellElements = '';
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
@@ -196,7 +195,6 @@ class Grid {
         gridCellElements += gridCellTemplate;
       }
     }
-    // TODO: Research making AppWindow functions static
     const appWindow = new AppWindow();
     appWindow.setCssVariable('designGridColumnCount', this.columnCount);
     appWindow.setCssVariable('designGridRowCount', this.rowCount);

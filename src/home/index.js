@@ -13,17 +13,16 @@ $(document).ready(function() {
   );
   designGrid.makeGrid();
 
-  // Create an event handler for the Clear Grid button
+  // Create an event handlers for the Clear Grid button
   $("#clear-grid-btn").click((event) => {
     designGrid.clearGrid();
   });
 
-  // Create an input event handler for the column count
+  // Create event handlers for column controls
   $('.column-count').change(() => { 
-    console.log('Column count changed');
+    designGrid.setColumnCount($('#column-count-box').val());
   });
 
-  // Create a button handler decrement column event
   $(".column-minus").click((event) => {
     try {
       designGrid.decrColumnCount();
@@ -34,7 +33,6 @@ $(document).ready(function() {
     }
   });
 
-  // Create a button handler increment column event
   $(".column-plus").click((event) => {
     try {
       designGrid.incrColumnCount();
@@ -45,23 +43,21 @@ $(document).ready(function() {
     }
   });
 
-  // Create an input event handler for the row count
+  // Create an event handlers for the row controls
   $('.row-count').change(() => { 
-    // do something
+    designGrid.setRowCount($('#row-count-box').val());
   });  
 
-  // Create a button handler decrement row event
   $(".row-minus").click((event) => {
-      try {
-        designGrid.decrRowCount();
-        $('#row-count-box').val(designGrid.getRowCount());
-      }
-      catch(error) {
-        console.log(`Error decrementing row count. error:${error}`);
-      }
-    });
+    try {
+      designGrid.decrRowCount();
+      $('#row-count-box').val(designGrid.getRowCount());
+    }
+    catch(error) {
+      console.log(`Error decrementing row count. error:${error}`);
+    }
+  });
 
-  // Create a button handler increment row event
   $(".row-plus").click((event) => {
     try {
       designGrid.incrRowCount();
