@@ -1,11 +1,21 @@
 import AppWindow from '../classes/AppWindow';
 import Grid from '../classes/Grid';
+import Palette from '../classes/Palette';
 
 let designGrid = null;
+let colorPalette = null;
 const appWindow = new AppWindow();
 
 $(document).ready(function() {
   console.clear();
+
+  colorPalette = new Palette();
+  const shades = colorPalette.getShades();
+  $("#recent-color-1").css('background-color',shades[0]);
+  $("#recent-color-2").css('background-color',shades[1]);
+  $("#recent-color-3").css('background-color',shades[2]);
+  $("#recent-color-4").css('background-color',shades[3]);
+  $("#recent-color-5").css('background-color',shades[4]);
 
   designGrid = new Grid(
     appWindow.getCssVariable('designGridRowCount', 'number'), 

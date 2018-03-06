@@ -37,10 +37,11 @@ html {
 .color-chooser {
   grid-column: 1;
   grid-row: 5;
+  grid-gap: 5px;
   border-color: #000;
   border-width: 1px;
   align-items: center;
-  margin: auto 10px auto auto;
+  margin: auto 1px auto auto;
 }
 .design-grid {
   grid-column: 2;
@@ -129,7 +130,7 @@ html {
   border-width: 1px;
 }
 .row-controls {
-  margin-left: 10px;
+  margin-left: 1px;
   text-align: center;
 }
 .row-minus {
