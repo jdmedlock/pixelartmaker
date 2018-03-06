@@ -13,7 +13,13 @@ $(document).ready(function() {
   );
   designGrid.makeGrid();
 
-  // Create an event handlers for the Clear Grid button
+  // Create a delegated event handler on the Design Grid.
+  $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
+    // TODO: Use current color from Palette object
+    $(this).css('background-color','#EE178C');
+  });
+
+  // Create an event handler for the Clear Grid button
   $("#clear-grid-btn").click((event) => {
     designGrid.clearGrid();
   });
