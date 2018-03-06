@@ -180,6 +180,7 @@ class Grid {
         this.grid[rowNo][columnNo] = this.defaultGridCellColor;
       }
     }
+    this.makeGrid();
   }
 
   /**
