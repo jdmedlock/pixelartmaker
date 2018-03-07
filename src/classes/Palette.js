@@ -11,6 +11,7 @@ class Palette {
     this.currentColorShades = this.createShades(this.currentColor);
     this.recentColors = this.createShades(this.currentColor);
   }
+
   /**
    * @description Generate an array of five shades of the provided color using equal
    * amounts of power to all of the light sources.
@@ -20,18 +21,16 @@ class Palette {
    * @memberof Palette
    */
   createShades(color) {
-    const noOfShades = 5;
-    const step = (255 / noOfShades) -1;
+    const noOfShades = 6;
+    const step = parseInt(256 / noOfShades, 10);
     let shades = [];
-    let colors = [];
+    let [red, green, blue] = color.split('rgb(')[1].split(')')[0].split(',');
 
     for (let i = 0; i < noOfShades; i++) {
-      if (i === 0) {
-        colors = color.split('rgb(')[1].split(')')[0].split(',');
-      } else {
-        colors = shades[i-1].split('rgb(')[1].split(')')[0].split(',');
-      }
-      shades.push(`rgb(${parseInt(colors[0],10)+step},${parseInt(colors[1],10)+step},${parseInt(colors[2],10)+step})`);
+      red = parseInt(red, 10) + step;
+      green = parseInt(green, 10) + step;
+      blue = parseInt(blue, 10) + step;
+      shades.push(`rgb(${red},${green},${blue})`);
     }
     return shades.reverse();
   }
