@@ -16,9 +16,13 @@ $(document).ready(function() {
   
   // Render the color chooser control and create its event handlers
   colorPalette = new Palette();
+  colorPalette.renderRecentColors(colorPalette.getShades());
+  /*
   colorPalette.getShades().forEach((element, index) => {
     $( "#recent-color-" + index ).css('background-color',element);
   });
+  */
+  colorPalette.renderRecentColors(colorPalette.getShades());
   $( ".recent-color-wrapper" ).on( 'click', '.recent-color', function() {
     colorPalette.setCurrentColor($(this).css('background-color'));
   });
