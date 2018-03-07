@@ -9,11 +9,21 @@ const appWindow = new AppWindow();
 $(document).ready(function() {
   console.clear();
 
+  // Create event handlers for the main app buttons
+  $("#clear-grid-btn").click((event) => {
+    designGrid.clearGrid();
+  });
+  
+  // Render the color chooser control and create its event handlers
   colorPalette = new Palette();
   colorPalette.getShades().forEach((element, index) => {
-    $("#recent-color-"+index).css('background-color',element);
+    $( "#recent-color-" + index ).css('background-color',element);
+  });
+  $( ".recent-color-wrapper" ).on( 'click', '.recent-color', function() {
+    colorPalette.setCurrentColor($(this).css('background-color'));
   });
 
+  // Render the design grid and its event handlers
   designGrid = new Grid(
     appWindow.getCssVariable('designGridRowCount', 'number'), 
     appWindow.getCssVariable('designGridColumnCount', 'number')
@@ -22,16 +32,9 @@ $(document).ready(function() {
 
   // Create a delegated event handler on the Design Grid.
   $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
-    // TODO: Use current color from Palette object
-    $(this).css('background-color','#EE178C');
+    $(this).css('background-color',colorPalette.getCurrentColor());
   });
 
-  // Create an event handler for the Clear Grid button
-  $("#clear-grid-btn").click((event) => {
-    designGrid.clearGrid();
-  });
-
-  // Create event handlers for column controls
   $('.column-count').change(() => { 
     designGrid.setColumnCount($('#column-count-box').val());
   });
@@ -56,7 +59,6 @@ $(document).ready(function() {
     }
   });
 
-  // Create an event handlers for the row controls
   $('.row-count').change(() => { 
     designGrid.setRowCount($('#row-count-box').val());
   });  

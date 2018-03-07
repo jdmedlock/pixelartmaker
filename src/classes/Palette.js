@@ -21,6 +21,7 @@ class Palette {
    * @memberof Palette
    */
   createShades(color) {
+    // TODO: Validate input parameter
     const noOfShades = 6;
     const step = parseInt(256 / noOfShades, 10);
     let shades = [];
@@ -34,6 +35,28 @@ class Palette {
     }
     return shades.reverse();
   }
+  /**
+   * @description Retrieve the currently selected color
+   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * value from 0-255 representing the red, green, and blue color value.
+   * @memberof Palette
+   */
+  getCurrentColor() {
+    return this.currentColor;
+  }
+/**
+ * @description Retrieve a color from the recently used colors array. 
+ * @param {Number} index The position of the color in the recently used array, 
+ * where 0 represents the most recently used color.
+ * @returns  {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * value from 0-255 representing the red, green, and blue color value.
+ * @memberof Palette
+ */
+getRecentColor(index) {
+    return (index >= 0 && index <= this.recentColors.length) 
+      ? this.recentColors[index] 
+      : new Error(`Recent color index must be between 0 and ${this.recentColors.length}. ${index} was passed.`);
+  }
 
   /**
    * @description Retrieve and array containing the shades of the current color
@@ -42,6 +65,16 @@ class Palette {
    */
   getShades() {
     return this.currentColorShades;
+  }
+  /**
+   * @description Update the currently selected color to a new value
+   * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * value from 0-255 representing the red, green, and blue color value.
+   * @memberof Palette
+   */
+  setCurrentColor(color) {
+    // TODO: Validate the input parameter
+    this.currentColor = color;
   }
 
 }
