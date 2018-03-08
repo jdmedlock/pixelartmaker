@@ -45,28 +45,23 @@ html {
   text-align: center;
 }
 
-.color-chooser-header {
-  grid-column: 1;
-  grid-row: 4;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
 .design-grid-column-controls {
   grid-column: 2;
   grid-row: 4;
   grid-gap: 5px;
   text-align: center;
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 
 .color-chooser {
   grid-column: 1;
   grid-row: 5;
+  grid-gap: 5px;
   border-color: black;
   border-width: 1px;
-  margin: auto;
+  align-items: center;
+  margin: auto 1px auto auto;
 }
 
 .design-grid {
@@ -86,7 +81,7 @@ html {
   grid-gap: 5px;
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 40%;
 }
 
 .page-footer{
@@ -108,28 +103,21 @@ html {
   margin-right: 20px;
 }
 
-// Color Chooser Header Region Items
-.color-chooser-header {
-  grid-column-start: 1;
-  grid-row-start: 4;
-  margin: auto;
-}
-
-.design-grid-header {
-  grid-column-start: 2;
-  grid-row-start: 3;
-  margin: auto;
-}
-
 // Color Chooser Region Items
+
+.color-chooser-header {
+  margin: auto;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
 .color-selector-button {
   border-color: black;
   border-width: 1px;
-  justify-content: center;
   height: var(--recentColorCellHeight);
-  width: 220px;
+  width: 100%;
   background-color: blue;
-  text-align: left;
+  text-align: right;
 }
 
 .recent-color-wrapper {
@@ -152,7 +140,7 @@ for shade in (90 80 70 60 50)
 
 // Design Grid Controls
 .row-controls {
-  margin-left: 10px;
+  margin-left: 1px;
   text-align: center;
 }
 
@@ -193,9 +181,3 @@ for shade in (90 80 70 60 50)
   background-color: #DADCE0;
   border: 1px solid #5F6B82;
 }
-
-/*
-& .mdl-textfield {
-  width: 50px;
-}
-*/

@@ -1,29 +1,42 @@
 import AppWindow from '../classes/AppWindow';
 import Grid from '../classes/Grid';
+import Palette from '../classes/Palette';
 
 let designGrid = null;
+let colorPalette = null;
 const appWindow = new AppWindow();
 
 $(document).ready(function() {
   console.clear();
 
+  // Create event handlers for the main app buttons
+  $("#clear-grid-btn").click((event) => {
+    designGrid.clearGrid();
+  });
+  
+  // Render the color chooser control and create its event handlers
+  colorPalette = new Palette();
+  colorPalette.renderRecentColors(colorPalette.getShades());
+  $( ".recent-color-wrapper" ).on( 'click', '.recent-color', function() {
+    colorPalette.setCurrentColor($(this).css('background-color'));
+  });
+
+  // Render the design grid and its event handlers
   designGrid = new Grid(
     appWindow.getCssVariable('designGridRowCount', 'number'), 
     appWindow.getCssVariable('designGridColumnCount', 'number')
   );
   designGrid.makeGrid();
 
-  // Create an event handler for the Clear Grid button
-  $("#clear-grid-btn").click((event) => {
-    designGrid.clearGrid();
+  // Create a delegated event handler on the Design Grid.
+  $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
+    $(this).css('background-color',colorPalette.getCurrentColor());
   });
 
-  // Create an input event handler for the column count
   $('.column-count').change(() => { 
-    console.log('Column count changed');
+    designGrid.setColumnCount($('#column-count-box').val());
   });
 
-  // Create a button handler decrement column event
   $(".column-minus").click((event) => {
     try {
       designGrid.decrColumnCount();
@@ -34,7 +47,6 @@ $(document).ready(function() {
     }
   });
 
-  // Create a button handler increment column event
   $(".column-plus").click((event) => {
     try {
       designGrid.incrColumnCount();
@@ -45,23 +57,20 @@ $(document).ready(function() {
     }
   });
 
-  // Create an input event handler for the row count
   $('.row-count').change(() => { 
-    // do something
+    designGrid.setRowCount($('#row-count-box').val());
   });  
 
-  // Create a button handler decrement row event
   $(".row-minus").click((event) => {
-      try {
-        designGrid.decrRowCount();
-        $('#row-count-box').val(designGrid.getRowCount());
-      }
-      catch(error) {
-        console.log(`Error decrementing row count. error:${error}`);
-      }
-    });
+    try {
+      designGrid.decrRowCount();
+      $('#row-count-box').val(designGrid.getRowCount());
+    }
+    catch(error) {
+      console.log(`Error decrementing row count. error:${error}`);
+    }
+  });
 
-  // Create a button handler increment row event
   $(".row-plus").click((event) => {
     try {
       designGrid.incrRowCount();
