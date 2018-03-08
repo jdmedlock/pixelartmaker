@@ -26,26 +26,22 @@ html {
   grid-row: 2;
   text-align: center;
 }
-.color-chooser-header {
-  grid-column: 1;
-  grid-row: 4;
-  text-align: center;
-  padding-bottom: 10px;
-}
 .design-grid-column-controls {
   grid-column: 2;
   grid-row: 4;
   grid-gap: 5px;
   text-align: center;
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 .color-chooser {
   grid-column: 1;
   grid-row: 5;
+  grid-gap: 5px;
   border-color: #000;
   border-width: 1px;
-  margin: auto;
+  align-items: center;
+  margin: auto 1px auto auto;
 }
 .design-grid {
   grid-column: 2;
@@ -63,7 +59,7 @@ html {
   grid-gap: 5px;
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 40%;
 }
 .page-footer {
   grid-column: 1/4;
@@ -78,23 +74,17 @@ html {
   margin-right: 20px;
 }
 .color-chooser-header {
-  grid-column-start: 1;
-  grid-row-start: 4;
   margin: auto;
-}
-.design-grid-header {
-  grid-column-start: 2;
-  grid-row-start: 3;
-  margin: auto;
+  padding-bottom: 10px;
+  text-align: center;
 }
 .color-selector-button {
   border-color: #000;
   border-width: 1px;
-  justify-content: center;
   height: var(--recentColorCellHeight);
-  width: 220px;
+  width: 100%;
   background-color: #00f;
-  text-align: left;
+  text-align: right;
 }
 .recent-color-wrapper {
   display: grid;
@@ -140,7 +130,7 @@ html {
   border-width: 1px;
 }
 .row-controls {
-  margin-left: 10px;
+  margin-left: 1px;
   text-align: center;
 }
 .row-minus {
@@ -172,8 +162,13 @@ html {
   background-color: #dadce0;
   border: 1px solid #5f6b82;
 }
-/*
-& .mdl-textfield {
-  width: 50px;
+.dialog-body {
+  background: #ffffe0;
+  border: 1px solid;
+  border-color: #000;
 }
-*/
+.dialog-titlebar {
+  background: #90ee90;
+  border: 1px solid;
+  border-color: #000;
+}
