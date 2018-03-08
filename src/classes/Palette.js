@@ -1,7 +1,7 @@
 class Palette {
   /**
    * @description Palette constructor initializes a new Palette object
-   * @memberof Grid
+   * @memberof Palette
    */
   constructor(columnCount, rowCount) {
     this.defaultColor = 'rgb(0, 0, 232)';
@@ -22,7 +22,7 @@ class Palette {
    */
   createShades(color) {
     // TODO: Validate input parameter
-    const noOfShades = 6;
+    const noOfShades = 5;
     const step = parseInt(256 / noOfShades, 10);
     let shades = [];
     let [red, green, blue] = color.split('rgb(')[1].split(')')[0].split(',');
@@ -77,8 +77,7 @@ class Palette {
   renderRecentColors(colorArray) {
     // TODO: Validate the input parameter
     colorArray.forEach((element, index) => {
-      console.log(`renderRecentColors - index: ${index} element: ${element}`);
-      $( "#recent-color-" + index ).css('background-color',element);
+      $( "#recent-color-" + (index+1) ).css('background-color',element);
     });
   }
 
@@ -90,7 +89,6 @@ class Palette {
    */
   setCurrentColor(color) {
     // TODO: Validate the input parameter
-    console.log(`setCurrentColor - color: ${color}`);
     this.currentColor = color;
     $( ".color-selector-button" ).css('background-color',color);
     this.updateRecentColors(color);
@@ -105,20 +103,16 @@ class Palette {
    */
   updateRecentColors(color) {
     const colorIndex = this.recentColors.indexOf(color);
-    console.log(`updateRecentColors - color: ${color} colorIndex: ${colorIndex}`);
-    if (colorIndex === undefined) {
-      // If the color hasn't been recently used remove the last element and then push
-      // it onto the array
+    if (colorIndex === -1) {
+      // If the color hasn't been recently used remove the last element and
+      // add it onto the front of the array
       this.recentColors.splice(this.recentColors.length-1, 1);
-      this.recentColors.push(color);
+      this.recentColors.splice(1,0,color);
     } else {
-      // If the color is already in the array remove it and push it back onto the array
-      // so it occupies position 0
-      console.log(`Starting colorIndex: ${colorIndex} recentColors: ${this.recentColors}`);
+      // If the color is already in the array remove it and add it back onto
+      // the array so it occupies position 0
       const deletedColors = this.recentColors.splice(colorIndex, 1);
-      console.log(`updateRecentColors - deletedColors: ${deletedColors} recentColors: ${this.recentColors}`);
-      this.recentColors.push(color);
-      console.log(`Ending recentColors: ${this.recentColors}`);
+      this.recentColors.splice(0,0,color);
     }
     this.renderRecentColors(this.recentColors);
   }
