@@ -13,6 +13,25 @@ $(document).ready(function() {
   $("#clear-grid-btn").click((event) => {
     designGrid.clearGrid();
   });
+
+  $( "#about-dialog" ).dialog({
+    modal: true,
+    autoOpen: false,
+    closeText: "",
+    resizable: false,
+    classes: {
+      "ui-dialog": "dialog-body",
+      "ui-dialog-titlebar": "dialog-titlebar",
+    },
+    buttons: {
+      "Ok": function() {
+        $(this).dialog("close");
+      },
+    },
+  });
+  $("#about-link").click((event) => {
+    $("#about-dialog").dialog("open");
+  });
   
   // Render the color chooser control and create its event handlers
   colorPalette = new Palette();

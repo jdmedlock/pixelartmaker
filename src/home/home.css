@@ -162,3 +162,13 @@ html {
   background-color: #dadce0;
   border: 1px solid #5f6b82;
 }
+.dialog-body {
+  background: #ffffe0;
+  border: 1px solid;
+  border-color: #000;
+}
+.dialog-titlebar {
+  background: #90ee90;
+  border: 1px solid;
+  border-color: #000;
+}
