@@ -21,15 +21,15 @@ $(document).ready(function() {
     designGrid.clearGrid();
   });
   
+  // Enable the 
   var dialog = document.querySelector('dialog');
-  var showDialogButton = document.querySelector('#show-dialog');
+  var showDialogButton = $( '#show-dialog' );
   if (!dialog.showModal) {
     dialogPolyfill.registerDialog(dialog);
   }
   $( "#about-link" ).on( "click", function() {
     getUserProfileUrl()
     .then(response => {
-      console.log('User profile: ', JSON.parse(response));
       $( "#github-avatar" ).attr("src",(JSON.parse(response).user.avatar_url));
       dialog.showModal();
     });

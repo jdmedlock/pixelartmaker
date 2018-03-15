@@ -162,13 +162,13 @@ html {
   background-color: #dadce0;
   border: 1px solid #5f6b82;
 }
-.dialog-body {
-  background: #ffffe0;
-  border: 1px solid;
-  border-color: #000;
+.mdl-dialog {
+  width: fit-content;
+  min-width: 600px;
 }
-.dialog-titlebar {
-  background: #90ee90;
-  border: 1px solid;
-  border-color: #000;
+.dialog-image {
+  width: 70%;
+  height: 70%;
+  display: block;
+  margin: 0 auto;
 }
