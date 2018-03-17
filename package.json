@@ -20,5 +20,12 @@
   "homepage": "https://github.com/jdmedlock/pixelartmaker#readme",
   "devDependencies": {
     "rollup": "^0.56.3"
+  },
+  "dependencies": {
+    "dialog-polyfill": "^0.4.9",
+    "gitaclue": "^0.1.2",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-globals": "^1.2.0",
+    "rollup-plugin-node-resolve": "^3.2.0"
   }
 }

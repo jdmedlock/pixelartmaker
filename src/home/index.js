@@ -1,3 +1,4 @@
+import gitaclue from 'gitaclue';
 import AppWindow from '../classes/AppWindow';
 import Grid from '../classes/Grid';
 import Palette from '../classes/Palette';
@@ -6,6 +7,12 @@ let designGrid = null;
 let colorPalette = null;
 const appWindow = new AppWindow();
 
+function getUserProfileUrl() {
+  return gitaclue.get([
+    { context: 'user', contextOwner: '', contextName: 'jdmedlock' },
+  ])
+}
+
 $(document).ready(function() {
   console.clear();
 
@@ -13,24 +20,22 @@ $(document).ready(function() {
   $("#clear-grid-btn").click((event) => {
     designGrid.clearGrid();
   });
-
-  $( "#about-dialog" ).dialog({
-    modal: true,
-    autoOpen: false,
-    closeText: "",
-    resizable: false,
-    classes: {
-      "ui-dialog": "dialog-body",
-      "ui-dialog-titlebar": "dialog-titlebar",
-    },
-    buttons: {
-      "Ok": function() {
-        $(this).dialog("close");
-      },
-    },
+  
+  // Enable the 
+  var dialog = document.querySelector('dialog');
+  var showDialogButton = $( '#show-dialog' );
+  if (!dialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+  }
+  $( "#about-link" ).on( "click", function() {
+    getUserProfileUrl()
+    .then(response => {
+      $( "#github-avatar" ).attr("src",(JSON.parse(response).user.avatar_url));
+      dialog.showModal();
+    });
   });
-  $("#about-link").click((event) => {
-    $("#about-dialog").dialog("open");
+  $( ".close" ).on( "click", function() {
+    dialog.close();
   });
   
   // Render the color chooser control and create its event handlers
