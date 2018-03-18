@@ -169,11 +169,11 @@ a {
   width: fit-content;
   min-width: 40%;
 }
-.about-dialog {
+.about-dialog-content {
   margin: 0;
   padding: 0;
 }
-#github-avatar {
+#about-avatar {
   width: 40%;
   height: 40%;
   margin: 10px auto auto auto;
@@ -183,4 +183,8 @@ a {
   width: 59%;
   display: inline-block;
   vertical-align: middle;
+}
+#color-wheel {
+  width: 60%;
+  height: 60%;
 }
