@@ -17,6 +17,10 @@ html {
   font-family: 'Open Sans', Roboto, Verdana, sans-serif;
 }
 
+a {
+  outline: none;
+}
+
 //-----------------------------------------------------------------------------
 // Page Region Definitions
 // 
@@ -188,12 +192,23 @@ for shade in (90 80 70 60 50)
 
 .mdl-dialog {
   width: fit-content;
-  min-width: 600px;
+  min-width: 40%;
 }
 
-.dialog-image {
-  width: 70%;
-  height: 70%;
-  display: block;
-  margin: 0 auto;
+.about-dialog {
+  margin:0;
+  padding:0;
+}
+
+#github-avatar {
+  width: 40%;
+  height: 40%;
+  margin: 10px auto auto auto;
+  display: inline-block;
+}
+
+.about-text {
+  width: 59%
+  display: inline-block;
+  vertical-align: middle;
 }

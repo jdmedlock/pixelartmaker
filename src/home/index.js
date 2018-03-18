@@ -21,21 +21,20 @@ $(document).ready(function() {
     designGrid.clearGrid();
   });
   
-  // Enable the 
-  var dialog = document.querySelector('dialog');
-  var showDialogButton = $( '#show-dialog' );
-  if (!dialog.showModal) {
+  // Enable the About dialog event handlers
+  var aboutDialog = document.querySelector('dialog');
+  if (!aboutDialog.showModal) {
     dialogPolyfill.registerDialog(dialog);
   }
   $( "#about-link" ).on( "click", function() {
     getUserProfileUrl()
     .then(response => {
       $( "#github-avatar" ).attr("src",(JSON.parse(response).user.avatar_url));
-      dialog.showModal();
+      aboutDialog.showModal();
     });
   });
-  $( ".close" ).on( "click", function() {
-    dialog.close();
+  $( ".about-close" ).on( "click", function() {
+    aboutDialog.close();
   });
   
   // Render the color chooser control and create its event handlers

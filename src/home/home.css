@@ -8,6 +8,9 @@
 html {
   font-family: 'Open Sans', Roboto, Verdana, sans-serif;
 }
+a {
+  outline: none;
+}
 .page-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -164,11 +167,20 @@ html {
 }
 .mdl-dialog {
   width: fit-content;
-  min-width: 600px;
+  min-width: 40%;
 }
-.dialog-image {
-  width: 50%;
-  height: 50%;
-  display: block;
-  margin: 10px auto;
+.about-dialog {
+  margin: 0;
+  padding: 0;
+}
+#github-avatar {
+  width: 40%;
+  height: 40%;
+  margin: 10px auto auto auto;
+  display: inline-block;
+}
+.about-text {
+  width: 59%;
+  display: inline-block;
+  vertical-align: middle;
 }
