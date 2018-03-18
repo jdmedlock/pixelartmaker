@@ -167,8 +167,8 @@ html {
   min-width: 600px;
 }
 .dialog-image {
-  width: 70%;
-  height: 70%;
+  width: 50%;
+  height: 50%;
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
 }
