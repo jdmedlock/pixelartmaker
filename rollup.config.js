@@ -1,3 +1,7 @@
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import globals from 'rollup-plugin-node-globals';
+
 export default {
   input: 'src/home/index.js',
   output: {
@@ -5,4 +9,15 @@ export default {
     format: 'iife',
     sourcemap: 'inline',
   },
+	plugins: [
+		resolve({
+      browser: true,
+			module: true,
+			jsnext: true,
+			main: true,
+			modulesOnly: false,
+    }),
+    commonjs(),
+    globals(),
+  ]
 };

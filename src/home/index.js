@@ -1,3 +1,4 @@
+import gitaclue from 'gitaclue';
 import AppWindow from '../classes/AppWindow';
 import Grid from '../classes/Grid';
 import Palette from '../classes/Palette';
@@ -6,12 +7,34 @@ let designGrid = null;
 let colorPalette = null;
 const appWindow = new AppWindow();
 
+function getUserProfileUrl() {
+  return gitaclue.get([
+    { context: 'user', contextOwner: '', contextName: 'jdmedlock' },
+  ])
+}
+
 $(document).ready(function() {
   console.clear();
 
   // Create event handlers for the main app buttons
   $("#clear-grid-btn").click((event) => {
     designGrid.clearGrid();
+  });
+  
+  // Enable the About dialog event handlers
+  var aboutDialog = document.querySelector('dialog');
+  if (!aboutDialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+  }
+  $( "#about-link" ).on( "click", function() {
+    getUserProfileUrl()
+    .then(response => {
+      $( "#github-avatar" ).attr("src",(JSON.parse(response).user.avatar_url));
+      aboutDialog.showModal();
+    });
+  });
+  $( ".about-close" ).on( "click", function() {
+    aboutDialog.close();
   });
   
   // Render the color chooser control and create its event handlers

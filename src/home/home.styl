@@ -17,6 +17,10 @@ html {
   font-family: 'Open Sans', Roboto, Verdana, sans-serif;
 }
 
+a {
+  outline: none;
+}
+
 //-----------------------------------------------------------------------------
 // Page Region Definitions
 // 
@@ -180,4 +184,31 @@ for shade in (90 80 70 60 50)
 .design-grid-cell {
   background-color: #DADCE0;
   border: 1px solid #5F6B82;
+}
+
+//-----------------------------------------------------------------------------
+// Modal Dialog Elements
+//-----------------------------------------------------------------------------
+
+.mdl-dialog {
+  width: fit-content;
+  min-width: 40%;
+}
+
+.about-dialog {
+  margin:0;
+  padding:0;
+}
+
+#github-avatar {
+  width: 40%;
+  height: 40%;
+  margin: 10px auto auto auto;
+  display: inline-block;
+}
+
+.about-text {
+  width: 59%
+  display: inline-block;
+  vertical-align: middle;
 }
