@@ -45,7 +45,10 @@ $(document).ready(function() {
   $( ".color-selector-button" ).on( "click", function() {
     paletteDialog.showModal();
   });
-  $( ".palette-close" ).on( "click", function() {
+  $( ".palette-cancel" ).on( "click", function() {
+    paletteDialog.close();
+  });
+  $( ".palette-ok" ).on( "click", function() {
     paletteDialog.close();
   });
 
