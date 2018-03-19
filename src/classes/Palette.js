@@ -5,10 +5,10 @@ class Palette {
    */
   constructor(columnCount, rowCount) {
     this.defaultColor = 'rgb(0, 0, 232)';
-    this.newColor = this.defaultColor;
     this.currentColor = this.defaultColor;
-    this.newColorShades = this.createShades(this.newColor);
     this.currentColorShades = this.createShades(this.currentColor);
+    this.newColor = this.defaultColor;
+    this.newColorShades = this.createShades(this.currentColor);
     this.recentColors = this.createShades(this.currentColor);
   }
 
@@ -23,7 +23,7 @@ class Palette {
   createShades(color) {
     // TODO: Validate input parameter
     const noOfShades = 5;
-    const step = parseInt(256 / noOfShades, 10);
+    const step = parseInt(256 / (noOfShades * 2), 10);
     let shades = [];
     let [red, green, blue] = color.split('rgb(')[1].split(')')[0].split(',');
 
@@ -36,6 +36,7 @@ class Palette {
     }
     return shades.reverse();
   }
+
   /**
    * @description Retrieve the currently selected color
    * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
@@ -44,6 +45,26 @@ class Palette {
    */
   getCurrentColor() {
     return this.currentColor;
+  }
+
+  /**
+   * @description Retrieve the default color
+   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * value from 0-255 representing the red, green, and blue color value.
+   * @memberof Palette
+   */
+  getDefaultColor() {
+    return this.defaultColor;
+  }
+
+  /**
+   * @description Retrieve the newly selected color
+   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * value from 0-255 representing the red, green, and blue color value.
+   * @memberof Palette
+   */
+  getNewColor() {
+    return this.newColor;
   }
 
   /**
@@ -70,6 +91,20 @@ class Palette {
   }
 
   /**
+   * @description Render the array of shades for the selected color onto the HTML page
+   * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * value from 0-255 representing the red, green, and blue color value.
+   * @memberof Palette
+   */
+  renderNewColorShades(color) {
+    // TODO: Validate the input parameter
+    this.newColorShades = this.createShades(color);
+    this.newColorShades.forEach((element, index) => {
+      $( "#selected-shade-" + (index+1) ).css('background-color',element);
+    });
+  }
+
+  /**
    * @description Render the array of recently used colors onto the HTML page
    * @param {[String]} colorArray Array of colors representing the most recently used colors.
    * @memberof Palette
@@ -90,8 +125,19 @@ class Palette {
   setCurrentColor(color) {
     // TODO: Validate the input parameter
     this.currentColor = color;
-    $( ".color-selector-button" ).css('background-color',color);
     this.updateRecentColors(color);
+  }
+
+  /**
+   * @description Establish a newly selected
+   * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * value from 0-255 representing the red, green, and blue color value.
+   * @memberof Palette
+   */
+  setNewColor(color) {
+    // TODO: Validate the input parameter
+    this.newColor = color;
+    this.newColorShades = this.createShades(this.currentColor);
   }
 
   /**
@@ -107,7 +153,7 @@ class Palette {
       // If the color hasn't been recently used remove the last element and
       // add it onto the front of the array
       this.recentColors.splice(this.recentColors.length-1, 1);
-      this.recentColors.splice(1,0,color);
+      this.recentColors.splice(0,0,color);
     } else {
       // If the color is already in the array remove it and add it back onto
       // the array so it occupies position 0
