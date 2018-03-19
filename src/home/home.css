@@ -6,7 +6,7 @@
   --gridGap: 5px;
 }
 html {
-  font-family: 'Open Sans', Roboto, Verdana, sans-serif;
+  font-family: Roboto, 'Open Sans', Verdana, sans-serif;
 }
 a {
   outline: none;
@@ -169,11 +169,11 @@ a {
   width: fit-content;
   min-width: 40%;
 }
-.about-dialog {
+.about-dialog-content {
   margin: 0;
   padding: 0;
 }
-#github-avatar {
+#about-avatar {
   width: 40%;
   height: 40%;
   margin: 10px auto auto auto;
@@ -183,4 +183,79 @@ a {
   width: 59%;
   display: inline-block;
   vertical-align: middle;
+}
+.palette-dialog-content {
+  margin: 0;
+  padding: 0;
+}
+#color-wheel {
+  width: 60%;
+  height: 60%;
+  margin: 10px auto auto auto;
+  display: inline-block;
+}
+#palette-feedback {
+  width: 37%;
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto auto auto 10px;
+}
+#palette-color-code {
+  display: inline-block;
+  vertical-align: middle;
+}
+#palette-primary-label {
+  color: #00008b;
+  font-size: 12px;
+}
+#palette-primary-button {
+  border-color: #000;
+  border-width: 1px;
+  height: var(--recentColorCellHeight);
+  width: 100%;
+  background-color: #00f;
+  text-align: right;
+}
+.selected-shade-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(1, 40px);
+  grid-gap: 5px;
+  margin: 5px 0px 0px 0px;
+  justify-content: center;
+}
+.selected-shade-90 {
+  grid-column-start: auto;
+  grid-row-start: auto;
+  background-color: #e6e6e6;
+  border-color: #000;
+  border-width: 1px;
+}
+.selected-shade-80 {
+  grid-column-start: auto;
+  grid-row-start: auto;
+  background-color: #ccc;
+  border-color: #000;
+  border-width: 1px;
+}
+.selected-shade-70 {
+  grid-column-start: auto;
+  grid-row-start: auto;
+  background-color: #b3b3b3;
+  border-color: #000;
+  border-width: 1px;
+}
+.selected-shade-60 {
+  grid-column-start: auto;
+  grid-row-start: auto;
+  background-color: #999;
+  border-color: #000;
+  border-width: 1px;
+}
+.selected-shade-50 {
+  grid-column-start: auto;
+  grid-row-start: auto;
+  background-color: #808080;
+  border-color: #000;
+  border-width: 1px;
 }

@@ -14,7 +14,7 @@ random(min, max)
   return floor( math(0, "random") * max + min )
 
 html {
-  font-family: 'Open Sans', Roboto, Verdana, sans-serif;
+  font-family: Roboto, 'Open Sans', Verdana, sans-serif;
 }
 
 a {
@@ -195,12 +195,13 @@ for shade in (90 80 70 60 50)
   min-width: 40%;
 }
 
-.about-dialog {
+// About Dialog elements
+.about-dialog-content {
   margin:0;
   padding:0;
 }
 
-#github-avatar {
+#about-avatar {
   width: 40%;
   height: 40%;
   margin: 10px auto auto auto;
@@ -212,3 +213,60 @@ for shade in (90 80 70 60 50)
   display: inline-block;
   vertical-align: middle;
 }
+
+// About Dialog elements
+.palette-dialog-content {
+  margin:0;
+  padding:0;
+}
+
+#color-wheel {
+  width: 60%;
+  height: 60%;
+  margin: 10px auto auto auto;
+  display: inline-block;
+}
+
+#palette-feedback {
+  width: 37%
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto auto auto 10px;
+}
+
+#palette-color-code {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#palette-primary-label {
+  color: darkblue;
+  font-size: 12px;
+}
+
+#palette-primary-button {
+  border-color: black;
+  border-width: 1px;
+  height: var(--recentColorCellHeight);
+  width: 100%;
+  background-color: blue;
+  text-align: right;
+}
+
+.selected-shade-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(1, 40px);
+  grid-gap: 5px;
+  margin: 5px 0px 0px 0px;
+  justify-content: center;
+}
+
+for shade in (90 80 70 60 50)
+  .selected-shade-{shade} {
+    grid-column-start: auto;
+    grid-row-start: auto;
+    background-color: hsl(0, 0%, shade + '%');
+    border-color: black;
+    border-width: 1px;
+  }

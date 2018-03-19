@@ -22,14 +22,14 @@ $(document).ready(function() {
   });
   
   // Enable the About dialog event handlers
-  var aboutDialog = document.querySelector('dialog');
+  var aboutDialog = document.querySelector('dialog#about-dialog');
   if (!aboutDialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
+    dialogPolyfill.registerDialog(aboutDialog);
   }
   $( "#about-link" ).on( "click", function() {
     getUserProfileUrl()
     .then(response => {
-      $( "#github-avatar" ).attr("src",(JSON.parse(response).user.avatar_url));
+      $( "#about-avatar" ).attr("src",(JSON.parse(response).user.avatar_url));
       aboutDialog.showModal();
     });
   });
@@ -37,6 +37,21 @@ $(document).ready(function() {
     aboutDialog.close();
   });
   
+  // Enable the Palette dialog event handlers
+  var paletteDialog = document.querySelector('dialog#palette-dialog');
+  if (!paletteDialog.showModal) {
+    dialogPolyfill.registerDialog(paletteDialog);
+  }
+  $( ".color-selector-button" ).on( "click", function() {
+    paletteDialog.showModal();
+  });
+  $( ".palette-cancel" ).on( "click", function() {
+    paletteDialog.close();
+  });
+  $( ".palette-ok" ).on( "click", function() {
+    paletteDialog.close();
+  });
+
   // Render the color chooser control and create its event handlers
   colorPalette = new Palette();
   colorPalette.renderRecentColors(colorPalette.getShades());
