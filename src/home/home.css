@@ -189,10 +189,6 @@ a {
   padding: 0;
 }
 #color-wheel {
-/*
-  width: 60%;
-  height: 60%;
-  */
   margin: 10px auto auto auto;
   display: inline-block;
 }
@@ -200,7 +196,7 @@ a {
   display: none;
 }
 #palette-feedback {
-  width: 37%;
+  width: 43%;
   display: inline-block;
   vertical-align: middle;
   margin: auto auto auto 10px;
