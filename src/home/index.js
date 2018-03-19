@@ -13,8 +13,10 @@ function getUserProfileUrl() {
   ])
 }
 
+console.clear();
+
+
 $(document).ready(function() {
-  console.clear();
 
   // Create event handlers for the main app buttons
   $("#clear-grid-btn").click((event) => {
@@ -37,14 +39,46 @@ $(document).ready(function() {
     aboutDialog.close();
   });
   
+  // Load the base image from Imgur to prevent CORS from blocking
+  // the load operation
+  var canvas = document.getElementById('color-wheel');
+  var context = canvas.getContext('2d');
+  var base_image = new Image();
+  base_image.crossOrigin = 'anonymous';
+  base_image.src = 'https://i.imgur.com/BjkamyQ.png';
+  base_image.onload = function() {
+    context.drawImage(base_image, 
+      0, 0, base_image.width, base_image.height, // Source rectangle
+      0, 0, canvas.width, canvas.height);        // Destination rectangle
+  }
+
   // Enable the Palette dialog event handlers
   var paletteDialog = document.querySelector('dialog#palette-dialog');
+    
   if (!paletteDialog.showModal) {
     dialogPolyfill.registerDialog(paletteDialog);
   }
   $( ".color-selector-button" ).on( "click", function() {
     paletteDialog.showModal();
   });
+
+  $('#color-wheel').mousemove(function(e) {
+    // Get the pixel at the current position
+    var canvasOffset = $(canvas).offset();
+    var canvasX = Math.floor(e.pageX - canvasOffset.left);
+    var canvasY = Math.floor(e.pageY - canvasOffset.top);
+    var imageData = context.getImageData(canvasX, canvasY, 1, 1);
+    var pixel = imageData.data;
+
+    // Calculate the color code of the current pixel
+    var hexColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
+    var rgbColor = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
+    console.log(canvasX, canvasY, hexColor, rgbColor)
+
+    $('#palette-color-code').val('#' + ('0000' + hexColor.toString(16)).substr(-6));
+    $('#palette-primary-button').css('backgroundColor', rgbColor);
+  });
+
   $( ".palette-cancel" ).on( "click", function() {
     paletteDialog.close();
   });
