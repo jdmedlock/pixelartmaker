@@ -15,17 +15,17 @@ class Palette {
   /**
    * @description Generate an array of five shades of the provided color using equal
    * amounts of power to all of the light sources.
-   * @param {any} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * @param {any} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
    * value from 0-255 representing the red, green, and blue color value.
    * @returns {[String]} Array of five shade values based on the provided color
    * @memberof Palette
    */
-  createShades(color) {
-    // TODO: Validate input parameter
+  createShades(rgbColor) {
+    this.isValidRgb(rgbColor);
     const noOfShades = 5;
     const step = parseInt(256 / (noOfShades * 2), 10);
     let shades = [];
-    let [red, green, blue] = color.split('rgb(')[1].split(')')[0].split(',');
+    let [red, green, blue] = rgbColor.split('rgb(')[1].split(')')[0].split(',');
 
     for (let i = 0; i < noOfShades; i++) {
       red = parseInt(red, 10) + step;
@@ -93,7 +93,7 @@ class Palette {
   /**
    * @description Convert a hexadecimal color code to an RGB string value in
    * the format 'RGB(r,g,b)', where each numeric value is in decimal.
-   * @param {String} hexColor 
+   * @param {String} hexColor A six digit color value
    * @returns {String} An RGB string in the format 'RGB(r,g,b)'
    * @memberof Palette
    */
@@ -102,6 +102,22 @@ class Palette {
     const green = parseInt(hexColor.slice(3, 5), 16);
     const blue = parseInt(hexColor.slice(5, 7), 16);
     return `rgb(${red},${green},${blue})`;
+  }
+
+  /**
+   * @description Check the validity of an RGB color string in the format
+   * 'RGB(r,g,b)', where each numeric value is in decimal.
+   * @param {any} rgbColor An RGB string in the format 'RGB(r,g,b)'
+   * @returns {Boolean} True if the RGB string is valid
+   * @memberof Palette
+   */
+  isValidRgb(rgbColor) {
+    let [red, green, blue] = rgbColor.split('rgb(')[1].split(')')[0].split(',');
+    if ((red < 0 || red > 255) || (green < 0 || green > 255) ||
+        (green < 0 || green > 255)) {
+      throw new Error(`Invalid RGB color string: ${rgbColor}`);
+    }
+    return true;
   }
 
   /**
@@ -130,13 +146,13 @@ class Palette {
 
   /**
    * @description Render the array of shades for the selected color onto the HTML page
-   * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
    * value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
-  renderNewColorShades(color) {
-    // TODO: Validate the input parameter
-    this.newColorShades = this.createShades(color);
+  renderNewColorShades(rgbColor) {
+    this.isValidRgb(rgbColor);
+    this.newColorShades = this.createShades(rgbColor);
     this.newColorShades.forEach((element, index) => {
       $( "#selected-shade-" + (index+1) ).css('background-color',element);
     });
@@ -148,7 +164,6 @@ class Palette {
    * @memberof Palette
    */
   renderRecentColors(colorArray) {
-    // TODO: Validate the input parameter
     colorArray.forEach((element, index) => {
       $( "#recent-color-" + (index+1) ).css('background-color',element);
     });
@@ -156,47 +171,48 @@ class Palette {
 
   /**
    * @description Update the currently selected color to a new value
-   * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
    * value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
-  setCurrentColor(color) {
-    // TODO: Validate the input parameter
-    this.currentColor = color;
-    this.updateRecentColors(color);
+  setCurrentColor(rgbColor) {
+    this.isValidRgb(rgbColor);
+    this.currentColor = rgbColor;
+    this.updateRecentColors(rgbColor);
   }
 
   /**
    * @description Establish a newly selected
-   * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
    * value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
-  setNewColor(color) {
-    // TODO: Validate the input parameter
-    this.newColor = color;
-    this.newColorShades = this.createShades(this.currentColor);
+  setNewColor(rgbColor) {
+    this.isValidRgb(rgbColor);
+    this.newColor = rgbColor;
+    this.newColorShades = this.createShades(rgbColor);
   }
 
   /**
    * @description Update the recent colors array so the most recently used color 
    * occupies position 0 in the array.
-   * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
    * value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
-  updateRecentColors(color) {
-    const colorIndex = this.recentColors.indexOf(color);
+  updateRecentColors(rgbColor) {
+    this.isValidRgb(rgbColor);
+    const colorIndex = this.recentColors.indexOf(rgbColor);
     if (colorIndex === -1) {
       // If the color hasn't been recently used remove the last element and
       // add it onto the front of the array
       this.recentColors.splice(this.recentColors.length-1, 1);
-      this.recentColors.splice(0,0,color);
+      this.recentColors.splice(0,0,rgbColor);
     } else {
       // If the color is already in the array remove it and add it back onto
       // the array so it occupies position 0
       const deletedColors = this.recentColors.splice(colorIndex, 1);
-      this.recentColors.splice(0,0,color);
+      this.recentColors.splice(0,0,rgbColor);
     }
     this.renderRecentColors(this.recentColors);
   }
