@@ -151,9 +151,11 @@ class Grid {
     }
 
     // Add a new row of cells to the end of the grid
+    const newRow = [];
     for (let i = 0; i < this.columnCount; i++) {
-      this.grid.push(this.defaultGridCellColor);
+      newRow.push(this.defaultGridCellColor);
     }
+    this.grid.push(newRow);
     this.rowCount += 1;
     this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
 

@@ -87,7 +87,6 @@ $(document).ready(function() {
     let [rowNo, columnNo] = $(this).attr('id').split('grid-cell-')[1].split('-');
     designGrid.setCellColor(rowNo, columnNo, colorPalette.getCurrentColor());
     $(this).css('background-color',colorPalette.getCurrentColor());
-
   });
 
   // Create a event handlers for column and row controls
