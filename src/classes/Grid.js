@@ -40,6 +40,43 @@ class Grid {
     this.clearGrid();
   }
 
+  /**
+   * @description Add a new row to the grid
+   * @returns {any} The new column count or an Error object If current value is at the
+   * maximum row count.
+   * @memberof Grid
+   */
+  addGridRow() {
+    if (this.rowCount === this.maxRowCount) {
+      return new Error(`Maximum row limit of ${this.maxRowCount} already reached.`);
+    }
+
+    // Add a new row of cells to the end of the grid
+    const newRow = [];
+    for (let i = 0; i < this.columnCount; i++) {
+      newRow.push(this.defaultGridCellColor);
+    }
+    this.grid.push(newRow);
+    this.rowCount += 1;
+    this.renderGrid();
+
+    /*
+    this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
+    this.appWindow.setCssVariable('designGridColumnCount', this.columnCount);
+    $( ".design-grid" ).empty();
+    for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
+      for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
+        $( ".design-grid" ).append(
+          this.gridCellTemplate.replace('grid-cell-', `grid-cell-${rowNo}-${columnNo}`)
+        );
+        $( `#grid-cell-${rowNo}-${columnNo}` ).css(
+          'background-color', this.grid[rowNo][columnNo]
+        );
+      }
+    }
+    */
+    return this.rowCount;
+  }
   
   /**
    * @description Clear the current grid
@@ -90,17 +127,18 @@ class Grid {
   }
   
   /**
-   * @description Decrement the grid row count
+   * @description Remove the most recently added row from the grid
    * @returns {any} The new row count or an Error object If current value is at the
    * minimum row count.
    * @memberof Grid
    */
-  decrRowCount() {
+  deleteGridRow() {
     if (this.rowCount === this.minRowCount) {
       return new Error(`Minimum row limit of ${this.maxRowCount} already reached.`);
     }
+    this.grid.pop();
     this.rowCount -= 1;
-    this.makeGrid();
+    this.renderGrid();
     return this.rowCount;
   }
 
@@ -140,40 +178,6 @@ class Grid {
   }
 
   /**
-   * @description Increment the grid row count
-   * @returns {any} The new column count or an Error object If current value is at the
-   * maximum row count.
-   * @memberof Grid
-   */
-  incrRowCount() {
-    if (this.rowCount === this.maxRowCount) {
-      return new Error(`Maximum row limit of ${this.maxRowCount} already reached.`);
-    }
-
-    // Add a new row of cells to the end of the grid
-    const newRow = [];
-    for (let i = 0; i < this.columnCount; i++) {
-      newRow.push(this.defaultGridCellColor);
-    }
-    this.grid.push(newRow);
-    this.rowCount += 1;
-    this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
-
-    $( ".design-grid" ).empty();
-    for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
-      for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        $( ".design-grid" ).append(
-          this.gridCellTemplate.replace('grid-cell-', `grid-cell-${rowNo}-${columnNo}`)
-        );
-        $( `#grid-cell-${rowNo}-${columnNo}` ).css(
-          'background-color', this.grid[rowNo][columnNo]
-        );
-      }
-    }
-    return this.rowCount;
-  }
-
-  /**
    * @description Render the grid by generating and adding a new DOM element for
    * each cell in the grid.
    * @memberof Grid
@@ -189,6 +193,26 @@ class Grid {
     this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
     $( ".design-grid" ).empty();
     $( ".design-grid" ).append( gridCellElements );
+  }
+
+  /**
+   * @description Render the design grid
+   * @memberof Grid
+   */
+  renderGrid() {
+    this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
+    this.appWindow.setCssVariable('designGridColumnCount', this.columnCount);
+    $( ".design-grid" ).empty();
+    for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
+      for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
+        $( ".design-grid" ).append(
+          this.gridCellTemplate.replace('grid-cell-', `grid-cell-${rowNo}-${columnNo}`)
+        );
+        $( `#grid-cell-${rowNo}-${columnNo}` ).css(
+          'background-color', this.grid[rowNo][columnNo]
+        );
+      }
+    }
   }
 
   /**

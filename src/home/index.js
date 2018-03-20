@@ -117,20 +117,20 @@ $(document).ready(function() {
   });  
   $(".row-minus").click((event) => {
     try {
-      designGrid.decrRowCount();
+      designGrid.deleteGridRow();
       $('#row-count-box').val(designGrid.getRowCount());
     }
     catch(error) {
-      console.log(`Error decrementing row count. error:${error}`);
+      console.log(`Error deleting a grid row. error:${error}`);
     }
   });
   $(".row-plus").click((event) => {
     try {
-      designGrid.incrRowCount();
+      designGrid.addGridRow();
       $('#row-count-box').val(designGrid.getRowCount());
     }
     catch(error) {
-      console.log(`Error incrementing row count. error:${error}`);
+      console.log(`Error adding a new grid row. error:${error}`);
     }
   });
 
