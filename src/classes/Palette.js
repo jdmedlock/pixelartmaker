@@ -91,6 +91,44 @@ class Palette {
   }
 
   /**
+   * @description Convert a hexadecimal color code to an RGB string value in
+   * the format 'RGB(r,g,b)', where each numeric value is in decimal.
+   * @param {String} hexColor 
+   * @returns {String} An RGB string in the format 'RGB(r,g,b)'
+   * @memberof Palette
+   */
+  hexToRgb(hexColor) {
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5, 7), 16);
+    return `rgb(${red},${green},${blue})`;
+  }
+
+  /**
+   * @description Convert a pixel acquired through a mouse event to a six 
+   * hexadecimal digit value from the decimal RGB values.
+   * @param {Object} pixel A pixel obtained from a mouse event 
+   * @returns {String} A string six hexadecimal digits representing the color
+   * @memberof Palette
+   */
+  pixelToHex(pixel) {
+    const hexColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
+    return ('0000'+hexColor.toString(16)).substr(-6);
+  }
+
+  /**
+   * @description Convert a pixel acquired through a mouse event to an RGB 
+   * string value in the format 'RGB(r,g,b)', where each numeric value is
+   * in decimal.
+   * @param {Object} pixel A pixel obtained from a mouse event 
+   * @returns {String} An RGB string in the format 'RGB(r,g,b)'
+   * @memberof Palette
+   */
+  pixelToRgb(pixel) {
+    return `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+  }
+
+  /**
    * @description Render the array of shades for the selected color onto the HTML page
    * @param {String} color A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
    * value from 0-255 representing the red, green, and blue color value.

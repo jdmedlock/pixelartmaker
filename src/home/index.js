@@ -165,20 +165,24 @@ $(document).ready(function() {
   $('#color-wheel').mousemove(function(event) {
     if (!colorWheelFreeze) {
       const pixel = getPixel(event);
-      const hexColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
-      const rgbColor = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
-
-      $('#palette-color-code').val('#' + ('0000' + hexColor.toString(16)).substr(-6));
-      $('#palette-primary-button').css('backgroundColor', rgbColor);
+      $('#palette-color-code').val(colorPalette.pixelToHex(pixel));
+      $('#palette-primary-button').css('backgroundColor', colorPalette.pixelToRgb(pixel));
     }
   });
 
   $('#color-wheel').mousedown(function(event) {
     const pixel = getPixel(event);
-    const rgbColor = "rgb("+pixel[0]+", "+pixel[1]+", "+pixel[2]+")";
+    const rgbColor = colorPalette.pixelToRgb(pixel);
     colorPalette.setNewColor(rgbColor);
     colorPalette.renderNewColorShades(rgbColor);
     colorWheelFreeze = !colorWheelFreeze;
+  });
+
+  $( "#palette-color-code" ).on("change", (event) => {
+    const rgbColor = colorPalette.hexToRgb($( "#palette-color-code" ).val());
+    colorPalette.setNewColor(rgbColor);
+    colorPalette.renderNewColorShades(rgbColor);
+    $('#palette-primary-button').css('backgroundColor', rgbColor);
   });
 
   $( ".selected-shade-wrapper" ).on( 'click', '.selected-shade', function() {
@@ -195,5 +199,5 @@ $(document).ready(function() {
     colorPalette.setCurrentColor(colorPalette.getNewColor());
     $( ".color-selector-button" ).css('background-color',colorPalette.getCurrentColor());
     paletteDialog.close();
-  });  
+  });
 });
