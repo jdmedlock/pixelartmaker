@@ -167,6 +167,7 @@ $(document).ready(function() {
       const pixel = getPixel(event);
       $('#palette-color-code').val(colorPalette.pixelToHex(pixel));
       $('#palette-primary-button').css('backgroundColor', colorPalette.pixelToRgb(pixel));
+      colorPalette.renderNewColorShades(colorPalette.pixelToRgb(pixel));
     }
   });
 
@@ -185,7 +186,10 @@ $(document).ready(function() {
     $('#palette-primary-button').css('backgroundColor', rgbColor);
   });
 
+  colorPalette.renderNewColorShades(colorPalette.getDefaultColor());
+  $('#palette-primary-button').css('backgroundColor', colorPalette.getDefaultColor());
   $( ".selected-shade-wrapper" ).on( 'click', '.selected-shade', function() {
+    $('#palette-color-code').val(colorPalette.rgbToHex($(this).css('background-color')));
     colorPalette.setNewColor($(this).css('background-color'));
     colorPalette.renderNewColorShades($(this).css('background-color'));
     $('#palette-primary-button').css('backgroundColor', $(this).css('background-color'));
