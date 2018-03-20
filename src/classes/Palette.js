@@ -6,10 +6,10 @@ class Palette {
   constructor(columnCount, rowCount) {
     this.defaultColor = 'rgb(0, 0, 232)';
     this.currentColor = this.defaultColor;
-    this.currentColorShades = this.createShades(this.currentColor);
+    this.currentColorShades = this.createShades(this.defaultColor);
     this.newColor = this.defaultColor;
-    this.newColorShades = this.createShades(this.currentColor);
-    this.recentColors = this.createShades(this.currentColor);
+    this.newColorShades = this.createShades(this.defaultColor);
+    this.recentColors = this.createShades(this.defaultColor);
   }
 
   /**
@@ -106,7 +106,9 @@ class Palette {
 
   /**
    * @description Check the validity of an RGB color string in the format
-   * 'RGB(r,g,b)', where each numeric value is in decimal.
+   * 'RGB(r,g,b)', where each numeric value is in decimal. Since this
+   * function throws an Error if the RGB string is invalid its return
+   * value need not be checked after calling.
    * @param {any} rgbColor An RGB string in the format 'RGB(r,g,b)'
    * @returns {Boolean} True if the RGB string is valid
    * @memberof Palette
@@ -167,6 +169,18 @@ class Palette {
     colorArray.forEach((element, index) => {
       $( "#recent-color-" + (index+1) ).css('background-color',element);
     });
+  }
+
+  /**
+   * @description Convert rgb color string to a six hexadecimal digit value
+   * @param {String} rgbColor An RGB string in the format 'RGB(r,g,b)'
+   * @returns {String} A string six hexadecimal digits representing the color
+   * @memberof Palette
+   */
+  rgbToHex(rgbColor) {
+    let [red, green, blue] = rgbColor.split('rgb(')[1].split(')')[0].split(',');
+    const hexColor = blue + 256 * green + 65536 * red;
+    return ('0000'+hexColor.toString(16)).substr(-6);
   }
 
   /**

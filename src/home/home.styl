@@ -21,6 +21,12 @@ a {
   outline: none;
 }
 
+.label {
+  color: rgb(63,81,181);
+  font-size: 14px;
+  margin: auto;
+}
+
 //-----------------------------------------------------------------------------
 // Page Region Definitions
 // 
@@ -109,12 +115,6 @@ a {
 
 // Color Chooser Region Items
 
-.color-chooser-header {
-  margin: auto;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
 .color-selector-button {
   border-color: black;
   border-width: 1px;
@@ -122,6 +122,7 @@ a {
   width: 100%;
   background-color: blue;
   text-align: right;
+  margin: auto auto 10px auto;
 }
 
 .recent-color-wrapper {
@@ -129,18 +130,9 @@ a {
   grid-template-columns: repeat(5, var(--recentColorCellHeight));
   grid-template-rows: repeat(1, var(--recentColorCellHeight));
   grid-gap: var(--gridGap);
-  margin: 5px 0px 0px 0px;
+  margin: auto;
   justify-content: center;
 }
-
-for shade in (90 80 70 60 50)
-  .recent-color-{shade} {
-    grid-column-start: auto;
-    grid-row-start: auto;
-    background-color: hsl(0, 0%, shade + '%');
-    border-color: black;
-    border-width: 1px;
-  }
 
 // Design Grid Controls
 .row-controls {
@@ -216,13 +208,16 @@ for shade in (90 80 70 60 50)
 
 // About Dialog elements
 .palette-dialog-content {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  margin: auto ;
 }
 
 #color-wheel {
   margin: 10px auto auto auto;
   display: inline-block;
+  align-items: center;
 }
 
 #color-wheel-img {
@@ -239,11 +234,6 @@ for shade in (90 80 70 60 50)
 #palette-color-code {
   display: inline-block;
   vertical-align: middle;
-}
-
-#palette-primary-label {
-  color: darkblue;
-  font-size: 12px;
 }
 
 #palette-primary-button {
@@ -263,12 +253,3 @@ for shade in (90 80 70 60 50)
   margin: 5px 0px 0px 0px;
   justify-content: center;
 }
-
-for shade in (90 80 70 60 50)
-  .selected-shade-{shade} {
-    grid-column-start: auto;
-    grid-row-start: auto;
-    background-color: hsl(0, 0%, shade + '%');
-    border-color: black;
-    border-width: 1px;
-  }
