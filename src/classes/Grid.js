@@ -24,20 +24,37 @@ class Grid {
     }
 
     // Populate object variables
+    this.appWindow = new AppWindow();
     this.columnCount = columnCount;
     this.rowCount = rowCount;
     this.minColumnCount = 1;
     this.maxColumnCount = 99;
     this.minRowCount = 1;
     this.maxRowCount = 99;
-    this.defaultGridCellColor = 'rgb(232, 232, 232)'; // Light grey #e8e8e8
+    this.defaultGridCellColor = 'rgb(218, 220, 224)'; // Light grey #DADCE0
+    this.gridCellTemplate = '<div id="grid-cell-" class="design-grid-cell"></div>';
 
     // Create a new grid using the supplied dimensions and nitialize each cell to
     // the default cell color.
     this.grid = new Array(this.rowCount);
     this.clearGrid();
   }
+
   
+  /**
+   * @description Clear the current grid
+   * @memberof Grid
+   */
+  clearGrid() {
+    for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
+      this.grid[rowNo] = new Array(this.columnCount);
+      for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
+        this.grid[rowNo][columnNo] = this.defaultGridCellColor;
+      }
+    }
+    this.makeGrid();
+  }
+
 /*
   /**
    * @description Return a JSON representation of the design grid
@@ -58,58 +75,6 @@ class Grid {
 */
 
   /**
-   * @description Get the current number of columns in the grid.
-   * @returns {Integer} - Number of columns in the grid
-   * @readonly
-   * @memberof Grid
-   */
-  getColumnCount() {
-    return this.columnCount;
-  }
-
-  /**
-   * @description Update the number of grid columns
-   * @param {Integer} count - Column count
-   * @memberof Grid
-   */
-  setColumnCount(count) {
-    if (isNaN(count)) {
-      return new Error(`Column count is not numeric: ${count}.`);
-    }
-    if (count < 1 || count > 99) {
-      return new Error(`Column count must be between 1 and 99, ${count} is invalid.`);
-    }
-    this.columnCount = count;
-    this.makeGrid();
-  }
-
-  /**
-   * @description Get the current number of rows in the grid.
-   * @returns {Integer} - Number of rows in the grid
-   * @readonly
-   * @memberof Grid
-   */
-  getRowCount() {
-    return this.rowCount;
-  }
-
-  /**
-   * @description Update the number of grid rows
-   * @param {Integer} count - Row count
-   * @memberof Grid
-   */
-  setRowCount(count) {
-    if (isNaN(count)) {
-      return new Error(`Row count is not numeric: ${count}.`);
-    }
-    if (count < 1 || count > 99) {
-      return new Error(`Row count must be between 1 and 99, ${count} is invalid.`);
-    }
-    this.rowCount = count;
-    this.makeGrid();
-  }
-
-  /**
    * @description Decrement the grid column count
    * @returns {any} The new column count or an Error object If current value is at the
    * maximum column count.
@@ -120,21 +85,6 @@ class Grid {
       return new Error(`Minimum row limit of ${this.minColumnCount} already reached.`);
     }
     this.columnCount -= 1;
-    this.makeGrid();
-    return this.columnCount;
-  }
-
-  /**
-   * @description Increment the grid column count
-   * @returns {any} The new column count or an Error object If current value is at the
-   * maximum column count.
-   * @memberof Grid
-   */
-  incrColumnCount() {
-    if (this.columnCount === this.maxColumnCount) {
-      return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
-    }
-    this.columnCount += 1;
     this.makeGrid();
     return this.columnCount;
   }
@@ -155,6 +105,41 @@ class Grid {
   }
 
   /**
+   * @description Get the current number of columns in the grid.
+   * @returns {Integer} - Number of columns in the grid
+   * @readonly
+   * @memberof Grid
+   */
+  getColumnCount() {
+    return this.columnCount;
+  }
+
+  /**
+   * @description Get the current number of rows in the grid.
+   * @returns {Integer} - Number of rows in the grid
+   * @readonly
+   * @memberof Grid
+   */
+  getRowCount() {
+    return this.rowCount;
+  }
+
+  /**
+   * @description Increment the grid column count
+   * @returns {any} The new column count or an Error object If current value is at the
+   * maximum column count.
+   * @memberof Grid
+   */
+  incrColumnCount() {
+    if (this.columnCount === this.maxColumnCount) {
+      return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
+    }
+    this.columnCount += 1;
+    this.makeGrid();
+    return this.columnCount;
+  }
+
+  /**
    * @description Increment the grid row count
    * @returns {any} The new column count or an Error object If current value is at the
    * maximum row count.
@@ -164,23 +149,26 @@ class Grid {
     if (this.rowCount === this.maxRowCount) {
       return new Error(`Maximum row limit of ${this.maxRowCount} already reached.`);
     }
-    this.rowCount += 1;
-    this.makeGrid();
-    return this.rowCount;
-  }
 
-  /**
-   * @description Clear the current grid
-   * @memberof Grid
-   */
-  clearGrid() {
+    // Add a new row of cells to the end of the grid
+    for (let i = 0; i < this.columnCount; i++) {
+      this.grid.push(this.defaultGridCellColor);
+    }
+    this.rowCount += 1;
+    this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
+
+    $( ".design-grid" ).empty();
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
-      this.grid[rowNo] = new Array(this.columnCount);
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        this.grid[rowNo][columnNo] = this.defaultGridCellColor;
+        $( ".design-grid" ).append(
+          this.gridCellTemplate.replace('grid-cell-', `grid-cell-${rowNo}-${columnNo}`)
+        );
+        $( `#grid-cell-${rowNo}-${columnNo}` ).css(
+          'background-color', this.grid[rowNo][columnNo]
+        );
       }
     }
-    this.makeGrid();
+    return this.rowCount;
   }
 
   /**
@@ -189,19 +177,61 @@ class Grid {
    * @memberof Grid
    */
   makeGrid() {
-    const gridCellTemplate = '<div class="design-grid-cell"></div>';
     let gridCellElements = '';
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        gridCellElements += gridCellTemplate;
+        gridCellElements += this.gridCellTemplate.replace('grid-cell-', 'grid-cell-'+rowNo+'-'+columnNo);
       }
     }
-    const appWindow = new AppWindow();
-    appWindow.setCssVariable('designGridColumnCount', this.columnCount);
-    appWindow.setCssVariable('designGridRowCount', this.rowCount);
+    this.appWindow.setCssVariable('designGridColumnCount', this.columnCount);
+    this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
     $( ".design-grid" ).empty();
     $( ".design-grid" ).append( gridCellElements );
   }
+
+  /**
+   * @description Update the number of grid columns
+   * @param {Integer} count - Column count
+   * @memberof Grid
+   */
+  setColumnCount(count) {
+    if (isNaN(count)) {
+      return new Error(`Column count is not numeric: ${count}.`);
+    }
+    if (count < 1 || count > 99) {
+      return new Error(`Column count must be between 1 and 99, ${count} is invalid.`);
+    }
+    this.columnCount = count;
+    this.makeGrid();
+  }
+
+  /**
+   * @description Set the rgb color of a grid cell
+   * @param {Integer} rowNo Row number of the grid cell to be updated
+   * @param {Integer} columnNo Column number of the grid cell to be updated
+   * @param {String} rgbColor An RGB string in the format 'RGB(r,g,b)'
+   * @memberof Grid
+   */
+  setCellColor(rowNo, columnNo, rgbColor) {
+    this.grid[rowNo][columnNo] = rgbColor;
+  }
+
+  /**
+   * @description Update the number of grid rows
+   * @param {Integer} count - Row count
+   * @memberof Grid
+   */
+  setRowCount(count) {
+    if (isNaN(count)) {
+      return new Error(`Row count is not numeric: ${count}.`);
+    }
+    if (count < 1 || count > 99) {
+      return new Error(`Row count must be between 1 and 99, ${count} is invalid.`);
+    }
+    this.rowCount = count;
+    this.makeGrid();
+  }
 }
+
 
 export default Grid;
