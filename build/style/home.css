@@ -23,28 +23,17 @@ a {
   grid-gap: 10px;
   grid-auto-rows: minmax(auto, auto);
 }
-.page-header {
-  grid-column: 1/4;
-  grid-row: 1;
-  text-align: center;
-  margin: auto;
-}
-.menu {
-  grid-column: 1/4;
-  grid-row: 2;
-  text-align: center;
-}
 .design-grid-column-controls {
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 1;
   grid-gap: 5px;
   text-align: center;
   width: 60%;
-  margin: auto;
+  margin: 20px auto auto auto;
 }
 .color-chooser {
   grid-column: 1;
-  grid-row: 5;
+  grid-row: 2;
   grid-gap: 5px;
   border-color: #000;
   border-width: 1px;
@@ -53,7 +42,7 @@ a {
 }
 .design-grid {
   grid-column: 2;
-  grid-row: 5;
+  grid-row: 2;
   border-color: #000;
   border-width: 1px;
   display: grid;
@@ -63,7 +52,7 @@ a {
 }
 .design-grid-row-controls {
   grid-column: 3;
-  grid-row: 5;
+  grid-row: 2;
   grid-gap: 5px;
   display: flex;
   align-items: center;
@@ -71,10 +60,11 @@ a {
 }
 .page-footer {
   grid-column: 1/4;
-  grid-row: 6;
+  grid-row: 3;
   border-color: #000;
   border-width: 1px;
   text-align: center;
+  margin: 20px auto auto auto;
 }
 .menu-item {
   border-color: #000;
@@ -131,9 +121,22 @@ a {
   background-color: #dadce0;
   border: 1px solid #5f6b82;
 }
+.copyright {
+  color: #808080;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+.material-icons {
+  color: #808080;
+}
 .mdl-dialog {
   width: fit-content;
   min-width: 40%;
+}
+.about-link {
+  color: #808080;
+  text-decoration: none;
 }
 .about-dialog-content {
   margin: 0;
