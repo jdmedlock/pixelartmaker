@@ -121,9 +121,22 @@ a {
   background-color: #dadce0;
   border: 1px solid #5f6b82;
 }
+.copyright {
+  color: #808080;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+.material-icons {
+  color: #808080;
+}
 .mdl-dialog {
   width: fit-content;
   min-width: 40%;
+}
+.about-link {
+  color: #808080;
+  text-decoration: none;
 }
 .about-dialog-content {
   margin: 0;
