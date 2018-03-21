@@ -84,6 +84,8 @@ $(document).ready(function() {
 
   // Create a delegated event handler on the Design Grid.
   $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
+    let [rowNo, columnNo] = $(this).attr('id').split('grid-cell-')[1].split('-');
+    designGrid.setCellColor(rowNo, columnNo, colorPalette.getCurrentColor());
     $(this).css('background-color',colorPalette.getCurrentColor());
   });
 
@@ -93,7 +95,7 @@ $(document).ready(function() {
   });
   $(".column-minus").click((event) => {
     try {
-      designGrid.decrColumnCount();
+      designGrid.deleteGridColumn();
       $('#column-count-box').val(designGrid.getColumnCount());
     }
     catch(error) {
@@ -102,7 +104,7 @@ $(document).ready(function() {
   });
   $(".column-plus").click((event) => {
     try {
-      designGrid.incrColumnCount();
+      designGrid.addGridColumn();
       $('#column-count-box').val(designGrid.getColumnCount());
     }
     catch(error) {
@@ -115,20 +117,20 @@ $(document).ready(function() {
   });  
   $(".row-minus").click((event) => {
     try {
-      designGrid.decrRowCount();
+      designGrid.deleteGridRow();
       $('#row-count-box').val(designGrid.getRowCount());
     }
     catch(error) {
-      console.log(`Error decrementing row count. error:${error}`);
+      console.log(`Error deleting a grid row. error:${error}`);
     }
   });
   $(".row-plus").click((event) => {
     try {
-      designGrid.incrRowCount();
+      designGrid.addGridRow();
       $('#row-count-box').val(designGrid.getRowCount());
     }
     catch(error) {
-      console.log(`Error incrementing row count. error:${error}`);
+      console.log(`Error adding a new grid row. error:${error}`);
     }
   });
 
@@ -192,16 +194,18 @@ $(document).ready(function() {
     $('#palette-color-code').val(colorPalette.rgbToHex($(this).css('background-color')));
     colorPalette.setNewColor($(this).css('background-color'));
     colorPalette.renderNewColorShades($(this).css('background-color'));
-    $('#palette-primary-button').css('backgroundColor', $(this).css('background-color'));
+    $('#palette-primary-button').css('backgroundColor', colorPalette.getNewColor());
   });
 
   $( ".palette-cancel" ).on( "click", function() {
+    colorWheelFreeze = false;
     paletteDialog.close();
   });
   
   $( ".palette-ok" ).on( "click", function() {
     colorPalette.setCurrentColor(colorPalette.getNewColor());
     $( ".color-selector-button" ).css('background-color',colorPalette.getCurrentColor());
+    colorWheelFreeze = false;
     paletteDialog.close();
   });
 });
