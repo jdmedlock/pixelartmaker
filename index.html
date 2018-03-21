@@ -89,12 +89,45 @@
 					<div>
 						<span class="copyright">
 							<i class="material-icons">copyright</i>
-							<span>2018 Jim D. Medlock</span>
+							<span>&nbsp; 2018 Jim D. Medlock</span>
 						</span>
 					</div>
 				</div>
 
-				<dialog id="about-dialog" class="mdl-dialog">
+				<dialog id="open-file-dialog" class="mdl-dialog">
+					<div id="openfile-dialog-content">
+						<h6 class="mdl-dialog__title">Load File...</h6>
+						<div class="mdl-dialog__content">
+							<div class="openfile-text">
+								<div id="file-drop">
+									Drag and drop the file you wish to load into this area.
+								</div>
+							</div>
+						</div>
+						<div class="mdl-dialog__actions">
+							<button type="button" class="mdl-button openfile-done">Done</button>
+						</div>
+					</div>
+				</dialog>
+
+				<dialog id="save-file-dialog" class="mdl-dialog">
+						<div id="savefile-dialog-content">
+							<h6 class="mdl-dialog__title">Save File...</h6>
+							<div class="mdl-dialog__content">
+								<div class="savefile-text">
+									<p>
+										Something goes here
+									</p>
+								</div>
+							</div>
+							<div class="mdl-dialog__actions">
+								<button type="button" class="mdl-button savefile-cancel">Cancel</button>
+								<button type="button" class="mdl-button savefile-save">Save</button>
+							</div>
+						</div>
+					</dialog>
+	
+					<dialog id="about-dialog" class="mdl-dialog">
 					<div id="about-dialog-content">
 						<h6 class="mdl-dialog__title">About</h6>
 						<div class="mdl-dialog__content">
@@ -107,8 +140,10 @@
 									<a href="https://www.udacity.com/" target="_blank"> Udacity</a>.
 								</p>
 								<p>
-									Developed by Jim Medlock.
+										Developed by 
 									<a href="https://github.com/jdmedlock/pixelartmaker" target="_blank">
+										Jim Medlock.
+									</a>
 								</p>
 							</div>
 							<img id="about-avatar" alt="Jim Medlock" />
