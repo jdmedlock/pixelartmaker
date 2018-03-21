@@ -8,133 +8,151 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 	<link href="./build/style/home.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.2/dialog-polyfill.min.css">
 </head>
 
 <body>
-	<div class="page-wrapper">
-		<h1 class="page-header">Pixel Art Maker</h1>
-
-		<div class="menu">
-			<button id="open-file-btn" class="mdl-button mdl-js-button mdl-button--raised /
-				mdl-js-ripple-effect mdl-button--accent menu-item">Open file...</button>
-			<button id="save-file-btn" class="mdl-button mdl-js-button mdl-button--raised /
-				mdl-js-ripple-effect mdl-button--accent menu-item">Save file...</button>
-			<button id="clear-grid-btn" class="mdl-button mdl-js-button mdl-button--raised /
-				mdl-js-ripple-effect mdl-button--accent menu-item">Clear grid</button>
-		</div>
-
-		<div class="color-chooser">
-			<span class="label">Current Color (click for more)</span>
-			<button class="color-selector-button"></button>
-			<br/>
-			<span class="label">Recently Used Colors (click to select)</span>
-			<div class="recent-color-wrapper">
-				<button id="recent-color-1" class="recent-color"></button>
-				<button id="recent-color-2" class="recent-color"></button>
-				<button id="recent-color-3" class="recent-color"></button>
-				<button id="recent-color-4" class="recent-color"></button>
-				<button id="recent-color-5" class="recent-color"></button>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+				<span class="mdl-layout-title">Pixel Art Maker</span>
+				<div class="mdl-layout-spacer"></div>
+				<nav class="mdl-navigation mdl-layout--large-screen-only">
+					<a class="mdl-navigation__link open-file-link" href="#">Open file</a>
+					<a class="mdl-navigation__link save-file-link" href="#">Save file</a>
+					<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
+				</nav>
 			</div>
+		</header>
+
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Title</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link open-file-link" href="#">Open file</a>
+				<a class="mdl-navigation__link save-file-link" href="#">Save file</a>
+				<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
+			</nav>
 		</div>
 
-		<div class="design-grid-column-controls">
-			<span class="label">Columns</span>
-			<span class="column-minus">
-				<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-			</span>
-
-			<input id="column-count-box" class="column-count" type="number"
-							maxLength="3" min="1" max="99" value="8"/>
-			<span class="column-plus">
-				<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-			</span>
-		</div>
-
-		<div class="design-grid">
-		</div>
-
-		<div class="design-grid-row-controls">
-			<div class="row-controls">
-				<div class="label">Rows</div>
-				<span class="row-minus">
-					<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-				</span>
-				<span>
-					<input id="row-count-box" class="row-count" type="number" 
-									maxLength="3" min="1" max="99" value="8"/>
-				</span>
-				<span class="row-plus">
-					<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add row"></img>
-				</span>
-			</div>
-		</div>
-
-		<div class="page-footer">
-			<h6 id="about-link">About</h6>
-		</div>
-	</div>
-
-  <dialog id="about-dialog" class="mdl-dialog">
-		<div id="about-dialog-content">
-			<h6 class="mdl-dialog__title">About</h6>
-			<div class="mdl-dialog__content">
-				<div class="about-text">
-					<p>
-						Pixel Art Maker was developed as part of the 
-						<a href="https://www.udacity.com/grow-with-google" target="_blank">
-						Grow With Google Scholarship
-						Challenge </a>sponsored by <a href="https://grow.google/" target="_blank">Google</a> and
-						offered through <a href="https://www.udacity.com/" target="_blank"> Udacity</a>. 
-					</p>
-					<p>
-						Developed by
-						Jim Medlock. <a href="https://github.com/jdmedlock/pixelartmaker" target="_blank">
-					</p>
-				</div>
-				<img id="about-avatar" alt="Jim Medlock"/></a>
-			</div>
-			<div class="mdl-dialog__actions">
-				<button type="button" class="mdl-button about-close">Close</button>
-			</div>
-		</div>
-	</dialog>
-
-	<dialog id="palette-dialog" class="mdl-dialog">
-		<div id="palette-dialog-content">
-			<h6 class="mdl-dialog__title">Color Palette</h6>
-			<div class="mdl-dialog__content">
-				<div class="label">Click to toggle selection</div>
-				<canvas id="color-wheel" height="256" width="256"></canvas>
-				<div id="palette-feedback">
-					<form action="#">
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<input id="palette-color-code" type="text"
-								class="mdl-textfield__input"
-								maxLength="6" min="000000" max="FFFFFF" value="000000">
-							<label class="mdl-textfield__label label" for="palette-color-code">RGB [hex]</label>
+		<main class="mdl-layout__content">
+			<div class="page-content"><!-- Your content goes here -->
+				<div class="page-wrapper">
+					<div class="color-chooser">
+						<span class="label">Current Color (click for more)</span>
+						<button class="color-selector-button"></button>
+						<br/>
+						<span class="label">Recently Used Colors (click to select)</span>
+						<div class="recent-color-wrapper">
+							<button id="recent-color-1" class="recent-color"></button>
+							<button id="recent-color-2" class="recent-color"></button>
+							<button id="recent-color-3" class="recent-color"></button>
+							<button id="recent-color-4" class="recent-color"></button>
+							<button id="recent-color-5" class="recent-color"></button>
 						</div>
-					</form>
-					<div>
-						<div class="label">Selected Color &amp; Shades</div>
-						<button id="palette-primary-button"></button>
 					</div>
-					<div class="selected-shade-wrapper">
-						<button id="selected-shade-1" class="selected-shade"></button>
-						<button id="selected-shade-2" class="selected-shade"></button>
-						<button id="selected-shade-3" class="selected-shade"></button>
-						<button id="selected-shade-4" class="selected-shade"></button>
-						<button id="selected-shade-5" class="selected-shade"></button>
-					</div>			
+
+					<div class="design-grid-column-controls">
+						<span class="label">Columns</span>
+						<span class="column-minus">
+							<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+						</span>
+
+						<input id="column-count-box" class="column-count" type="number" maxLength="3" min="1" max="99" value="8" />
+						<span class="column-plus">
+							<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+						</span>
+					</div>
+
+					<div class="design-grid">
+					</div>
+
+					<div class="design-grid-row-controls">
+						<div class="row-controls">
+							<div class="label">Rows</div>
+							<span class="row-minus">
+								<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+							</span>
+							<span>
+								<input id="row-count-box" class="row-count" type="number" maxLength="3" min="1" max="99" value="8" />
+							</span>
+							<span class="row-plus">
+								<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add row"></img>
+							</span>
+						</div>
+					</div>
+
+				<div class="page-footer">
+					<div>
+						<span><a class="about-link" href="#">About</a></span>
+					</div>
+					<div>
+						<span><a href="#">(c) 2018 Jim D. Medlock</a></span>
+					</div>
 				</div>
+
+				<dialog id="about-dialog" class="mdl-dialog">
+					<div id="about-dialog-content">
+						<h6 class="mdl-dialog__title">About</h6>
+						<div class="mdl-dialog__content">
+							<div class="about-text">
+								<p>
+									Pixel Art Maker was developed as part of the
+									<a href="https://www.udacity.com/grow-with-google" target="_blank">
+										Grow With Google Scholarship Challenge </a>sponsored by
+									<a href="https://grow.google/" target="_blank">Google</a> and offered through
+									<a href="https://www.udacity.com/" target="_blank"> Udacity</a>.
+								</p>
+								<p>
+									Developed by Jim Medlock.
+									<a href="https://github.com/jdmedlock/pixelartmaker" target="_blank">
+								</p>
+							</div>
+							<img id="about-avatar" alt="Jim Medlock" />
+							</a>
+						</div>
+						<div class="mdl-dialog__actions">
+							<button type="button" class="mdl-button about-close">Close</button>
+						</div>
+					</div>
+				</dialog>
+
+				<dialog id="palette-dialog" class="mdl-dialog">
+					<div id="palette-dialog-content">
+						<h6 class="mdl-dialog__title">Color Palette</h6>
+						<div class="mdl-dialog__content">
+							<div class="label">Click to toggle selection</div>
+							<canvas id="color-wheel" height="256" width="256"></canvas>
+							<div id="palette-feedback">
+								<form action="#">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<input id="palette-color-code" type="text" class="mdl-textfield__input" maxLength="6" min="000000" max="FFFFFF" value="000000">
+										<label class="mdl-textfield__label label" for="palette-color-code">RGB [hex]</label>
+									</div>
+								</form>
+								<div>
+									<div class="label">Selected Color &amp; Shades</div>
+									<button id="palette-primary-button"></button>
+								</div>
+								<div class="selected-shade-wrapper">
+									<button id="selected-shade-1" class="selected-shade"></button>
+									<button id="selected-shade-2" class="selected-shade"></button>
+									<button id="selected-shade-3" class="selected-shade"></button>
+									<button id="selected-shade-4" class="selected-shade"></button>
+									<button id="selected-shade-5" class="selected-shade"></button>
+								</div>
+							</div>
+						</div>
+						<div class="mdl-dialog__actions">
+							<button type="button" class="mdl-button palette-cancel">Cancel</button>
+							<button type="button" class="mdl-button palette-ok">Select</button>
+						</div>
+					</div>
+				</dialog>
+
 			</div>
-			<div class="mdl-dialog__actions">
-					<button type="button" class="mdl-button palette-cancel">Cancel</button>
-					<button type="button" class="mdl-button palette-ok">Select</button>
-			</div>
-		</div>
-	</dialog>
+		</main>
+	</div>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
