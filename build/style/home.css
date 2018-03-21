@@ -69,11 +69,12 @@ a {
 #file-drop {
   border: 2px dashed #ccc;
   border-radius: 20px;
+  height: 40%;
   width: 90%;
   margin: auto;
   padding: 20px;
 }
-#file-drop.highlight {
+.highlight {
   color: #a9a9a9;
   border-color: #800080;
 }

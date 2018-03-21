@@ -34,6 +34,27 @@ function getUserProfileUrl() {
 }
 
 /**
+ * @description Import and render a grid from a JSON object
+ * @param {any} gridJson 
+ */
+function importGrid(gridObject) {
+  // Copy the values from the imported grid into this grid instance
+  designGrid.setRowCount(gridObject.rowCount);
+  designGrid.setColumnCount(gridObject.columnCount);
+  colorPalette.setCurrentColor(gridObject.selectedColor);
+  colorPalette.setRecentColors(gridObject.recentColors);
+  designGrid.clearGrid();
+  gridObject.grid.forEach(element => {
+    designGrid.setCellColor(element.rowNo, element.columnNo, element.cellColor);
+  });
+
+  // Render the imported grid
+  designGrid.renderGrid();
+  $( ".color-selector-button" ).css('background-color', colorPalette.getCurrentColor());
+  colorPalette.renderRecentColors(colorPalette.getRecentColors());
+}
+
+/**
  * @description Load the color wheel image into the canvas
  * @param {String} url the image will be loaded from 
  */
@@ -53,53 +74,46 @@ function loadColorWheel(url) {
 $(document).ready(function() {
   console.clear();
   loadColorWheel('https://i.imgur.com/BjkamyQ.png');
+  designGrid = new Grid(
+    appWindow.getCssVariable('designGridRowCount', 'number'), 
+    appWindow.getCssVariable('designGridColumnCount', 'number')
+  );
 
   //---------------------------------------------------------------------------
   // Create event handlers for the title bar navigation links
   //---------------------------------------------------------------------------
+
+  // Open file dialog
   var openfileDialog = document.querySelector('dialog#open-file-dialog');  
   if (!openfileDialog.showModal) {
     dialogPolyfill.registerDialog(openfileDialog);
   }
 
-  var filedrop;
-  filedrop = document.getElementById("file-drop");
-  filedrop.addEventListener("dragenter", dragenter, false);
-  filedrop.addEventListener("dragover", dragover, false);
-  filedrop.addEventListener("drop", drop, false);
-
-  function dragenter(e) {
-    e.stopPropagation();
-    e.preventDefault();
-  } 
-  function dragover(e) {
-    e.stopPropagation();
-    e.preventDefault();
-  }
-  function drop(e) {
-    e.stopPropagation();
-    e.preventDefault();
-  
-    var dt = e.dataTransfer;
-    var files = dt.files;
-    /*
-    ([...files]).forEach((file) => {
-      let formData = new FormData()
-      formData.append('file', file)
-      console.log(file);
+  $.event.props.push('dataTransfer');
+  $( "#file-drop" ).on({
+    dragenter: function(dragEvent) {
+      dragEvent.preventDefault();
+      dragEvent.stopPropagation();
+    },
+    dragleave: function(dragEvent)  {
+      dragEvent.preventDefault();
+      dragEvent.stopPropagation();
+    },
+    dragover: function(dragEvent)  {
+      dragEvent.preventDefault();
+      dragEvent.stopPropagation();
+    },
+    drop: function(dropEvent) {
+      dropEvent.preventDefault();
+      dropEvent.stopPropagation();
+      var file = dropEvent.dataTransfer.files[0];
       var fileReader = new FileReader();
-      fileReader.onload = function(evt) {
-        console.log(evt.target.result);
+      fileReader.onload = function(fileEvent) {
+        importGrid(JSON.parse(fileEvent.target.result));
+        console.log(fileEvent.target.result);
       };
-      fileReader.readAsText(file, "UTF-8");
-    });
-    */
-    var fileReader = new FileReader();
-    fileReader.onload = function(evt) {
-      console.log(evt.target.result);
-    };
-    fileReader.readAsText(files[0], "UTF-8");
-  }
+      fileReader.readAsText(file, "UTF-8");    }
+  });
 
   $(".open-file-link").click((event) => {
     openfileDialog.showModal();
@@ -108,6 +122,7 @@ $(document).ready(function() {
     openfileDialog.close();
   });
 
+  // Save File dialog
   var savefileDialog = document.querySelector('dialog#save-file-dialog');  
   if (!savefileDialog.showModal) {
     dialogPolyfill.registerDialog(savefileDialog);
@@ -123,6 +138,7 @@ $(document).ready(function() {
     savefileDialog.close();
   });
 
+  // Clear Grid Action
   $(".clear-grid-link").click((event) => {
     designGrid.clearGrid();
   });
@@ -142,10 +158,6 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Render the design grid and its event handlers
   //---------------------------------------------------------------------------
-  designGrid = new Grid(
-    appWindow.getCssVariable('designGridRowCount', 'number'), 
-    appWindow.getCssVariable('designGridColumnCount', 'number')
-  );
   designGrid.makeGrid();
 
   // Create a delegated event handler on the Design Grid.

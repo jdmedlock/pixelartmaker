@@ -95,25 +95,6 @@ class Grid {
     this.makeGrid();
   }
 
-/*
-  /**
-   * @description Return a JSON representation of the design grid
-   * @returns {Object} JSON object defining the current design grid
-   * @readonly
-   * @memberof Grid
-   * /
-  get grid() {
-    return JSON.stringify(this._grid);
-  }
-  /**
-   * @description Populate the design grid from a JSON object
-   * @memberof Grid
-   * /
-  set grid(gridObject) {
-    this._grid = JSON.parse(gridObject);
-  }
-*/
-
   /**
    * @description Remove the most recently added solumn from the grid
    * @returns {any} The new column count or an Error object If current value
