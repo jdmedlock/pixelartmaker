@@ -95,7 +95,7 @@ $(document).ready(function() {
   });
   $(".column-minus").click((event) => {
     try {
-      designGrid.decrColumnCount();
+      designGrid.deleteGridColumn();
       $('#column-count-box').val(designGrid.getColumnCount());
     }
     catch(error) {
@@ -104,7 +104,7 @@ $(document).ready(function() {
   });
   $(".column-plus").click((event) => {
     try {
-      designGrid.incrColumnCount();
+      designGrid.addGridColumn();
       $('#column-count-box').val(designGrid.getColumnCount());
     }
     catch(error) {

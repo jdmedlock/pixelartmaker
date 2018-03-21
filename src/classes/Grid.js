@@ -41,9 +41,28 @@ class Grid {
   }
 
   /**
+   * @description Add a new column to the grid
+   * @returns {Integer} The new column count or an Error object If current
+   * value is at the maximum column count.
+   * @memberof Grid
+   */
+  addGridColumn() {
+    if (this.columnCount === this.maxColumnCount) {
+      return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
+    }
+    for (let i = this.columnCount; i <= this.grid.length; i += this.columnCount) {
+      this.grid.splice(i, 0, this.defaultGridCellColor);
+      i++;
+    }
+    this.columnCount += 1;
+    this.renderGrid();
+    return this.columnCount;
+  }
+
+  /**
    * @description Add a new row to the grid
-   * @returns {any} The new column count or an Error object If current value is at the
-   * maximum row count.
+   * @returns {Integer} The new column count or an Error object If current
+   * value is at the maximum row count.
    * @memberof Grid
    */
   addGridRow() {
@@ -59,22 +78,6 @@ class Grid {
     this.grid.push(newRow);
     this.rowCount += 1;
     this.renderGrid();
-
-    /*
-    this.appWindow.setCssVariable('designGridRowCount', this.rowCount);
-    this.appWindow.setCssVariable('designGridColumnCount', this.columnCount);
-    $( ".design-grid" ).empty();
-    for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
-      for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        $( ".design-grid" ).append(
-          this.gridCellTemplate.replace('grid-cell-', `grid-cell-${rowNo}-${columnNo}`)
-        );
-        $( `#grid-cell-${rowNo}-${columnNo}` ).css(
-          'background-color', this.grid[rowNo][columnNo]
-        );
-      }
-    }
-    */
     return this.rowCount;
   }
   
@@ -112,24 +115,27 @@ class Grid {
 */
 
   /**
-   * @description Decrement the grid column count
-   * @returns {any} The new column count or an Error object If current value is at the
-   * maximum column count.
+   * @description Remove the most recently added solumn from the grid
+   * @returns {any} The new column count or an Error object If current value
+   * is at the maximum column count.
    * @memberof Grid
    */
-  decrColumnCount() {
+  deleteGridColumn() {
     if (this.columnCount === this.minColumnCount) {
       return new Error(`Minimum row limit of ${this.minColumnCount} already reached.`);
     }
+    this.grid = this.grid.map((row) => {
+      return row.slice(0, row.length);
+    });
     this.columnCount -= 1;
-    this.makeGrid();
+    this.renderGrid();
     return this.columnCount;
   }
   
   /**
    * @description Remove the most recently added row from the grid
-   * @returns {any} The new row count or an Error object If current value is at the
-   * minimum row count.
+   * @returns {any} The new row count or an Error object If current value is
+   * at the minimum row count.
    * @memberof Grid
    */
   deleteGridRow() {
@@ -160,21 +166,6 @@ class Grid {
    */
   getRowCount() {
     return this.rowCount;
-  }
-
-  /**
-   * @description Increment the grid column count
-   * @returns {any} The new column count or an Error object If current value is at the
-   * maximum column count.
-   * @memberof Grid
-   */
-  incrColumnCount() {
-    if (this.columnCount === this.maxColumnCount) {
-      return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
-    }
-    this.columnCount += 1;
-    this.makeGrid();
-    return this.columnCount;
   }
 
   /**
