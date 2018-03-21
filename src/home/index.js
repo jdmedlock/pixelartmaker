@@ -57,7 +57,7 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Create event handlers for the main app buttons
   //---------------------------------------------------------------------------
-  $("#clear-grid-btn").click((event) => {
+  $(".clear-grid-link").click((event) => {
     designGrid.clearGrid();
   });
   
@@ -141,7 +141,7 @@ $(document).ready(function() {
   if (!aboutDialog.showModal) {
     dialogPolyfill.registerDialog(aboutDialog);
   }
-  $( "#about-link" ).on( "click", function() {
+  $( ".about-link" ).on( "click", function() {
     getUserProfileUrl()
     .then(response => {
       $( "#about-avatar" ).attr("src",(JSON.parse(response).user.avatar_url));
