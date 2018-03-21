@@ -194,16 +194,18 @@ $(document).ready(function() {
     $('#palette-color-code').val(colorPalette.rgbToHex($(this).css('background-color')));
     colorPalette.setNewColor($(this).css('background-color'));
     colorPalette.renderNewColorShades($(this).css('background-color'));
-    $('#palette-primary-button').css('backgroundColor', $(this).css('background-color'));
+    $('#palette-primary-button').css('backgroundColor', colorPalette.getNewColor());
   });
 
   $( ".palette-cancel" ).on( "click", function() {
+    colorWheelFreeze = false;
     paletteDialog.close();
   });
   
   $( ".palette-ok" ).on( "click", function() {
     colorPalette.setCurrentColor(colorPalette.getNewColor());
     $( ".color-selector-button" ).css('background-color',colorPalette.getCurrentColor());
+    colorWheelFreeze = false;
     paletteDialog.close();
   });
 });
