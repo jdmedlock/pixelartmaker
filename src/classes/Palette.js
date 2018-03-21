@@ -4,7 +4,7 @@ class Palette {
    * @memberof Palette
    */
   constructor(columnCount, rowCount) {
-    this.defaultColor = 'rgb(253,221,100)';
+    this.defaultColor = 'rgb(253,221,100)'; // light yellow
     this.currentColor = this.defaultColor;
     this.currentColorShades = this.createShades(this.defaultColor);
     this.newColor = this.defaultColor;

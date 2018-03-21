@@ -55,8 +55,74 @@ $(document).ready(function() {
   loadColorWheel('https://i.imgur.com/BjkamyQ.png');
 
   //---------------------------------------------------------------------------
-  // Create event handlers for the main app buttons
+  // Create event handlers for the title bar navigation links
   //---------------------------------------------------------------------------
+  var openfileDialog = document.querySelector('dialog#open-file-dialog');  
+  if (!openfileDialog.showModal) {
+    dialogPolyfill.registerDialog(openfileDialog);
+  }
+
+  var filedrop;
+  filedrop = document.getElementById("file-drop");
+  filedrop.addEventListener("dragenter", dragenter, false);
+  filedrop.addEventListener("dragover", dragover, false);
+  filedrop.addEventListener("drop", drop, false);
+
+  function dragenter(e) {
+    e.stopPropagation();
+    e.preventDefault();
+  } 
+  function dragover(e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+  function drop(e) {
+    e.stopPropagation();
+    e.preventDefault();
+  
+    var dt = e.dataTransfer;
+    var files = dt.files;
+    /*
+    ([...files]).forEach((file) => {
+      let formData = new FormData()
+      formData.append('file', file)
+      console.log(file);
+      var fileReader = new FileReader();
+      fileReader.onload = function(evt) {
+        console.log(evt.target.result);
+      };
+      fileReader.readAsText(file, "UTF-8");
+    });
+    */
+    var fileReader = new FileReader();
+    fileReader.onload = function(evt) {
+      console.log(evt.target.result);
+    };
+    fileReader.readAsText(files[0], "UTF-8");
+  }
+
+  $(".open-file-link").click((event) => {
+    openfileDialog.showModal();
+  });
+  $( ".openfile-done" ).on( "click", function() {
+    openfileDialog.close();
+  });
+
+  var savefileDialog = document.querySelector('dialog#save-file-dialog');  
+  if (!savefileDialog.showModal) {
+    dialogPolyfill.registerDialog(savefileDialog);
+  }  
+  $(".save-file-link").click((event) => {
+    savefileDialog.showModal();
+  });
+  $( ".savefile-cancel" ).on( "click", function() {
+    savefileDialog.close();
+  });
+  
+  $( ".savefile-load" ).on( "click", function() {
+    savefileDialog.close();
+  });
+
   $(".clear-grid-link").click((event) => {
     designGrid.clearGrid();
   });
