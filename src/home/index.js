@@ -84,9 +84,9 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
 
   // Open file dialog
-  var openfileDialog = document.querySelector('dialog#open-file-dialog');  
-  if (!openfileDialog.showModal) {
-    dialogPolyfill.registerDialog(openfileDialog);
+  var importDialog = document.querySelector('dialog#import-dialog');  
+  if (!importDialog.showModal) {
+    dialogPolyfill.registerDialog(importDialog);
   }
 
   $.event.props.push('dataTransfer');
@@ -110,32 +110,31 @@ $(document).ready(function() {
       var fileReader = new FileReader();
       fileReader.onload = function(fileEvent) {
         importGrid(JSON.parse(fileEvent.target.result));
-        console.log(fileEvent.target.result);
       };
       fileReader.readAsText(file, "UTF-8");    }
   });
 
-  $(".open-file-link").click((event) => {
-    openfileDialog.showModal();
+  $( ".import-link" ).click((event) => {
+    importDialog.showModal();
   });
-  $( ".openfile-done" ).on( "click", function() {
-    openfileDialog.close();
+  $( ".import-done" ).on( "click", function() {
+    importDialog.close();
   });
 
   // Save File dialog
-  var savefileDialog = document.querySelector('dialog#save-file-dialog');  
-  if (!savefileDialog.showModal) {
-    dialogPolyfill.registerDialog(savefileDialog);
+  var exportDialog = document.querySelector('dialog#export-dialog');  
+  if (!exportDialog.showModal) {
+    dialogPolyfill.registerDialog(exportDialog);
   }  
-  $(".save-file-link").click((event) => {
-    savefileDialog.showModal();
+  $(".export-link").click((event) => {
+    exportDialog.showModal();
   });
-  $( ".savefile-cancel" ).on( "click", function() {
-    savefileDialog.close();
+  $( ".export-cancel" ).on( "click", function() {
+    exportDialog.close();
   });
   
-  $( ".savefile-load" ).on( "click", function() {
-    savefileDialog.close();
+  $( ".export-load" ).on( "click", function() {
+    exportDialog.close();
   });
 
   // Clear Grid Action

@@ -19,8 +19,8 @@
 				<span class="mdl-layout-title">Pixel Art Maker</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation mdl-layout--large-screen-only">
-					<a class="mdl-navigation__link open-file-link" href="#">Open file</a>
-					<a class="mdl-navigation__link save-file-link" href="#">Save file</a>
+					<a class="mdl-navigation__link import-link" href="#">Import grid</a>
+					<a class="mdl-navigation__link export-link" href="#">Export grid</a>
 					<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
 				</nav>
 			</div>
@@ -29,8 +29,8 @@
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Title</span>
 			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link open-file-link" href="#">Open file</a>
-				<a class="mdl-navigation__link save-file-link" href="#">Save file</a>
+				<a class="mdl-navigation__link import-link" href="#">Import grid</a>
+				<a class="mdl-navigation__link export-link" href="#">Export grid</a>
 				<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
 			</nav>
 		</div>
@@ -94,35 +94,35 @@
 					</div>
 				</div>
 
-				<dialog id="open-file-dialog" class="mdl-dialog">
-					<div id="openfile-dialog-content">
-						<h6 class="mdl-dialog__title">Load File...</h6>
+				<dialog id="import-dialog" class="mdl-dialog">
+					<div id="import-dialog-content">
+						<h6 class="mdl-dialog__title">Import Grid...</h6>
 						<div class="mdl-dialog__content">
-							<div class="openfile-text">
+							<div class="import-text">
 								<div id="file-drop">
 									Drag and drop the file you wish to load into this area.
 								</div>
 							</div>
 						</div>
 						<div class="mdl-dialog__actions">
-							<button type="button" class="mdl-button openfile-done">Done</button>
+							<button type="button" class="mdl-button import-done">Done</button>
 						</div>
 					</div>
 				</dialog>
 
-				<dialog id="save-file-dialog" class="mdl-dialog">
-						<div id="savefile-dialog-content">
-							<h6 class="mdl-dialog__title">Save File...</h6>
+				<dialog id="export-dialog" class="mdl-dialog">
+						<div id="export-dialog-content">
+							<h6 class="mdl-dialog__title">Export Grid...</h6>
 							<div class="mdl-dialog__content">
-								<div class="savefile-text">
+								<div class="export-text">
 									<p>
 										Something goes here
 									</p>
 								</div>
 							</div>
 							<div class="mdl-dialog__actions">
-								<button type="button" class="mdl-button savefile-cancel">Cancel</button>
-								<button type="button" class="mdl-button savefile-save">Save</button>
+								<button type="button" class="mdl-button export-cancel">Cancel</button>
+								<button type="button" class="mdl-button export-save">Save</button>
 							</div>
 						</div>
 					</dialog>
