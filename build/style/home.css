@@ -66,10 +66,21 @@ a {
   text-align: center;
   margin: 20px auto auto auto;
 }
-.menu-item {
-  border-color: #000;
-  border-width: 1px;
-  margin-right: 20px;
+#file-drop {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  height: 40%;
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+}
+.highlight {
+  color: #a9a9a9;
+  border-color: #800080;
+}
+#export-json {
+  font-size: 18px;
+  width: 100%;
 }
 .color-selector-button {
   border-color: #000;
@@ -132,7 +143,7 @@ a {
 }
 .mdl-dialog {
   width: fit-content;
-  min-width: 40%;
+  min-width: 45%;
 }
 .about-link {
   color: #808080;

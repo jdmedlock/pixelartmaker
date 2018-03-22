@@ -53,10 +53,91 @@ function loadColorWheel(url) {
 $(document).ready(function() {
   console.clear();
   loadColorWheel('https://i.imgur.com/BjkamyQ.png');
+  colorPalette = new Palette();
+  designGrid = new Grid(
+    appWindow.getCssVariable('designGridRowCount', 'number'), 
+    appWindow.getCssVariable('designGridColumnCount', 'number')
+  );
+  designGrid.makeGrid();
 
   //---------------------------------------------------------------------------
-  // Create event handlers for the main app buttons
+  // Create event handlers for the title bar navigation links
   //---------------------------------------------------------------------------
+
+  // Import Grid dialog
+
+  const importDialog = document.querySelector('dialog#import-dialog');  
+  if (!importDialog.showModal) {
+    dialogPolyfill.registerDialog(importDialog);
+  }
+
+  $.event.props.push('dataTransfer');
+  $( "#file-drop" ).on({
+    dragenter: function(dragEvent) {
+      dragEvent.preventDefault();
+      dragEvent.stopPropagation();
+    },
+    dragleave: function(dragEvent)  {
+      dragEvent.preventDefault();
+      dragEvent.stopPropagation();
+    },
+    dragover: function(dragEvent)  {
+      dragEvent.preventDefault();
+      dragEvent.stopPropagation();
+    },
+    drop: function(dropEvent) {
+      dropEvent.preventDefault();
+      dropEvent.stopPropagation();
+      const file = dropEvent.dataTransfer.files[0];
+      const fileReader = new FileReader();
+      fileReader.onload = function(fileEvent) {
+        designGrid.importGrid(colorPalette, JSON.parse(fileEvent.target.result));
+        $( ".color-selector-button" ).css('background-color', colorPalette.getCurrentColor());
+        colorPalette.renderRecentColors(colorPalette.getRecentColors());    
+      };
+      fileReader.readAsText(file, "UTF-8");    }
+  });
+
+  $( ".import-link" ).click((event) => {
+    importDialog.showModal();
+  });
+  $( ".import-done" ).on( "click", function() {
+    importDialog.close();
+  });
+
+  // Export Grid dialog
+  var exportDialog = document.querySelector('dialog#export-dialog');  
+  if (!exportDialog.showModal) {
+    dialogPolyfill.registerDialog(exportDialog);
+  }
+  $( ".export-link" ).click((event) => {
+    exportDialog.showModal();
+    $('#export-json').text(JSON.stringify(designGrid.exportGrid(colorPalette), null, 2));
+  });
+  $( ".export-cancel" ).on( "click", function() {
+    exportDialog.close();
+  }); 
+  $( ".export-save" ).on( "click", function() {
+    const textToExport = $('#export-json').val();
+    const exportBlob = new Blob([textToExport], {type:"text/plain"});
+    const exportURL = window.URL.createObjectURL(exportBlob);
+    const exportFilename = $( "#export-filename" ).val();
+    
+    // var fileNameToExportto = document.getElementById("export-filename").value;
+ 
+    var downloadLink = document.createElement("a");
+    downloadLink.download = exportFilename;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = exportURL;
+    downloadLink.onclick = (event) => document.body.removeChild(event.target);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    exportDialog.close();
+  });
+
+  // Clear Grid Action
   $(".clear-grid-link").click((event) => {
     designGrid.clearGrid();
   });
@@ -64,7 +145,6 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Render the color chooser control and create its event handlers
   //---------------------------------------------------------------------------
-  colorPalette = new Palette();
   $( ".color-selector-button" ).css('background-color',colorPalette.getDefaultColor());
   colorPalette.renderRecentColors(colorPalette.getShades());
 
@@ -76,11 +156,6 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Render the design grid and its event handlers
   //---------------------------------------------------------------------------
-  designGrid = new Grid(
-    appWindow.getCssVariable('designGridRowCount', 'number'), 
-    appWindow.getCssVariable('designGridColumnCount', 'number')
-  );
-  designGrid.makeGrid();
 
   // Create a delegated event handler on the Design Grid.
   $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
