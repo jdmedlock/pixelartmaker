@@ -130,6 +130,29 @@ class Grid {
   }
 
   /**
+   * @description Create a grid export object
+   * @param {Object} colorPalette A reference to an instance of a color Palette
+   * @returns {Object} A grid export object
+   * @memberof Grid
+   */
+  exportGrid(colorPalette) {
+    let gridObject = {};
+    gridObject.rowCount = this.getRowCount();
+    gridObject.columnCount = this.getColumnCount();
+    gridObject.selectedColor = colorPalette.getCurrentColor();
+    gridObject.recentColors = colorPalette.getRecentColors();
+    gridObject.grid = [];
+    for (let i = 0; i < this.getRowCount(); i += 1) {
+      for (let j = 0; j < this.getColumnCount(); j += 1) {
+        gridObject.grid.push(
+          {rowNo: `${i}`, columnNo: `${j}`, cellColor: `${this.grid[i][j]}`}
+        );
+      }
+    }
+    return gridObject;
+  }
+
+  /**
    * @description Get the current number of columns in the grid.
    * @returns {Integer} - Number of columns in the grid
    * @readonly
@@ -156,6 +179,24 @@ class Grid {
    */
   getRowCount() {
     return this.rowCount;
+  }
+
+  /**
+   * @description Import a previously exported grid
+   * @param {Object} colorPalette A reference to an instance of a color Palette
+   * @param {any} gridObject An object containing a previously exported grid
+   * @memberof Grid
+   */
+  importGrid(colorPalette, gridObject) {
+    this.setRowCount(gridObject.rowCount);
+    this.setColumnCount(gridObject.columnCount);
+    colorPalette.setCurrentColor(gridObject.selectedColor);
+    colorPalette.setRecentColors(gridObject.recentColors);
+    this.clearGrid();
+    gridObject.grid.forEach(element => {
+      this.setCellColor(element.rowNo, element.columnNo, element.cellColor);
+    });
+    this.renderGrid();
   }
 
   /**

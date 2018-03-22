@@ -11,28 +11,6 @@ let colorWheelContext;
 let colorWheelFreeze = false;
 
 /**
- * @description Export the current grid to a JSON object
- * @param {any} gridJson 
- */
-function exportGrid() {
-  let gridObject = {};
-  gridObject.rowCount = designGrid.getRowCount();
-  gridObject.columnCount = designGrid.getColumnCount();
-  gridObject.selectedColor = colorPalette.getCurrentColor();
-  gridObject.recentColors = colorPalette.getRecentColors();
-  gridObject.grid = [];
-  const currentGrid = designGrid.getGrid();
-  for (let i = 0; i < designGrid.getRowCount(); i += 1) {
-    for (let j = 0; j < designGrid.getColumnCount(); j += 1) {
-      gridObject.grid.push(
-        {rowNo: `${i}`, columnNo: `${j}`, cellColor: `${currentGrid[i][j]}`}
-      );
-    }
-  }
-  return gridObject;
-}
-
-/**
  * @description Retreive the pixel at the current mouse location
  * @param {Object} event A mouse event
  * @returns {Object} The data from the current pixel
@@ -56,26 +34,6 @@ function getUserProfileUrl() {
 }
 
 /**
- * @description Import and render a grid from a JSON object
- * @param {any} gridJson 
- */
-function importGrid(gridObject) {
-  designGrid.setRowCount(gridObject.rowCount);
-  designGrid.setColumnCount(gridObject.columnCount);
-  colorPalette.setCurrentColor(gridObject.selectedColor);
-  colorPalette.setRecentColors(gridObject.recentColors);
-  designGrid.clearGrid();
-  gridObject.grid.forEach(element => {
-    designGrid.setCellColor(element.rowNo, element.columnNo, element.cellColor);
-  });
-
-  // Render the imported grid
-  designGrid.renderGrid();
-  $( ".color-selector-button" ).css('background-color', colorPalette.getCurrentColor());
-  colorPalette.renderRecentColors(colorPalette.getRecentColors());
-}
-
-/**
  * @description Load the color wheel image into the canvas
  * @param {String} url the image will be loaded from 
  */
@@ -95,6 +53,12 @@ function loadColorWheel(url) {
 $(document).ready(function() {
   console.clear();
   loadColorWheel('https://i.imgur.com/BjkamyQ.png');
+  colorPalette = new Palette();
+  designGrid = new Grid(
+    appWindow.getCssVariable('designGridRowCount', 'number'), 
+    appWindow.getCssVariable('designGridColumnCount', 'number')
+  );
+  designGrid.makeGrid();
 
   //---------------------------------------------------------------------------
   // Create event handlers for the title bar navigation links
@@ -127,7 +91,9 @@ $(document).ready(function() {
       const file = dropEvent.dataTransfer.files[0];
       const fileReader = new FileReader();
       fileReader.onload = function(fileEvent) {
-        importGrid(JSON.parse(fileEvent.target.result));
+        designGrid.importGrid(colorPalette, JSON.parse(fileEvent.target.result));
+        $( ".color-selector-button" ).css('background-color', colorPalette.getCurrentColor());
+        colorPalette.renderRecentColors(colorPalette.getRecentColors());    
       };
       fileReader.readAsText(file, "UTF-8");    }
   });
@@ -146,7 +112,7 @@ $(document).ready(function() {
   }
   $( ".export-link" ).click((event) => {
     exportDialog.showModal();
-    $('#export-json').text(JSON.stringify(exportGrid(), null, 2));
+    $('#export-json').text(JSON.stringify(designGrid.exportGrid(colorPalette), null, 2));
   });
   $( ".export-cancel" ).on( "click", function() {
     exportDialog.close();
@@ -163,7 +129,6 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Render the color chooser control and create its event handlers
   //---------------------------------------------------------------------------
-  colorPalette = new Palette();
   $( ".color-selector-button" ).css('background-color',colorPalette.getDefaultColor());
   colorPalette.renderRecentColors(colorPalette.getShades());
 
@@ -175,11 +140,6 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Render the design grid and its event handlers
   //---------------------------------------------------------------------------
-  designGrid = new Grid(
-    appWindow.getCssVariable('designGridRowCount', 'number'), 
-    appWindow.getCssVariable('designGridColumnCount', 'number')
-  );
-  designGrid.makeGrid();
 
   // Create a delegated event handler on the Design Grid.
   $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
