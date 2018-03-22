@@ -118,6 +118,22 @@ $(document).ready(function() {
     exportDialog.close();
   }); 
   $( ".export-save" ).on( "click", function() {
+    const textToExport = $('#export-json').val();
+    const exportBlob = new Blob([textToExport], {type:"text/plain"});
+    const exportURL = window.URL.createObjectURL(exportBlob);
+    const exportFilename = $( "#export-filename" ).val();
+    
+    // var fileNameToExportto = document.getElementById("export-filename").value;
+ 
+    var downloadLink = document.createElement("a");
+    downloadLink.download = exportFilename;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = exportURL;
+    downloadLink.onclick = (event) => document.body.removeChild(event.target);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
     exportDialog.close();
   });
 
