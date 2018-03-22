@@ -50,10 +50,16 @@ class Grid {
     if (this.columnCount === this.maxColumnCount) {
       return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
     }
+
+    this.grid.forEach((row) => {
+      row.splice(row.length, 0, this.defaultGridCellColor);
+    });
+    /*
     for (let i = this.columnCount; i <= this.grid.length; i += this.columnCount) {
       this.grid.splice(i, 0, this.defaultGridCellColor);
       i++;
     }
+    */
     this.columnCount += 1;
     this.renderGrid();
     return this.columnCount;
@@ -95,25 +101,6 @@ class Grid {
     this.makeGrid();
   }
 
-/*
-  /**
-   * @description Return a JSON representation of the design grid
-   * @returns {Object} JSON object defining the current design grid
-   * @readonly
-   * @memberof Grid
-   * /
-  get grid() {
-    return JSON.stringify(this._grid);
-  }
-  /**
-   * @description Populate the design grid from a JSON object
-   * @memberof Grid
-   * /
-  set grid(gridObject) {
-    this._grid = JSON.parse(gridObject);
-  }
-*/
-
   /**
    * @description Remove the most recently added solumn from the grid
    * @returns {any} The new column count or an Error object If current value
@@ -125,7 +112,7 @@ class Grid {
       return new Error(`Minimum row limit of ${this.minColumnCount} already reached.`);
     }
     this.grid = this.grid.map((row) => {
-      return row.slice(0, row.length);
+      return row.slice(0, this.columnCount-1);
     });
     this.columnCount -= 1;
     this.renderGrid();
@@ -149,6 +136,29 @@ class Grid {
   }
 
   /**
+   * @description Create a grid export object
+   * @param {Object} colorPalette A reference to an instance of a color Palette
+   * @returns {Object} A grid export object
+   * @memberof Grid
+   */
+  exportGrid(colorPalette) {
+    let gridObject = {};
+    gridObject.rowCount = this.getRowCount();
+    gridObject.columnCount = this.getColumnCount();
+    gridObject.selectedColor = colorPalette.getCurrentColor();
+    gridObject.recentColors = colorPalette.getRecentColors();
+    gridObject.grid = [];
+    for (let i = 0; i < this.getRowCount(); i += 1) {
+      for (let j = 0; j < this.getColumnCount(); j += 1) {
+        gridObject.grid.push(
+          {rowNo: `${i}`, columnNo: `${j}`, cellColor: `${this.grid[i][j]}`}
+        );
+      }
+    }
+    return gridObject;
+  }
+
+  /**
    * @description Get the current number of columns in the grid.
    * @returns {Integer} - Number of columns in the grid
    * @readonly
@@ -156,6 +166,15 @@ class Grid {
    */
   getColumnCount() {
     return this.columnCount;
+  }
+
+  /**
+   * @description Retrieve the design grid
+   * @returns {[String]} The grid as an array strings of RGB color values
+   * @memberof Grid
+   */
+  getGrid() {
+    return this.grid;
   }
 
   /**
@@ -169,6 +188,24 @@ class Grid {
   }
 
   /**
+   * @description Import a previously exported grid
+   * @param {Object} colorPalette A reference to an instance of a color Palette
+   * @param {any} gridObject An object containing a previously exported grid
+   * @memberof Grid
+   */
+  importGrid(colorPalette, gridObject) {
+    this.setRowCount(gridObject.rowCount);
+    this.setColumnCount(gridObject.columnCount);
+    colorPalette.setCurrentColor(gridObject.selectedColor);
+    colorPalette.setRecentColors(gridObject.recentColors);
+    this.clearGrid();
+    gridObject.grid.forEach(element => {
+      this.setCellColor(element.rowNo, element.columnNo, element.cellColor);
+    });
+    this.renderGrid();
+  }
+
+  /**
    * @description Render the grid by generating and adding a new DOM element for
    * each cell in the grid.
    * @memberof Grid
@@ -177,7 +214,7 @@ class Grid {
     let gridCellElements = '';
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        gridCellElements += this.gridCellTemplate.replace('grid-cell-', 'grid-cell-'+rowNo+'-'+columnNo);
+        gridCellElements += this.gridCellTemplate.replace('id="grid-cell-"', 'id="grid-cell-'+rowNo+'-'+columnNo+'"');
       }
     }
     this.appWindow.setCssVariable('designGridColumnCount', this.columnCount);
@@ -197,11 +234,10 @@ class Grid {
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
         $( ".design-grid" ).append(
-          this.gridCellTemplate.replace('grid-cell-', `grid-cell-${rowNo}-${columnNo}`)
+          this.gridCellTemplate.replace('id="grid-cell-"', 'id="grid-cell-'+rowNo+'-'+columnNo+'"')
         );
-        $( `#grid-cell-${rowNo}-${columnNo}` ).css(
-          'background-color', this.grid[rowNo][columnNo]
-        );
+        $( `#grid-cell-${rowNo}-${columnNo}` )
+          .css('background-color', this.grid[rowNo][columnNo]);
       }
     }
   }

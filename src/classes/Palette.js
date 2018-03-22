@@ -4,7 +4,7 @@ class Palette {
    * @memberof Palette
    */
   constructor(columnCount, rowCount) {
-    this.defaultColor = 'rgb(253,221,100)';
+    this.defaultColor = 'rgb(253,221,100)'; // light yellow
     this.currentColor = this.defaultColor;
     this.currentColorShades = this.createShades(this.defaultColor);
     this.newColor = this.defaultColor;
@@ -13,10 +13,10 @@ class Palette {
   }
 
   /**
-   * @description Generate an array of five shades of the provided color using equal
-   * amounts of power to all of the light sources.
-   * @param {any} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @description Generate an array of five shades of the provided color using
+   * equal amounts of power to all of the light sources.
+   * @param {any} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn'
+   * is a value from 0-255 representing the red, green, and blue color value.
    * @returns {[String]} Array of five shade values based on the provided color
    * @memberof Palette
    */
@@ -39,8 +39,8 @@ class Palette {
 
   /**
    * @description Retrieve the currently selected color
-   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is
+   * a value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
   getCurrentColor() {
@@ -49,8 +49,8 @@ class Palette {
 
   /**
    * @description Retrieve the default color
-   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is
+   * a value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
   getDefaultColor() {
@@ -59,8 +59,8 @@ class Palette {
 
   /**
    * @description Retrieve the newly selected color
-   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @returns {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is
+   * a value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
   getNewColor() {
@@ -71,14 +71,24 @@ class Palette {
    * @description Retrieve a color from the recently used colors array. 
    * @param {Number} index The position of the color in the recently used array, 
    * where 0 represents the most recently used color.
-   * @returns  {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-     * value from 0-255 representing the red, green, and blue color value.
+   * @returns  {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is
+   * a value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
   getRecentColor(index) {
     return (index >= 0 && index <= this.recentColors.length) 
       ? this.recentColors[index] 
       : new Error(`Recent color index must be between 0 and ${this.recentColors.length}. ${index} was passed.`);
+  }
+
+  /**
+   * @description Retrieve the array of recent colors
+   * @returns {[String]} Array of RGB string values representing the most
+   * recently used colors
+   * @memberof Palette
+   */
+  getRecentColors() {
+    return this.recentColors;
   }
 
   /**
@@ -147,9 +157,11 @@ class Palette {
   }
 
   /**
-   * @description Render the array of shades for the selected color onto the HTML page
-   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @description Render the array of shades for the selected color onto the
+   * HTML page
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where
+   * 'nnn' is a value from 0-255 representing the red, green, and blue color
+   * value.
    * @memberof Palette
    */
   renderNewColorShades(rgbColor) {
@@ -162,7 +174,8 @@ class Palette {
 
   /**
    * @description Render the array of recently used colors onto the HTML page
-   * @param {[String]} colorArray Array of colors representing the most recently used colors.
+   * @param {[String]} colorArray Array of colors representing the most
+   * recently used colors.
    * @memberof Palette
    */
   renderRecentColors(colorArray) {
@@ -185,8 +198,9 @@ class Palette {
 
   /**
    * @description Update the currently selected color to a new value
-   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where
+   * 'nnn' is a value from 0-255 representing the red, green, and blue color
+   * value.
    * @memberof Palette
    */
   setCurrentColor(rgbColor) {
@@ -197,8 +211,9 @@ class Palette {
 
   /**
    * @description Establish a newly selected
-   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where
+   * 'nnn' is a value from 0-255 representing the red, green, and blue color
+   * value.
    * @memberof Palette
    */
   setNewColor(rgbColor) {
@@ -208,10 +223,27 @@ class Palette {
   }
 
   /**
+   * @description Replace the Palette's recently used color values with a new
+   * set of values.
+   * @param {any} colors An array of strings formatted as 'rgb(nnn,nnn,nnn)' 
+   * where 'nnn' is a value from 0-255 representing the red, green, and blue
+   * color values.
+   * @memberof Palette
+   */
+  setRecentColors(colors) {
+    if (colors === undefined || colors === null ||
+        colors.length !== this.recentColors.length) {
+      throw new Error('Invalid colors array parameter: ', colors);
+    }
+    this.recentColors = [...colors];
+  }
+
+  /**
    * @description Update the recent colors array so the most recently used color 
    * occupies position 0 in the array.
-   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is a
-   * value from 0-255 representing the red, green, and blue color value.
+   * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where
+   * 'nnn' is a value from 0-255 representing the red, green, and blue color
+   * value.
    * @memberof Palette
    */
   updateRecentColors(rgbColor) {
