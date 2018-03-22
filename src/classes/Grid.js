@@ -140,6 +140,15 @@ class Grid {
   }
 
   /**
+   * @description Retrieve the design grid
+   * @returns {[String]} The grid as an array strings of RGB color values
+   * @memberof Grid
+   */
+  getGrid() {
+    return this.grid;
+  }
+
+  /**
    * @description Get the current number of rows in the grid.
    * @returns {Integer} - Number of rows in the grid
    * @readonly

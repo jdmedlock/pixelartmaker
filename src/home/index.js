@@ -11,6 +11,28 @@ let colorWheelContext;
 let colorWheelFreeze = false;
 
 /**
+ * @description Export the current grid to a JSON object
+ * @param {any} gridJson 
+ */
+function exportGrid() {
+  let gridObject = {};
+  gridObject.rowCount = designGrid.getRowCount();
+  gridObject.columnCount = designGrid.getColumnCount();
+  gridObject.selectedColor = colorPalette.getCurrentColor();
+  gridObject.recentColors = colorPalette.getRecentColors();
+  gridObject.grid = [];
+  const currentGrid = designGrid.getGrid();
+  for (let i = 0; i < designGrid.getRowCount(); i += 1) {
+    for (let j = 0; j < designGrid.getColumnCount(); j += 1) {
+      gridObject.grid.push(
+        {rowNo: `${i}`, columnNo: `${j}`, cellColor: `${currentGrid[i][j]}`}
+      );
+    }
+  }
+  return gridObject;
+}
+
+/**
  * @description Retreive the pixel at the current mouse location
  * @param {Object} event A mouse event
  * @returns {Object} The data from the current pixel
@@ -38,7 +60,6 @@ function getUserProfileUrl() {
  * @param {any} gridJson 
  */
 function importGrid(gridObject) {
-  // Copy the values from the imported grid into this grid instance
   designGrid.setRowCount(gridObject.rowCount);
   designGrid.setColumnCount(gridObject.columnCount);
   colorPalette.setCurrentColor(gridObject.selectedColor);
@@ -74,17 +95,14 @@ function loadColorWheel(url) {
 $(document).ready(function() {
   console.clear();
   loadColorWheel('https://i.imgur.com/BjkamyQ.png');
-  designGrid = new Grid(
-    appWindow.getCssVariable('designGridRowCount', 'number'), 
-    appWindow.getCssVariable('designGridColumnCount', 'number')
-  );
 
   //---------------------------------------------------------------------------
   // Create event handlers for the title bar navigation links
   //---------------------------------------------------------------------------
 
   // Open file dialog
-  var importDialog = document.querySelector('dialog#import-dialog');  
+
+  const importDialog = document.querySelector('dialog#import-dialog');  
   if (!importDialog.showModal) {
     dialogPolyfill.registerDialog(importDialog);
   }
@@ -106,8 +124,8 @@ $(document).ready(function() {
     drop: function(dropEvent) {
       dropEvent.preventDefault();
       dropEvent.stopPropagation();
-      var file = dropEvent.dataTransfer.files[0];
-      var fileReader = new FileReader();
+      const file = dropEvent.dataTransfer.files[0];
+      const fileReader = new FileReader();
       fileReader.onload = function(fileEvent) {
         importGrid(JSON.parse(fileEvent.target.result));
       };
@@ -122,18 +140,20 @@ $(document).ready(function() {
   });
 
   // Save File dialog
+  /*
   var exportDialog = document.querySelector('dialog#export-dialog');  
   if (!exportDialog.showModal) {
     dialogPolyfill.registerDialog(exportDialog);
-  }  
-  $(".export-link").click((event) => {
+  }
+  */
+  $( ".export-link" ).click((event) => {
     exportDialog.showModal();
+    $('#export-json').text(JSON.stringify(exportGrid(), null, 2));
   });
   $( ".export-cancel" ).on( "click", function() {
     exportDialog.close();
-  });
-  
-  $( ".export-load" ).on( "click", function() {
+  }); 
+  $( ".export-save" ).on( "click", function() {
     exportDialog.close();
   });
 
@@ -157,6 +177,10 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Render the design grid and its event handlers
   //---------------------------------------------------------------------------
+  designGrid = new Grid(
+    appWindow.getCssVariable('designGridRowCount', 'number'), 
+    appWindow.getCssVariable('designGridColumnCount', 'number')
+  );
   designGrid.makeGrid();
 
   // Create a delegated event handler on the Design Grid.
@@ -238,6 +262,7 @@ $(document).ready(function() {
     dialogPolyfill.registerDialog(paletteDialog);
   }
   $( ".color-selector-button" ).on( "click", function() {
+    console.log('palette dialog clicked');
     paletteDialog.showModal();
   });
 

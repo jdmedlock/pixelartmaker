@@ -78,6 +78,10 @@ a {
   color: #a9a9a9;
   border-color: #800080;
 }
+#export-json {
+  font-size: 18px;
+  width: 100%;
+}
 .color-selector-button {
   border-color: #000;
   border-width: 1px;
