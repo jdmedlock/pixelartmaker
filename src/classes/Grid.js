@@ -50,10 +50,16 @@ class Grid {
     if (this.columnCount === this.maxColumnCount) {
       return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
     }
+
+    this.grid.forEach((row) => {
+      row.splice(row.length, 0, this.defaultGridCellColor);
+    });
+    /*
     for (let i = this.columnCount; i <= this.grid.length; i += this.columnCount) {
       this.grid.splice(i, 0, this.defaultGridCellColor);
       i++;
     }
+    */
     this.columnCount += 1;
     this.renderGrid();
     return this.columnCount;
@@ -106,7 +112,7 @@ class Grid {
       return new Error(`Minimum row limit of ${this.minColumnCount} already reached.`);
     }
     this.grid = this.grid.map((row) => {
-      return row.slice(0, row.length);
+      return row.slice(0, this.columnCount-1);
     });
     this.columnCount -= 1;
     this.renderGrid();
@@ -208,7 +214,7 @@ class Grid {
     let gridCellElements = '';
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        gridCellElements += this.gridCellTemplate.replace('grid-cell-', 'grid-cell-'+rowNo+'-'+columnNo);
+        gridCellElements += this.gridCellTemplate.replace('id="grid-cell-"', 'id="grid-cell-'+rowNo+'-'+columnNo+'"');
       }
     }
     this.appWindow.setCssVariable('designGridColumnCount', this.columnCount);
@@ -228,11 +234,10 @@ class Grid {
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
         $( ".design-grid" ).append(
-          this.gridCellTemplate.replace('grid-cell-', `grid-cell-${rowNo}-${columnNo}`)
+          this.gridCellTemplate.replace('id="grid-cell-"', 'id="grid-cell-'+rowNo+'-'+columnNo+'"')
         );
-        $( `#grid-cell-${rowNo}-${columnNo}` ).css(
-          'background-color', this.grid[rowNo][columnNo]
-        );
+        $( `#grid-cell-${rowNo}-${columnNo}` )
+          .css('background-color', this.grid[rowNo][columnNo]);
       }
     }
   }

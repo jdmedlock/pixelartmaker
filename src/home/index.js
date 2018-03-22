@@ -236,7 +236,6 @@ $(document).ready(function() {
     dialogPolyfill.registerDialog(paletteDialog);
   }
   $( ".color-selector-button" ).on( "click", function() {
-    console.log('palette dialog clicked');
     paletteDialog.showModal();
   });
 
