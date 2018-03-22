@@ -100,7 +100,7 @@ $(document).ready(function() {
   // Create event handlers for the title bar navigation links
   //---------------------------------------------------------------------------
 
-  // Open file dialog
+  // Import Grid dialog
 
   const importDialog = document.querySelector('dialog#import-dialog');  
   if (!importDialog.showModal) {
@@ -139,13 +139,11 @@ $(document).ready(function() {
     importDialog.close();
   });
 
-  // Save File dialog
-  /*
+  // Export Grid dialog
   var exportDialog = document.querySelector('dialog#export-dialog');  
   if (!exportDialog.showModal) {
     dialogPolyfill.registerDialog(exportDialog);
   }
-  */
   $( ".export-link" ).click((event) => {
     exportDialog.showModal();
     $('#export-json').text(JSON.stringify(exportGrid(), null, 2));
