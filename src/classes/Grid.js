@@ -57,12 +57,6 @@ class Grid {
     this.grid.forEach((row) => {
       row.splice(row.length, 0, this.defaultGridCellColor);
     });
-    /*
-    for (let i = this.columnCount; i <= this.grid.length; i += this.columnCount) {
-      this.grid.splice(i, 0, this.defaultGridCellColor);
-      i++;
-    }
-    */
     this.columnCount += 1;
     this.renderGrid();
     return this.columnCount;
@@ -202,6 +196,7 @@ class Grid {
   importGrid(colorPalette, gridObject) {
     this.setRowCount(gridObject.rowCount);
     this.setColumnCount(gridObject.columnCount);
+    this.makeGrid();
     colorPalette.setCurrentColor(gridObject.selectedColor);
     colorPalette.setRecentColors(gridObject.recentColors);
     this.clearGrid();
@@ -264,7 +259,6 @@ class Grid {
         `invalid.`);
     }
     this.columnCount = count;
-    this.makeGrid();
   }
 
   /**
@@ -292,7 +286,6 @@ class Grid {
         `is invalid.`);
     }
     this.rowCount = count;
-    this.makeGrid();
   }
 }
 
