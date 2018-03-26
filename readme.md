@@ -35,6 +35,14 @@ chosen color for a more granular selection
 with a single click
 - Export a grid to the local file
 - Import a previously exported grid
+
+### Roadmap
+
+Next Release
+- Addition of grid cell erase feature to provide the user with a means of
+clearing individual cells back to the default background color.
+- Enhance the application to be fully responsive across a full range of
+physical displays including phones, tablets, and large screen devices.
  
 ## Development
 
@@ -84,6 +92,7 @@ following table.
 | [Airbnb](https://github.com/airbnb/javascript) | Javascript dev. standards  |
 | [Babel](https://babeljs.io/)                   | JS Transpiler              |
 | [GitAClue](https://github.com/jdmedlock/GitAClue) | GitHub Info Extract     |
+| [Material Design](https://getmdl.io/)          | Material Design Lite       |
 | [Rollup](https://rollupjs.org)                 | Module bundler             |
 | [Stylus](https://stylus-lang.com )             | CSS preprocessor           |
 
