@@ -6,7 +6,7 @@
   --gridGap: 5px;
 }
 html {
-  font-family: Roboto, 'Open Sans', Verdana, sans-serif;
+  font-family: Roboto, "Open Sans", Verdana, sans-serif;
 }
 a {
   outline: none;
@@ -104,24 +104,24 @@ a {
   text-align: center;
 }
 .row-minus {
-  margin: 0px auto 0px auto;
+  margin: 0 auto 0 auto;
 }
 .row-count {
   margin: 5px auto 5px auto;
   text-align: right;
 }
 .row-plus {
-  margin: 0px auto 0px auto;
+  margin: 0 auto 0 auto;
 }
 .column-minus {
-  margin: 0px auto 0px 10px;
+  margin: 0 auto 0 10px;
 }
 .column-count {
   margin: 10px auto 10px auto;
   text-align: right;
 }
 .column-plus {
-  margin: 0px auto 0px auto;
+  margin: 0 auto 0 auto;
 }
 .design-grid-wrapper {
   display: grid;
@@ -201,6 +201,6 @@ a {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(1, 40px);
   grid-gap: 5px;
-  margin: 5px 0px 0px 0px;
+  margin: 5px 0 0 0;
   justify-content: center;
 }

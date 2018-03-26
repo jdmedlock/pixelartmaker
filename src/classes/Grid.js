@@ -13,14 +13,16 @@ class Grid {
       return new Error(`Column count is not numeric: ${columnCount}.`);
     }
     if (columnCount < 1 || columnCount > 99) {
-      return new Error(`Column count must be between 1 and 99, ${columnCount} is invalid.`);
+      return new Error(`Column count must be between 1 and 99, ${columnCount}` +
+        `is invalid.`);
     }
 
     if (isNaN(rowCount)) {
       return new Error(`Column count is not numeric: ${rowCount}.`);
     }
     if (rowCount < 1 || rowCount > 99) {
-      return new Error(`Column count must be between 1 and 99, ${rowCount} is invalid.`);
+      return new Error(`Column count must be between 1 and 99, ${rowCount} ` +
+        `is invalid.`);
     }
 
     // Populate object variables
@@ -48,7 +50,8 @@ class Grid {
    */
   addGridColumn() {
     if (this.columnCount === this.maxColumnCount) {
-      return new Error(`Maximum row limit of ${this.maxColumnCount} already reached.`);
+      return new Error(`Maximum row limit of ${this.maxColumnCount} already ` +
+        `reached.`);
     }
 
     this.grid.forEach((row) => {
@@ -73,7 +76,8 @@ class Grid {
    */
   addGridRow() {
     if (this.rowCount === this.maxRowCount) {
-      return new Error(`Maximum row limit of ${this.maxRowCount} already reached.`);
+      return new Error(`Maximum row limit of ${this.maxRowCount} already ` +
+        `reached.`);
     }
 
     // Add a new row of cells to the end of the grid
@@ -86,7 +90,7 @@ class Grid {
     this.renderGrid();
     return this.rowCount;
   }
-  
+
   /**
    * @description Clear the current grid
    * @memberof Grid
@@ -109,7 +113,8 @@ class Grid {
    */
   deleteGridColumn() {
     if (this.columnCount === this.minColumnCount) {
-      return new Error(`Minimum row limit of ${this.minColumnCount} already reached.`);
+      return new Error(`Minimum row limit of ${this.minColumnCount} already ` +
+        `reached.`);
     }
     this.grid = this.grid.map((row) => {
       return row.slice(0, this.columnCount-1);
@@ -118,7 +123,7 @@ class Grid {
     this.renderGrid();
     return this.columnCount;
   }
-  
+
   /**
    * @description Remove the most recently added row from the grid
    * @returns {any} The new row count or an Error object If current value is
@@ -127,7 +132,8 @@ class Grid {
    */
   deleteGridRow() {
     if (this.rowCount === this.minRowCount) {
-      return new Error(`Minimum row limit of ${this.maxRowCount} already reached.`);
+      return new Error(`Minimum row limit of ${this.maxRowCount} already ` +
+        `reached.`);
     }
     this.grid.pop();
     this.rowCount -= 1;
@@ -206,15 +212,16 @@ class Grid {
   }
 
   /**
-   * @description Render the grid by generating and adding a new DOM element for
-   * each cell in the grid.
+   * @description Render the grid by generating and adding a new DOM element
+   * for each cell in the grid.
    * @memberof Grid
    */
   makeGrid() {
     let gridCellElements = '';
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        gridCellElements += this.gridCellTemplate.replace('id="grid-cell-"', 'id="grid-cell-'+rowNo+'-'+columnNo+'"');
+        gridCellElements += this.gridCellTemplate.replace('id="grid-cell-"',
+          'id="grid-cell-'+rowNo+'-'+columnNo+'"');
       }
     }
     this.appWindow.setCssVariable('designGridColumnCount', this.columnCount);
@@ -234,7 +241,8 @@ class Grid {
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
         $( ".design-grid" ).append(
-          this.gridCellTemplate.replace('id="grid-cell-"', 'id="grid-cell-'+rowNo+'-'+columnNo+'"')
+          this.gridCellTemplate.replace('id="grid-cell-"', 'id="grid-cell-' +
+            rowNo + '-' + columnNo + '"')
         );
         $( `#grid-cell-${rowNo}-${columnNo}` )
           .css('background-color', this.grid[rowNo][columnNo]);
@@ -252,7 +260,8 @@ class Grid {
       return new Error(`Column count is not numeric: ${count}.`);
     }
     if (count < 1 || count > 99) {
-      return new Error(`Column count must be between 1 and 99, ${count} is invalid.`);
+      return new Error(`Column count must be between 1 and 99, ${count} is ` +
+        `invalid.`);
     }
     this.columnCount = count;
     this.makeGrid();
@@ -279,7 +288,8 @@ class Grid {
       return new Error(`Row count is not numeric: ${count}.`);
     }
     if (count < 1 || count > 99) {
-      return new Error(`Row count must be between 1 and 99, ${count} is invalid.`);
+      return new Error(`Row count must be between 1 and 99, ${count} ` +
+        `is invalid.`);
     }
     this.rowCount = count;
     this.makeGrid();
