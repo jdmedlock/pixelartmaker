@@ -35,6 +35,14 @@ chosen color for a more granular selection
 with a single click
 - Export a grid to the local file
 - Import a previously exported grid
+
+### Roadmap
+
+Next Release
+- Addition of grid cell erase feature to provide the user with a means of
+clearing individual cells back to the default background color.
+- Enhance the application to be fully responsive across a full range of
+physical displays including phones, tablets, and large screen devices.
  
 ## Development
 
