@@ -15,13 +15,13 @@ class AppWindow {
       case 'string':
         varValue = String.toString(rawValue);
         break;
-      default: 
-        throw new Error(`getCssVariable: unknown value type of ${valueType} /
-          encountered`);
+      default:
+        throw new Error(`getCssVariable: unknown value type of ${valueType} ` +
+          `encountered`);
     }
     return varValue;
   }
-  
+
   /**
    * @description Set the value of a CSS variable
    * @param {String} cssVarName - Name of the CSS variable to update
