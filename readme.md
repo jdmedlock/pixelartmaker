@@ -84,6 +84,7 @@ following table.
 | [Airbnb](https://github.com/airbnb/javascript) | Javascript dev. standards  |
 | [Babel](https://babeljs.io/)                   | JS Transpiler              |
 | [GitAClue](https://github.com/jdmedlock/GitAClue) | GitHub Info Extract     |
+| [Material Design](https://getmdl.io/)          | Material Design Lite       |
 | [Rollup](https://rollupjs.org)                 | Module bundler             |
 | [Stylus](https://stylus-lang.com )             | CSS preprocessor           |
 
