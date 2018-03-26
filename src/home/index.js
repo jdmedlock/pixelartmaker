@@ -167,8 +167,25 @@ $(document).ready(function() {
   });
 
   // Create a event handlers for column and row controls
-  $('.column-count').change(() => {
-    designGrid.setColumnCount($('#column-count-box').val());
+  $( '.column-count').change(() => {
+    // Determine how many columns are to be added or deleted
+    const newColumnCount = $('#column-count-box' ).val();
+    let noRepetitions = newColumnCount - designGrid.getColumnCount();
+    const columnAction = noRepetitions < 0 ? 'delete' : 'add';
+    noRepetitions = columnAction === 'delete' ? noRepetitions * -1 : noRepetitions;
+
+    // Add or delete the desired number of columns
+    for (let i = 0; i < noRepetitions; i += 1) {
+      try {
+        const newColumnCount = columnAction === 'delete'
+          ? designGrid.deleteGridColumn()
+          : designGrid.addGridColumn();
+        $('#column-count-box').val(designGrid.getColumnCount());
+      }
+      catch(error) {
+        console.log(`Error updating column count. error:${error}`);
+      }
+    }
   });
   $(".column-minus").click((event) => {
     try {
@@ -190,7 +207,24 @@ $(document).ready(function() {
   });
 
   $('.row-count').change(() => {
-    designGrid.setRowCount($('#row-count-box').val());
+    // Determine how many columns are to be added or deleted
+    const newRowCount = $('#row-count-box' ).val();
+    let noRepetitions = newRowCount - designGrid.getRowCount();
+    const rowAction = noRepetitions < 0 ? 'delete' : 'add';
+    noRepetitions = rowAction === 'delete' ? noRepetitions * -1 : noRepetitions;
+
+    // Add or delete the desired number of columns
+    for (let i = 0; i < noRepetitions; i += 1) {
+      try {
+        const newRowCount = rowAction === 'delete'
+          ? designGrid.deleteGridRow()
+          : designGrid.addGridRow();
+        $('#row-count-box').val(designGrid.getRowCount());
+      }
+      catch(error) {
+        console.log(`Error updating row count. error:${error}`);
+      }
+    }
   });
   $(".row-minus").click((event) => {
     try {
