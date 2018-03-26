@@ -2,9 +2,9 @@
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 [Pixel Art Maker](https://jdmedlock.github.io/pixelartmaker/) was developed as
-part of the (Grow With Google Scholarship Challenge)[https://www.udacity.com/grow-with-google]
-sponsored by (Google)[https://grow.google/] and offered through 
-(Udacity)[www.udacity.com]. 
+part of the [Grow With Google Scholarship Challenge](https://www.udacity.com/grow-with-google)
+sponsored by [Google](https://grow.google/) and offered through 
+[Udacity](www.udacity.com). 
 
 Pixel Art Maker is the final project in the three month long Grow With Google
 Scholarship Challenge. Its purpose is to demonstrate the students grasp of
