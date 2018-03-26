@@ -68,17 +68,18 @@ class Palette {
   }
 
   /**
-   * @description Retrieve a color from the recently used colors array. 
-   * @param {Number} index The position of the color in the recently used array, 
+   * @description Retrieve a color from the recently used colors array.
+   * @param {Number} index The position of the color in the recently used array,
    * where 0 represents the most recently used color.
    * @returns  {String} A string formatted as 'rgb(nnn,nnn,nnn)' where 'nnn' is
    * a value from 0-255 representing the red, green, and blue color value.
    * @memberof Palette
    */
   getRecentColor(index) {
-    return (index >= 0 && index <= this.recentColors.length) 
-      ? this.recentColors[index] 
-      : new Error(`Recent color index must be between 0 and ${this.recentColors.length}. ${index} was passed.`);
+    return (index >= 0 && index <= this.recentColors.length)
+      ? this.recentColors[index]
+      : new Error(`Recent color index must be between 0 and ` +
+          `${this.recentColors.length}. ${index} was passed.`);
   }
 
   /**
@@ -133,9 +134,9 @@ class Palette {
   }
 
   /**
-   * @description Convert a pixel acquired through a mouse event to a six 
+   * @description Convert a pixel acquired through a mouse event to a six
    * hexadecimal digit value from the decimal RGB values.
-   * @param {Object} pixel A pixel obtained from a mouse event 
+   * @param {Object} pixel A pixel obtained from a mouse event
    * @returns {String} A string six hexadecimal digits representing the color
    * @memberof Palette
    */
@@ -145,10 +146,10 @@ class Palette {
   }
 
   /**
-   * @description Convert a pixel acquired through a mouse event to an RGB 
+   * @description Convert a pixel acquired through a mouse event to an RGB
    * string value in the format 'RGB(r,g,b)', where each numeric value is
    * in decimal.
-   * @param {Object} pixel A pixel obtained from a mouse event 
+   * @param {Object} pixel A pixel obtained from a mouse event
    * @returns {String} An RGB string in the format 'RGB(r,g,b)'
    * @memberof Palette
    */
@@ -225,7 +226,7 @@ class Palette {
   /**
    * @description Replace the Palette's recently used color values with a new
    * set of values.
-   * @param {any} colors An array of strings formatted as 'rgb(nnn,nnn,nnn)' 
+   * @param {any} colors An array of strings formatted as 'rgb(nnn,nnn,nnn)'
    * where 'nnn' is a value from 0-255 representing the red, green, and blue
    * color values.
    * @memberof Palette
@@ -239,8 +240,8 @@ class Palette {
   }
 
   /**
-   * @description Update the recent colors array so the most recently used color 
-   * occupies position 0 in the array.
+   * @description Update the recent colors array so the most recently used
+   * color occupies position 0 in the array.
    * @param {String} rgbColor A string formatted as 'rgb(nnn,nnn,nnn)' where
    * 'nnn' is a value from 0-255 representing the red, green, and blue color
    * value.

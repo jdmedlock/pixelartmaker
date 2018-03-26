@@ -35,7 +35,7 @@ function getUserProfileUrl() {
 
 /**
  * @description Load the color wheel image into the canvas
- * @param {String} url the image will be loaded from 
+ * @param {String} url the image will be loaded from
  */
 function loadColorWheel(url) {
   colorWheelCanvas = document.getElementById('color-wheel');
@@ -44,9 +44,9 @@ function loadColorWheel(url) {
   base_image.crossOrigin = 'anonymous'; // Prevent CORS from blocking the load
   base_image.src = url;
   base_image.onload = function() {
-    colorWheelContext.drawImage(base_image, 
-      0, 0, base_image.width, base_image.height,              // Source rectangle
-      0, 0, colorWheelCanvas.width, colorWheelCanvas.height); // Destination rectangle
+    colorWheelContext.drawImage(base_image,
+      0, 0, base_image.width, base_image.height,            // Source rectangle
+      0, 0, colorWheelCanvas.width, colorWheelCanvas.height); // Dest. rectangle
   };
 }
 
@@ -55,7 +55,7 @@ $(document).ready(function() {
   loadColorWheel('https://i.imgur.com/BjkamyQ.png');
   colorPalette = new Palette();
   designGrid = new Grid(
-    appWindow.getCssVariable('designGridRowCount', 'number'), 
+    appWindow.getCssVariable('designGridRowCount', 'number'),
     appWindow.getCssVariable('designGridColumnCount', 'number')
   );
   designGrid.makeGrid();
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
   // Import Grid dialog
 
-  const importDialog = document.querySelector('dialog#import-dialog');  
+  const importDialog = document.querySelector('dialog#import-dialog');
   if (!importDialog.showModal) {
     dialogPolyfill.registerDialog(importDialog);
   }
@@ -92,8 +92,9 @@ $(document).ready(function() {
       const fileReader = new FileReader();
       fileReader.onload = function(fileEvent) {
         designGrid.importGrid(colorPalette, JSON.parse(fileEvent.target.result));
-        $( ".color-selector-button" ).css('background-color', colorPalette.getCurrentColor());
-        colorPalette.renderRecentColors(colorPalette.getRecentColors());    
+        $( ".color-selector-button" ).css('background-color',
+          colorPalette.getCurrentColor());
+        colorPalette.renderRecentColors(colorPalette.getRecentColors());
       };
       fileReader.readAsText(file, "UTF-8");    }
   });
@@ -106,26 +107,25 @@ $(document).ready(function() {
   });
 
   // Export Grid dialog
-  var exportDialog = document.querySelector('dialog#export-dialog');  
+  const exportDialog = document.querySelector('dialog#export-dialog');
   if (!exportDialog.showModal) {
     dialogPolyfill.registerDialog(exportDialog);
   }
   $( ".export-link" ).click((event) => {
     exportDialog.showModal();
-    $('#export-json').text(JSON.stringify(designGrid.exportGrid(colorPalette), null, 2));
+    $('#export-json').text(
+      JSON.stringify(designGrid.exportGrid(colorPalette), null, 2)
+    );
   });
   $( ".export-cancel" ).on( "click", function() {
     exportDialog.close();
-  }); 
+  });
   $( ".export-save" ).on( "click", function() {
     const textToExport = $('#export-json').val();
     const exportBlob = new Blob([textToExport], {type:"text/plain"});
     const exportURL = window.URL.createObjectURL(exportBlob);
     const exportFilename = $( "#export-filename" ).val();
-    
-    // var fileNameToExportto = document.getElementById("export-filename").value;
- 
-    var downloadLink = document.createElement("a");
+    const downloadLink = document.createElement("a");
     downloadLink.download = exportFilename;
     downloadLink.innerHTML = "Download File";
     downloadLink.href = exportURL;
@@ -141,16 +141,18 @@ $(document).ready(function() {
   $(".clear-grid-link").click((event) => {
     designGrid.clearGrid();
   });
-  
+
   //---------------------------------------------------------------------------
   // Render the color chooser control and create its event handlers
   //---------------------------------------------------------------------------
-  $( ".color-selector-button" ).css('background-color',colorPalette.getDefaultColor());
+  $( ".color-selector-button" )
+    .css('background-color',colorPalette.getDefaultColor());
   colorPalette.renderRecentColors(colorPalette.getShades());
 
   $( ".recent-color-wrapper" ).on( 'click', '.recent-color', function() {
     colorPalette.setCurrentColor($(this).css('background-color'));
-    $( ".color-selector-button" ).css('background-color', colorPalette.getCurrentColor());
+    $( ".color-selector-button" )
+      .css('background-color', colorPalette.getCurrentColor());
   });
 
   //---------------------------------------------------------------------------
@@ -165,7 +167,7 @@ $(document).ready(function() {
   });
 
   // Create a event handlers for column and row controls
-  $('.column-count').change(() => { 
+  $('.column-count').change(() => {
     designGrid.setColumnCount($('#column-count-box').val());
   });
   $(".column-minus").click((event) => {
@@ -187,9 +189,9 @@ $(document).ready(function() {
     }
   });
 
-  $('.row-count').change(() => { 
+  $('.row-count').change(() => {
     designGrid.setRowCount($('#row-count-box').val());
-  });  
+  });
   $(".row-minus").click((event) => {
     try {
       designGrid.deleteGridRow();
@@ -212,7 +214,7 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Enable the About dialog event handlers
   //---------------------------------------------------------------------------
-  var aboutDialog = document.querySelector('dialog#about-dialog');
+  const aboutDialog = document.querySelector('dialog#about-dialog');
   if (!aboutDialog.showModal) {
     dialogPolyfill.registerDialog(aboutDialog);
   }
@@ -230,8 +232,8 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   // Enable the Palette dialog event handlers
   //---------------------------------------------------------------------------
-  var paletteDialog = document.querySelector('dialog#palette-dialog');
-    
+  const paletteDialog = document.querySelector('dialog#palette-dialog');
+
   if (!paletteDialog.showModal) {
     dialogPolyfill.registerDialog(paletteDialog);
   }
@@ -243,7 +245,8 @@ $(document).ready(function() {
     if (!colorWheelFreeze) {
       const pixel = getPixel(event);
       $('#palette-color-code').val(colorPalette.pixelToHex(pixel));
-      $('#palette-primary-button').css('backgroundColor', colorPalette.pixelToRgb(pixel));
+      $('#palette-primary-button')
+        .css('backgroundColor', colorPalette.pixelToRgb(pixel));
       colorPalette.renderNewColorShades(colorPalette.pixelToRgb(pixel));
     }
   });
@@ -264,22 +267,26 @@ $(document).ready(function() {
   });
 
   colorPalette.renderNewColorShades(colorPalette.getDefaultColor());
-  $('#palette-primary-button').css('backgroundColor', colorPalette.getDefaultColor());
+  $('#palette-primary-button')
+    .css('backgroundColor', colorPalette.getDefaultColor());
   $( ".selected-shade-wrapper" ).on( 'click', '.selected-shade', function() {
-    $('#palette-color-code').val(colorPalette.rgbToHex($(this).css('background-color')));
+    $('#palette-color-code')
+      .val(colorPalette.rgbToHex($(this).css('background-color')));
     colorPalette.setNewColor($(this).css('background-color'));
     colorPalette.renderNewColorShades($(this).css('background-color'));
-    $('#palette-primary-button').css('backgroundColor', colorPalette.getNewColor());
+    $('#palette-primary-button')
+      .css('backgroundColor', colorPalette.getNewColor());
   });
 
   $( ".palette-cancel" ).on( "click", function() {
     colorWheelFreeze = false;
     paletteDialog.close();
   });
-  
+
   $( ".palette-ok" ).on( "click", function() {
     colorPalette.setCurrentColor(colorPalette.getNewColor());
-    $( ".color-selector-button" ).css('background-color',colorPalette.getCurrentColor());
+    $( ".color-selector-button" )
+      .css('background-color',colorPalette.getCurrentColor());
     colorWheelFreeze = false;
     paletteDialog.close();
   });
