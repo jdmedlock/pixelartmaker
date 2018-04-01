@@ -19,6 +19,7 @@
 				<span class="mdl-layout-title">Pixel Art Maker</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation mdl-layout--large-screen-only">
+					<a class="mdl-navigation__link about-link" href="#">About</a>
 					<a class="mdl-navigation__link import-link" href="#">Import grid</a>
 					<a class="mdl-navigation__link export-link" href="#">Export grid</a>
 					<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
@@ -29,6 +30,7 @@
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Title</span>
 			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link about-link" href="#">About</a>
 				<a class="mdl-navigation__link import-link" href="#">Import grid</a>
 				<a class="mdl-navigation__link export-link" href="#">Export grid</a>
 				<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
@@ -53,22 +55,22 @@
 					</div>
 
 					<div class="design-grid-column-controls">
-						<span class="label">Columns:</span>
-						<span class="column-minus">
-							<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-						</span>
-
-						<input id="column-count-box" class="column-count" type="number" maxLength="3" min="1" max="99" value="8" />
-						<span class="column-plus">
-							<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-						</span>
-					</div>
-
-					<div class="design-grid">
+						<div class="grid-controls">
+							<div class="label">Columns:</div>
+							<span class="column-minus">
+								<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+							</span>
+							<span>
+								<input id="column-count-box" class="column-count" type="number" maxLength="3" min="1" max="99" value="8" />
+							</span>
+							<span class="column-plus">
+								<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+							</span>
+						</div>
 					</div>
 
 					<div class="design-grid-row-controls">
-						<div class="row-controls">
+						<div class="grid-controls">
 							<div class="label">Rows:</div>
 							<span class="row-minus">
 								<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
@@ -82,12 +84,10 @@
 						</div>
 					</div>
 
+					<div class="design-grid">
+					</div>
+
 					<div class="page-footer">
-						<div>
-							<span>
-								<a class="about-link" href="#">About</a>
-							</span>
-						</div>
 						<div>
 							<span class="copyright">
 								<i class="material-icons">copyright</i>

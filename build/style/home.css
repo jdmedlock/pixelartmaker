@@ -15,56 +15,45 @@ a {
   color: #3f51b5;
   font-size: 14px;
   margin: auto;
+  text-align: center;
 }
 .page-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 10px;
-  grid-auto-rows: minmax(auto, auto);
+  display: flex;
+  flex-wrap: wrap;
 }
 .design-grid-column-controls {
-  grid-column: 2;
-  grid-row: 1;
-  grid-gap: 5px;
-  text-align: center;
-  width: 60%;
-  margin: 20px auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 45%;
+  margin: 10px auto auto auto;
+}
+.design-grid-row-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 45%;
+  margin: 10px auto auto auto;
 }
 .color-chooser {
-  grid-column: 1;
-  grid-row: 2;
-  grid-gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
   border-color: #000;
   border-width: 1px;
-  align-items: center;
-  margin: auto 1px auto auto;
+  margin: 10px auto auto auto;
 }
 .design-grid {
-  grid-column: 2;
-  grid-row: 2;
   border-color: #000;
   border-width: 1px;
   display: grid;
   grid-template-columns: repeat(var(--designGridColumnCount), var(--designGridHeight));
   grid-template-rows: repeat(var(--designGridRowCount), var(--designGridHeight));
-  margin: auto;
-}
-.design-grid-row-controls {
-  grid-column: 3;
-  grid-row: 2;
-  grid-gap: 5px;
-  display: flex;
-  align-items: center;
-  width: 40%;
+  margin: 10px auto auto auto;
 }
 .page-footer {
-  grid-column: 1/4;
-  grid-row: 3;
-  border-color: #000;
-  border-width: 1px;
-  text-align: center;
-  margin: 20px auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px auto auto auto;
 }
 #file-drop {
   border: 2px dashed #ccc;
@@ -99,9 +88,18 @@ a {
   margin: auto;
   justify-content: center;
 }
-.row-controls {
-  margin-left: 1px;
-  text-align: center;
+.grid-controls {
+  flex-direction: row;
+}
+.column-minus {
+  margin: 0 auto 0 auto;
+}
+.column-count {
+  margin: 5px auto 5px auto;
+  text-align: right;
+}
+.column-plus {
+  margin: 0 auto 0 auto;
 }
 .row-minus {
   margin: 0 auto 0 auto;
@@ -111,16 +109,6 @@ a {
   text-align: right;
 }
 .row-plus {
-  margin: 0 auto 0 auto;
-}
-.column-minus {
-  margin: 0 auto 0 10px;
-}
-.column-count {
-  margin: 10px auto 10px auto;
-  text-align: right;
-}
-.column-plus {
   margin: 0 auto 0 auto;
 }
 .design-grid-wrapper {
