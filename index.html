@@ -19,6 +19,7 @@
 				<span class="mdl-layout-title">Pixel Art Maker</span>
 				<div class="mdl-layout-spacer"></div>
 				<nav class="mdl-navigation mdl-layout--large-screen-only">
+					<a class="mdl-navigation__link about-link" href="#">About</a>
 					<a class="mdl-navigation__link import-link" href="#">Import grid</a>
 					<a class="mdl-navigation__link export-link" href="#">Export grid</a>
 					<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
@@ -29,6 +30,7 @@
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Title</span>
 			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link about-link" href="#">About</a>
 				<a class="mdl-navigation__link import-link" href="#">Import grid</a>
 				<a class="mdl-navigation__link export-link" href="#">Export grid</a>
 				<a class="mdl-navigation__link clear-grid-link" href="#">Clear grid</a>
@@ -38,11 +40,11 @@
 		<main class="mdl-layout__content">
 			<div class="page-content">
 				<div class="page-wrapper">
+
 					<div class="color-chooser">
-						<span class="label">Current Color (click for more)</span>
+						<div class="label">Current Color (click for more)</div>
 						<button class="color-selector-button"></button>
-						<br/>
-						<span class="label">Recently Used Colors (click to select)</span>
+						<div class="label">Recently Used Colors (click to select)</div>
 						<div class="recent-color-wrapper">
 							<button id="recent-color-1" class="recent-color"></button>
 							<button id="recent-color-2" class="recent-color"></button>
@@ -52,42 +54,46 @@
 						</div>
 					</div>
 
-					<div class="design-grid-column-controls">
-						<span class="label">Columns:</span>
-						<span class="column-minus">
-							<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-						</span>
+					<div class="design-area-wrapper">
+						<div class="design-grid-controls">
+							<div class="design-grid-column-controls">
+								<div class="grid-controls">
+									<div class="label">Columns</div>
+									<span class="column-minus">
+										<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+									</span>
+									<span>
+										<input id="column-count-box" class="column-count" type="number" maxLength="3" min="1" max="99" value="8" />
+									</span>
+									<span class="column-plus">
+										<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+									</span>
+								</div>
+							</div>
 
-						<input id="column-count-box" class="column-count" type="number" maxLength="3" min="1" max="99" value="8" />
-						<span class="column-plus">
-							<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-						</span>
-					</div>
+							<div class="design-grid-row-controls">
+								<div class="grid-controls">
+									<div class="label">Rows</div>
+									<span class="row-minus">
+										<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
+									</span>
+									<span>
+										<input id="row-count-box" class="row-count" type="number" maxLength="3" min="1" max="99" value="8" />
+									</span>
+									<span class="row-plus">
+										<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add row"></img>
+									</span>
+								</div>
+							</div>
+						</div>
 
-					<div class="design-grid">
-					</div>
-
-					<div class="design-grid-row-controls">
-						<div class="row-controls">
-							<div class="label">Rows:</div>
-							<span class="row-minus">
-								<img src="./src/assets/ic_remove_circle_outline_black_24dp_1x.png" alt="Add column"></img>
-							</span>
-							<span>
-								<input id="row-count-box" class="row-count" type="number" maxLength="3" min="1" max="99" value="8" />
-							</span>
-							<span class="row-plus">
-								<img src="./src/assets/ic_add_circle_outline_black_24dp_1x.png" alt="Add row"></img>
-							</span>
+						<div class="design-grid-wrapper">
+							<div class="design-grid">
+							</div>
 						</div>
 					</div>
 
 					<div class="page-footer">
-						<div>
-							<span>
-								<a class="about-link" href="#">About</a>
-							</span>
-						</div>
 						<div>
 							<span class="copyright">
 								<i class="material-icons">copyright</i>
