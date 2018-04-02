@@ -15,7 +15,7 @@ a {
   color: #3f51b5;
   flex-wrap: wrap;
   font-size: 14px;
-  margin: auto;
+  margin: 10px auto auto auto;
   text-align: center;
   width: 100%;
 }
@@ -29,12 +29,13 @@ a {
   flex-flow: wrap row;
   border-color: #000;
   border-width: 1px;
-  margin: 10px auto auto auto;
+  margin: auto auto auto auto;
   width: 100%;
 }
 .design-area-wrapper {
   display: flex;
   flex-flow: wrap row;
+  margin: 0 auto auto auto;
   width: auto;
 }
 .page-footer {
@@ -75,14 +76,14 @@ a {
   grid-template-columns: repeat(5, var(--recentColorCellHeight));
   grid-template-rows: repeat(1, var(--recentColorCellHeight));
   grid-gap: var(--gridGap);
-  margin: auto;
+  margin: auto auto auto auto;
   justify-content: center;
 }
 .design-grid-controls {
   display: flex;
   flex-flow: wrap row;
   justify-content: center;
-  margin: 10px auto auto auto;
+  margin: auto auto auto auto;
 }
 .grid-controls {
   flex-wrap: wrap;
@@ -106,7 +107,7 @@ a {
 .design-grid-eraser-control {
   flex-flow: wrap row;
   justify-content: center;
-  margin: auto auto 0 40px;
+  margin: auto auto 0 45px;
 }
 .fa-trash-alt {
   font-size: 28px;
@@ -126,13 +127,6 @@ a {
 .row-plus {
   margin: auto auto auto auto;
 }
-/*
-.design-grid-wrapper {
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-*/
 .design-grid {
   border-color: #000;
   border-width: 1px;
