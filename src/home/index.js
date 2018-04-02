@@ -163,19 +163,40 @@ $(document).ready(function() {
   // When a cell is clicked if its current cell color is the default color
   // then change it to the to selected color. Otherwise, changed it to the
   // default color.
-  $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
-    let [rowNo, columnNo] = $(this).attr('id').split('grid-cell-')[1].split('-');
-    if (designGrid.getCellColor(rowNo, columnNo) === designGrid.getDefaultCellColor()) {
-      designGrid.setCellColor(rowNo, columnNo, colorPalette.getCurrentColor());
-      $(this).css('background-color',colorPalette.getCurrentColor());
-    } else {
-      designGrid.setCellColor(rowNo, columnNo, designGrid.getDefaultCellColor());
-      $(this).css('background-color',designGrid.getDefaultCellColor());
+
+  let isDragging = false;
+
+  $( ".design-grid" ).on( "click", ".design-grid-cell", (event) => {
+    if (!isDragging) {
+      let [rowNo, columnNo] = $(event.target).attr('id').split('grid-cell-')[1].split('-');
+      if (designGrid.getCellColor(rowNo, columnNo) !== colorPalette.getCurrentColor()) {
+        designGrid.setCellColor(rowNo, columnNo, colorPalette.getCurrentColor());
+        $(event.target).css('background-color',colorPalette.getCurrentColor());
+      } else {
+        designGrid.setCellColor(rowNo, columnNo, designGrid.getDefaultCellColor());
+        $(event.target).css('background-color',designGrid.getDefaultCellColor());
+      }
+      event.stopPropagation();
     }
   });
 
+  $( ".design-grid" ).on( "mousedown", () => {
+    $( document ).mousemove((event) => {
+      isDragging = true;
+      let [rowNo, columnNo] = $(event.target).attr('id').split('grid-cell-')[1].split('-');
+      designGrid.setCellColor(rowNo, columnNo, colorPalette.getCurrentColor());
+      $(event.target).css('background-color',colorPalette.getCurrentColor());
+      event.stopPropagation();
+    });
+  });
+
+  $( document ).on( "mouseup", () => {
+    isDragging = false;
+    $( document ).unbind('mousemove');
+  });
+
   // Create a event handlers for column and row controls
-  $( '.column-count').change(() => {
+  $( '.column-count' ).change(() => {
     // Determine how many columns are to be added or deleted
     const newColumnCount = $('#column-count-box' ).val();
     let noRepetitions = newColumnCount - designGrid.getColumnCount();
@@ -195,7 +216,7 @@ $(document).ready(function() {
       }
     }
   });
-  $(".column-minus").click((event) => {
+  $( ".column-minus" ).click((event) => {
     try {
       designGrid.deleteGridColumn();
       $('#column-count-box').val(designGrid.getColumnCount());
@@ -204,17 +225,17 @@ $(document).ready(function() {
       console.log(`Error decrementing column count. error:${error}`);
     }
   });
-  $(".column-plus").click((event) => {
+  $( ".column-plus" ).click((event) => {
     try {
       designGrid.addGridColumn();
-      $('#column-count-box').val(designGrid.getColumnCount());
+      $( '#column-count-box' ).val(designGrid.getColumnCount());
     }
     catch(error) {
       console.log(`Error incrementing column count. error:${error}`);
     }
   });
 
-  $('.row-count').change(() => {
+  $( '.row-count' ).change(() => {
     // Determine how many columns are to be added or deleted
     const newRowCount = $('#row-count-box' ).val();
     let noRepetitions = newRowCount - designGrid.getRowCount();
@@ -234,19 +255,19 @@ $(document).ready(function() {
       }
     }
   });
-  $(".row-minus").click((event) => {
+  $( ".row-minus" ).click((event) => {
     try {
       designGrid.deleteGridRow();
-      $('#row-count-box').val(designGrid.getRowCount());
+      $( '#row-count-box' ).val(designGrid.getRowCount());
     }
     catch(error) {
       console.log(`Error deleting a grid row. error:${error}`);
     }
   });
-  $(".row-plus").click((event) => {
+  $( ".row-plus" ).click((event) => {
     try {
       designGrid.addGridRow();
-      $('#row-count-box').val(designGrid.getRowCount());
+      $( '#row-count-box' ).val(designGrid.getRowCount());
     }
     catch(error) {
       console.log(`Error adding a new grid row. error:${error}`);
@@ -283,17 +304,17 @@ $(document).ready(function() {
     paletteDialog.showModal();
   });
 
-  $('#color-wheel').mousemove(function(event) {
+  $( '#color-wheel' ).mousemove(function(event) {
     if (!colorWheelFreeze) {
       const pixel = getPixel(event);
-      $('#palette-color-code').val(colorPalette.pixelToHex(pixel));
-      $('#palette-primary-button')
-        .css('backgroundColor', colorPalette.pixelToRgb(pixel));
+      $( '#palette-color-code' ).val(colorPalette.pixelToHex(pixel));
+      $( '#palette-primary-button' )
+        .css( 'backgroundColor', colorPalette.pixelToRgb(pixel));
       colorPalette.renderNewColorShades(colorPalette.pixelToRgb(pixel));
     }
   });
 
-  $('#color-wheel').mousedown(function(event) {
+  $( '#color-wheel' ).mousedown(function(event) {
     const pixel = getPixel(event);
     const rgbColor = colorPalette.pixelToRgb(pixel);
     colorPalette.setNewColor(rgbColor);
@@ -305,19 +326,19 @@ $(document).ready(function() {
     const rgbColor = colorPalette.hexToRgb($( "#palette-color-code" ).val());
     colorPalette.setNewColor(rgbColor);
     colorPalette.renderNewColorShades(rgbColor);
-    $('#palette-primary-button').css('backgroundColor', rgbColor);
+    $( '#palette-primary-button' ).css('backgroundColor', rgbColor);
   });
 
   colorPalette.renderNewColorShades(colorPalette.getDefaultColor());
-  $('#palette-primary-button')
-    .css('backgroundColor', colorPalette.getDefaultColor());
+  $( '#palette-primary-button' )
+    .css( 'backgroundColor', colorPalette.getDefaultColor());
   $( ".selected-shade-wrapper" ).on( 'click', '.selected-shade', function() {
-    $('#palette-color-code')
-      .val(colorPalette.rgbToHex($(this).css('background-color')));
-    colorPalette.setNewColor($(this).css('background-color'));
-    colorPalette.renderNewColorShades($(this).css('background-color'));
-    $('#palette-primary-button')
-      .css('backgroundColor', colorPalette.getNewColor());
+    $( '#palette-color-code' )
+      .val(colorPalette.rgbToHex($(this).css( 'background-color' )));
+    colorPalette.setNewColor($(this).css( 'background-color' ));
+    colorPalette.renderNewColorShades($(this).css( 'background-color' ));
+    $( '#palette-primary-button' )
+      .css( 'backgroundColor', colorPalette.getNewColor());
   });
 
   $( ".palette-cancel" ).on( "click", function() {
@@ -328,7 +349,7 @@ $(document).ready(function() {
   $( ".palette-ok" ).on( "click", function() {
     colorPalette.setCurrentColor(colorPalette.getNewColor());
     $( ".color-selector-button" )
-      .css('background-color',colorPalette.getCurrentColor());
+      .css( 'background-color',colorPalette.getCurrentColor());
     colorWheelFreeze = false;
     paletteDialog.close();
   });
