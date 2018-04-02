@@ -20,9 +20,11 @@ a {
 
 .label {
   color: rgb(63,81,181);
+  flex-wrap: wrap;
   font-size: 14px;
   margin: auto;
   text-align: center;
+  width: 100%
 }
 
 //-----------------------------------------------------------------------------
@@ -34,31 +36,36 @@ a {
 
 .page-wrapper {
   display: flex;
-  flex-wrap: wrap;
-}
-
-.design-grid-column-controls {
-  display flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 45%;
-  margin: 10px auto auto auto;
-}
-
-.design-grid-row-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  width: 45%;
-  margin: 10px auto auto auto;
+  flex-flow: wrap row;
+  justify-content: center;
 }
 
 .color-chooser {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap row;
   border-color: black;
   border-width: 1px;
   margin: 10px auto auto auto;
+  width: 100%;
+}
+
+.design-area-wrapper {
+  display flex;
+  flex-flow: wrap row;
+}
+
+.design-grid-controls {
+  display flex;
+  flex-flow: wrap row;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto 10px auto auto;
+}
+
+.design-grid-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
 
 .design-grid {
@@ -73,7 +80,9 @@ a {
 .page-footer{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 10px auto auto auto;
+  width: 100%
 }
 
 //-----------------------------------------------------------------------------
@@ -103,10 +112,11 @@ a {
 // Color Chooser Region Items
 
 .color-selector-button {
+  flex-direction: row;
   border-color: black;
   border-width: 1px;
   height: var(--recentColorCellHeight);
-  width: 100%;
+  width: 240px;
   background-color: blue;
   text-align: right;
   margin: auto auto 10px auto;
@@ -122,7 +132,13 @@ a {
 }
 
 .grid-controls {
-  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.design-grid-column-controls {
+  display flex;
+  justify-content: flex-start;
+  margin: auto auto auto auto;
 }
 
 .column-minus {
@@ -136,6 +152,12 @@ a {
 
 .column-plus {
   margin: 0 auto 0 auto;
+}
+
+.design-grid-row-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin: auto auto auto auto;
 }
 
 .row-minus {
