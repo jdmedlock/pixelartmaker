@@ -160,10 +160,18 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
 
   // Create a delegated event handler on the Design Grid.
+  // When a cell is clicked if its current cell color is the default color
+  // then change it to the to selected color. Otherwise, changed it to the
+  // default color.
   $( ".design-grid" ).on( "click", ".design-grid-cell", function() {
     let [rowNo, columnNo] = $(this).attr('id').split('grid-cell-')[1].split('-');
-    designGrid.setCellColor(rowNo, columnNo, colorPalette.getCurrentColor());
-    $(this).css('background-color',colorPalette.getCurrentColor());
+    if (designGrid.getCellColor(rowNo, columnNo) === designGrid.getDefaultCellColor()) {
+      designGrid.setCellColor(rowNo, columnNo, colorPalette.getCurrentColor());
+      $(this).css('background-color',colorPalette.getCurrentColor());
+    } else {
+      designGrid.setCellColor(rowNo, columnNo, designGrid.getDefaultCellColor());
+      $(this).css('background-color',designGrid.getDefaultCellColor());
+    }
   });
 
   // Create a event handlers for column and row controls

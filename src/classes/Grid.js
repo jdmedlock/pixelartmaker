@@ -33,7 +33,7 @@ class Grid {
     this.maxColumnCount = 99;
     this.minRowCount = 1;
     this.maxRowCount = 99;
-    this.defaultGridCellColor = 'rgb(218, 220, 224)'; // Light grey #DADCE0
+    this.defaultCellColor = 'rgb(218,220,224)'; // Light grey #DADCE0
     this.gridCellTemplate = '<div id="grid-cell-" class="design-grid-cell"></div>';
 
     // Create a new grid using the supplied dimensions and nitialize each cell to
@@ -55,7 +55,7 @@ class Grid {
     }
 
     this.grid.forEach((row) => {
-      row.splice(row.length, 0, this.defaultGridCellColor);
+      row.splice(row.length, 0, this.defaultCellColor);
     });
     this.columnCount += 1;
     this.renderGrid();
@@ -77,7 +77,7 @@ class Grid {
     // Add a new row of cells to the end of the grid
     const newRow = [];
     for (let i = 0; i < this.columnCount; i++) {
-      newRow.push(this.defaultGridCellColor);
+      newRow.push(this.defaultCellColor);
     }
     this.grid.push(newRow);
     this.rowCount += 1;
@@ -93,7 +93,7 @@ class Grid {
     for (let rowNo = 0; rowNo < this.rowCount; rowNo++) {
       this.grid[rowNo] = new Array(this.columnCount);
       for (let columnNo = 0; columnNo < this.columnCount; columnNo++) {
-        this.grid[rowNo][columnNo] = this.defaultGridCellColor;
+        this.grid[rowNo][columnNo] = this.defaultCellColor;
       }
     }
     this.makeGrid();
@@ -159,6 +159,17 @@ class Grid {
   }
 
   /**
+   * @description Get the rgb color of a grid cell
+   * @param {Integer} rowNo Row number of the grid cell to be updated
+   * @param {Integer} columnNo Column number of the grid cell to be updated
+   * @returns {String} rgbColor An RGB string in the format 'RGB(r,g,b)'
+   * @memberof Grid
+   */
+  getCellColor(rowNo, columnNo) {
+    return this.grid[rowNo][columnNo];
+  }
+
+  /**
    * @description Get the current number of columns in the grid.
    * @returns {Integer} - Number of columns in the grid
    * @readonly
@@ -166,6 +177,15 @@ class Grid {
    */
   getColumnCount() {
     return this.columnCount;
+  }
+
+  /**
+   * @description Get the default cell color
+   * @returns {String} Default cell color RGB value
+   * @memberof Grid
+   */
+  getDefaultCellColor() {
+    return this.defaultCellColor;
   }
 
   /**
