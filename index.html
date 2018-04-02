@@ -13,7 +13,102 @@
 </head>
 
 <body>
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	<dialog id="about-dialog" class="mdl-dialog">
+		<div id="about-dialog-content">
+			<h6 class="mdl-dialog__title">About</h6>
+			<div class="mdl-dialog__content">
+				<div class="about-text">
+					<p>
+						Pixel Art Maker was developed as part of the
+						<a href="https://www.udacity.com/grow-with-google" target="_blank">
+							Grow With Google Scholarship Challenge </a>sponsored by
+						<a href="https://grow.google/" target="_blank">Google</a> and offered through
+						<a href="https://www.udacity.com/" target="_blank"> Udacity</a>.
+					</p>
+					<p>
+						Developed by
+						<a href="https://github.com/jdmedlock/pixelartmaker" target="_blank">
+							Jim Medlock.
+						</a>
+					</p>
+				</div>
+				<img id="about-avatar" alt="Jim Medlock" />
+				</a>
+			</div>
+			<div class="mdl-dialog__actions">
+				<button type="button" class="mdl-button about-close">Close</button>
+			</div>
+		</div>
+	</dialog>
+
+	<dialog id="export-dialog" class="mdl-dialog">
+		<div id="export-dialog-content">
+			<h6 class="mdl-dialog__title">Export Grid...</h6>
+			<div class="mdl-dialog__content">
+				<div class="export-text">
+					<textarea id="export-json" type="text" class="cln" readonly col=160 rows=15>
+					</textarea>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input id="export-filename" type="text" class="mdl-textfield__input" maxLength="64"/>
+					<label class="mdl-textfield__label label" for="export-filename">Filename to export to</label>
+				</div>
+				<div class="mdl-dialog__actions">
+					<button type="button" class="mdl-button export-cancel">Cancel</button>
+					<button type="button" class="mdl-button export-save">Save</button>
+				</div>
+			</div>
+		</div>
+	</dialog>
+
+	<dialog id="import-dialog" class="mdl-dialog">
+		<div id="import-dialog-content">
+			<h6 class="mdl-dialog__title">Import Grid...</h6>
+			<div class="mdl-dialog__content">
+				<div class="import-text">
+					<div id="file-drop">
+						Drag and drop the file you wish to load into this area.
+					</div>
+				</div>
+			</div>
+			<div class="mdl-dialog__actions">
+				<button type="button" class="mdl-button import-done">Done</button>
+			</div>
+		</div>
+	</dialog>
+
+	<dialog id="palette-dialog" class="mdl-dialog">
+		<div id="palette-dialog-content">
+			<h6 class="mdl-dialog__title">Color Palette</h6>
+			<div class="mdl-dialog__content">
+				<div class="label">Click to toggle selection</div>
+				<canvas id="color-wheel" height="256" width="256"></canvas>
+				<div id="palette-feedback">
+					<form action="#">
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<input id="palette-color-code" type="text" class="mdl-textfield__input" maxLength="6" min="000000" max="FFFFFF" value="000000">
+							<label class="mdl-textfield__label label" for="palette-color-code">RGB [hex]</label>
+						</div>
+					</form>
+					<div>
+						<div class="label">Selected Color &amp; Shades</div>
+						<button id="palette-primary-button"></button>
+					</div>
+					<div class="selected-shade-wrapper">
+						<button id="selected-shade-1" class="selected-shade"></button>
+						<button id="selected-shade-2" class="selected-shade"></button>
+						<button id="selected-shade-3" class="selected-shade"></button>
+						<button id="selected-shade-4" class="selected-shade"></button>
+						<button id="selected-shade-5" class="selected-shade"></button>
+					</div>
+				</div>
+			</div>
+			<div class="mdl-dialog__actions">
+				<button type="button" class="mdl-button palette-cancel">Cancel</button>
+				<button type="button" class="mdl-button palette-ok">Select</button>
+			</div>
+		</div>
+	</dialog>	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 		<header class="mdl-layout__header">
 			<div class="mdl-layout__header-row">
 				<span class="mdl-layout-title">Pixel Art Maker</span>

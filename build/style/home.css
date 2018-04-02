@@ -202,6 +202,7 @@ a {
 #palette-color-code {
   display: inline-block;
   vertical-align: middle;
+  margin: 5px auto auto auto;
 }
 #palette-primary-button {
   border-color: #000;
